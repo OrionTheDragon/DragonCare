@@ -1,0 +1,196 @@
+package com.dragoncare.mechanics;
+
+import com.dragoncare.config.AddonConfig;
+import com.dragoncare.network.DragonDirtSyncPayload;
+import com.iafenvoy.iceandfire.entity.EntityDragonBase;
+import net.minecraft.entity.attribute.EntityAttributeInstance;
+import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.Identifier;
+
+import java.util.UUID;
+
+public class DragonDirtManager {
+
+    private static final java.util.UUID DIRT_HEALTH_MODIFIER_ID = java.util.UUID.fromString("11111111-2222-3333-4444-888888888888");
+    private static final java.util.UUID DIRT_SPEED_MODIFIER_ID = java.util.UUID.fromString("11111111-2222-3333-4444-666666666666");
+    private static final java.util.UUID DIRT_FLY_SPEED_MODIFIER_ID = java.util.UUID.fromString("11111111-2222-3333-4444-777777777777");
+    private static final java.util.UUID CLEAN_HEALTH_BONUS_ID = java.util.UUID.fromString("11111111-2222-3333-4444-555555555555");
+
+    /**
+     * Ticks the dirtiness logic for a single dragon.
+     * Should be called from the dragon's mobTick (server-side only).
+     */
+    public static void tickDragon(EntityDragonBase dragon) {
+        if (dragon.getWorld().isClient) return;
+        MinecraftServer server = dragon.getServer();
+        if (server == null) return;
+
+        boolean isTamed = dragon.isTamed();
+        if (isTamed && !AddonConfig.DIRT_ENABLED_TAMED.get()) return;
+        if (!isTamed && !AddonConfig.DIRT_ENABLED_WILD.get()) return;
+
+        ServerWorld overworld = server.getOverworld();
+        long currentTick = overworld.getTime();
+
+        DragonDirtState state = DragonDirtState.get(server);
+        DragonDirtState.DirtData data = state.getOrCreate(dragon.getUuid());
+
+        if (data.lastUpdateTick == 0) {
+            data.lastUpdateTick = currentTick;
+            state.markDirty();
+        }
+
+        double speedDays = AddonConfig.DIRT_SPEED_DAYS.get();
+        if (speedDays <= 0) speedDays = 1.0;
+        long ticksNeeded = (long) (24000L * speedDays);
+
+        if (currentTick - data.lastUpdateTick >= ticksNeeded) {
+            if (data.dirtLevel < 5) {
+                data.dirtLevel++;
+                data.lastUpdateTick = currentTick;
+                state.markDirty();
+                syncToTrackers(dragon, data.dirtLevel);
+                applyDirtEffects(dragon, data.dirtLevel);
+            } else {
+                data.lastUpdateTick = currentTick;
+                state.markDirty();
+            }
+        } else if (currentTick < data.lastUpdateTick) {
+            data.lastUpdateTick = currentTick;
+            state.markDirty();
+        }
+    }
+
+    public static int getDirtLevel(MinecraftServer server, UUID dragonId) {
+        DragonDirtState.DirtData data = DragonDirtState.get(server).peek(dragonId);
+        return data == null ? 0 : data.dirtLevel;
+    }
+
+    public static void setDirtLevel(EntityDragonBase dragon, int level) {
+        if (dragon.getWorld().isClient) return;
+        MinecraftServer server = dragon.getServer();
+        if (server == null) return;
+
+        DragonDirtState state = DragonDirtState.get(server);
+        DragonDirtState.DirtData data = state.getOrCreate(dragon.getUuid());
+        if (data.dirtLevel != level) {
+            int oldLevel = data.dirtLevel;
+            data.dirtLevel = level;
+            data.lastUpdateTick = server.getOverworld().getTime();
+            state.markDirty();
+            syncToTrackers(dragon, level);
+            applyDirtEffects(dragon, level);
+            
+            if (level == 0 && oldLevel > 0) {
+                // Immediately heal the 5% bonus if it wasn't active
+                dragon.heal(dragon.getMaxHealth() * 0.05f);
+            }
+        }
+    }
+
+    public static void cleanDragon(EntityDragonBase dragon) {
+        setDirtLevel(dragon, 0);
+    }
+
+    public static void syncTo(ServerPlayerEntity player, EntityDragonBase dragon) {
+        MinecraftServer server = dragon.getServer();
+        if (server == null) return;
+        int level = getDirtLevel(server, dragon.getUuid());
+        com.dragoncare.network.ModNetwork.INSTANCE.send(net.minecraftforge.network.PacketDistributor.PLAYER.with(() -> (net.minecraft.server.network.ServerPlayerEntity)player), new DragonDirtSyncPayload(dragon.getUuid(), level));
+    }
+
+    public static void syncToTrackers(EntityDragonBase dragon, int level) {
+        com.dragoncare.network.ModNetwork.INSTANCE.send(net.minecraftforge.network.PacketDistributor.TRACKING_ENTITY.with(() -> dragon), new DragonDirtSyncPayload(dragon.getUuid(), level));
+    }
+
+    public static void applyDirtEffects(EntityDragonBase dragon, int level) {
+        EntityAttributeInstance maxHealth = dragon.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH);
+        EntityAttributeInstance moveSpeed = dragon.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
+        EntityAttributeInstance flySpeed = dragon.getAttributeInstance(EntityAttributes.GENERIC_FLYING_SPEED);
+
+        if (maxHealth != null) {
+            maxHealth.removeModifier(DIRT_HEALTH_MODIFIER_ID);
+            maxHealth.removeModifier(CLEAN_HEALTH_BONUS_ID);
+        }
+        if (moveSpeed != null) moveSpeed.removeModifier(DIRT_SPEED_MODIFIER_ID);
+        if (flySpeed != null) flySpeed.removeModifier(DIRT_FLY_SPEED_MODIFIER_ID);
+
+        // Not tamed dragons do not get buffs/debuffs from dirt, only tamed ones do.
+        // Wait, user said: "Р“СЂРµР·РЅСЏС‚СЊСЃСЏ С‚РѕР»СЊРєРѕ РїСЂРёСЂСѓС‡РµРЅРЅС‹Рµ РґСЂР°РєРѕРЅС‹... РЈ РїСЂРёСЂСѓС‡РµРЅРЅС‹С… РґСЂР°РєРѕРЅРѕРІ РѕСЂРёРіРёРЅР°Р»СЊРЅР°СЏ С‚РµРєСЃС‚СѓСЂР° = С‡РёСЃС‚С‹Рµ."
+        // Let's check if tamed.
+        if (!dragon.isTamed()) return;
+
+        if (level == 0) {
+            // Clean: +5% HP, invisible speed buff (we apply modifier instead of potion effect for speed if it's passive)
+            // User requested: "РїРѕР»СѓС‡Р°СЋС‚ РЅРµРІРёРґРёРјС‹Р№ СЌС„С„РµРєС‚ СЃРєРѕСЂРѕСЃС‚Рё 1 СѓСЂРѕРІРЅСЏ, Рё +5% Рє РјР°РєСЃРёРјР°Р»СЊРЅРѕРјСѓ РҐРџ"
+            if (maxHealth != null) {
+                maxHealth.addPersistentModifier(new EntityAttributeModifier(
+                        CLEAN_HEALTH_BONUS_ID, "clean_health_bonus", 0.05, EntityAttributeModifier.Operation.MULTIPLY_TOTAL
+                ));
+            }
+            if (moveSpeed != null) {
+                moveSpeed.addPersistentModifier(new EntityAttributeModifier(
+                        DIRT_SPEED_MODIFIER_ID, "dirt_speed", 0.20, EntityAttributeModifier.Operation.MULTIPLY_TOTAL
+                )); // Speed 1 is +20%
+            }
+        } else if (level >= 1) {
+            // d1: Loses the 5% HP bonus (returns to baseline HP), but speed buff remains.
+            if (level == 1) {
+                if (moveSpeed != null) {
+                    moveSpeed.addPersistentModifier(new EntityAttributeModifier(
+                            DIRT_SPEED_MODIFIER_ID, "dirt_speed", 0.20, EntityAttributeModifier.Operation.MULTIPLY_TOTAL
+                    ));
+                }
+            }
+            
+            // d2: loses any improvements (which is the baseline, no modifiers needed)
+
+            // d3: -10% ground speed
+            if (level == 3 && moveSpeed != null) {
+                moveSpeed.addPersistentModifier(new EntityAttributeModifier(
+                        DIRT_SPEED_MODIFIER_ID, "dirt_speed", -0.10, EntityAttributeModifier.Operation.MULTIPLY_TOTAL
+                ));
+            }
+
+            // d4: -20% ground speed, -10% fly speed
+            if (level == 4) {
+                if (moveSpeed != null) {
+                    moveSpeed.addPersistentModifier(new EntityAttributeModifier(
+                            DIRT_SPEED_MODIFIER_ID, "dirt_speed", -0.20, EntityAttributeModifier.Operation.MULTIPLY_TOTAL
+                    ));
+                }
+                if (flySpeed != null) {
+                    flySpeed.addPersistentModifier(new EntityAttributeModifier(
+                            DIRT_FLY_SPEED_MODIFIER_ID, "dirt_fly_speed", -0.10, EntityAttributeModifier.Operation.MULTIPLY_TOTAL
+                    ));
+                }
+            }
+
+            // d5: -25% ground speed, -15% fly speed, -5% overall HP
+            if (level == 5) {
+                if (moveSpeed != null) {
+                    moveSpeed.addPersistentModifier(new EntityAttributeModifier(
+                            DIRT_SPEED_MODIFIER_ID, "dirt_speed", -0.25, EntityAttributeModifier.Operation.MULTIPLY_TOTAL
+                    ));
+                }
+                if (flySpeed != null) {
+                    flySpeed.addPersistentModifier(new EntityAttributeModifier(
+                            DIRT_FLY_SPEED_MODIFIER_ID, "dirt_fly_speed", -0.15, EntityAttributeModifier.Operation.MULTIPLY_TOTAL
+                    ));
+                }
+                if (maxHealth != null) {
+                    maxHealth.addPersistentModifier(new EntityAttributeModifier(
+                            DIRT_HEALTH_MODIFIER_ID, "dirt_health", -0.05, EntityAttributeModifier.Operation.MULTIPLY_TOTAL
+                    ));
+                }
+            }
+        }
+    }
+}
+
+
+

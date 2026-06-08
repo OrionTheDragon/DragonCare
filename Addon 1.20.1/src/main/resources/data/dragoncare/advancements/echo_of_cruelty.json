@@ -1,0 +1,31 @@
+{
+  "display": {
+    "icon": {
+      "item": "dragoncare:scale_shears"
+    },
+    "title": {
+      "translate": "advancements.dragoncare.echo_of_cruelty.title",
+      "color": "light_purple",
+      "italic": false
+    },
+    "description": {
+      "translate": "advancements.dragoncare.echo_of_cruelty.description",
+      "color": "light_purple"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "parent": "dragoncare:syringe_craft",
+  "criteria": {
+    "found_in_hunter_chest": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "found_in_hunter_chest"
+    ]
+  ]
+}

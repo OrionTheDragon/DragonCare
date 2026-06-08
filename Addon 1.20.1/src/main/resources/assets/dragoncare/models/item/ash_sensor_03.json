@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "dragoncare:item/ash_sensor_03"
+  },
+  "gui_light": "front"
+}

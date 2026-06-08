@@ -1,0 +1,37 @@
+modLoader = "javafml"
+loaderVersion = "[47,)"
+license = "MIT"
+
+[[mods]]
+modId = "dragoncare"
+version = "${version}"
+displayName = "Dragon Care"
+authors = "OrionDragon"
+description = '''
+Аддон для Ice and Fire CE, добавляющий инструменты драконовода: шприц для сбора крови с живых драконов, обсидианово-алмазные ножницы для сбора чешуи, обезбол для безопасных процедур и исключительный драконий корм для поэтапного приручения диких драконов через систему доверия. Мод позволяет получать ресурсы без убийства драконов.
+
+Схема Norse Hall: DarkLordKaz (модиф. Orion).
+Текстуры блока и стебля драконьего фрукта: LadaVesta.
+'''
+credits = "Текстуры: LadaVesta (блок и стебель драконьего фрукта). Постройки: DarkLordKaz (Norse Hall)."
+
+[[dependencies.dragoncare]]
+modId = "forge"
+mandatory = true
+versionRange = "[47,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.dragoncare]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.20.1,1.21)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.dragoncare]]
+modId = "iceandfire"
+mandatory = true
+versionRange = "*"
+ordering = "AFTER"
+side = "BOTH"

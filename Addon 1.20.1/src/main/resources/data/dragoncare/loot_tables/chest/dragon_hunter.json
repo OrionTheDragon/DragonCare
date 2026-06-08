@@ -1,0 +1,172 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "name": "dragon_flesh",
+      "rolls": 1,
+      "entries": [
+        { "type": "minecraft:empty", "weight": 85 },
+        {
+          "type": "minecraft:item",
+          "name": "iceandfire:fire_dragon_flesh",
+          "weight": 5,
+          "functions": [
+            { "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 3, "max": 18 } }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "iceandfire:ice_dragon_flesh",
+          "weight": 5,
+          "functions": [
+            { "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 3, "max": 18 } }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "iceandfire:lightning_dragon_flesh",
+          "weight": 5,
+          "functions": [
+            { "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 3, "max": 18 } }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "syringe",
+      "rolls": 1,
+      "entries": [
+        { "type": "minecraft:empty", "weight": 95 },
+        { "type": "minecraft:item", "name": "dragoncare:dragon_blood_syringe", "weight": 5 }
+      ]
+    },
+    {
+      "name": "scale_shears",
+      "rolls": 1,
+      "entries": [
+        { "type": "minecraft:empty", "weight": 98 },
+        { "type": "minecraft:item", "name": "dragoncare:scale_shears", "weight": 2 }
+      ]
+    },
+    {
+      "name": "exceptional_meal",
+      "rolls": 1,
+      "entries": [
+        { "type": "minecraft:empty", "weight": 199 },
+        { "type": "minecraft:item", "name": "dragoncare:exceptional_dragon_meal", "weight": 1 }
+      ]
+    },
+    {
+      "name": "lore_book",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "name": "dragoncare:chest/dragon_hunter/book_1_10",
+          "weight": 1
+        },
+        {
+          "type": "minecraft:loot_table",
+          "name": "dragoncare:chest/dragon_hunter/book_11_20",
+          "weight": 1
+        },
+        {
+          "type": "minecraft:loot_table",
+          "name": "dragoncare:chest/dragon_hunter/book_21_30",
+          "weight": 1
+        }
+      ]
+    },
+    {
+      "name": "dragon_bones",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "iceandfire:dragonbone",
+          "functions": [
+            { "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 5, "max": 20 } }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "junk",
+      "rolls": { "type": "minecraft:uniform", "min": 3, "max": 7 },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:cobweb",
+          "weight": 10,
+          "functions": [
+            { "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1, "max": 3 } }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:rotten_flesh",
+          "weight": 20,
+          "functions": [
+            { "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1, "max": 5 } }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:poisonous_potato",
+          "weight": 8,
+          "functions": [
+            { "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1, "max": 2 } }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:gunpowder",
+          "weight": 12,
+          "functions": [
+            { "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1, "max": 3 } }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:bone",
+          "weight": 15,
+          "functions": [
+            { "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1, "max": 4 } }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:bone_meal",
+          "weight": 15,
+          "functions": [
+            { "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1, "max": 4 } }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:string",
+          "weight": 10,
+          "functions": [
+            { "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1, "max": 4 } }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:paper",
+          "weight": 8,
+          "functions": [
+            { "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1, "max": 3 } }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:stick",
+          "weight": 12,
+          "functions": [
+            { "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1, "max": 5 } }
+          ]
+        }
+      ]
+    }
+  ]
+}

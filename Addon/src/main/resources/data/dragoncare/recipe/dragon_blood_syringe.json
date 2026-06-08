@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "B": {
+      "tag": "minecraft:wooden_buttons"
+    }
+  },
+  "pattern": [
+    "D  ",
+    " I ",
+    "  B"
+  ],
+  "result": {
+    "id": "dragoncare:dragon_blood_syringe"
+  },
+  "show_notification": true
+}

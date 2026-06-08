@@ -1,0 +1,19 @@
+{
+  "using_pill": {
+    "category": "player",
+    "subtitle": "subtitles.dragoncare.using_pill",
+    "sounds": [
+      "dragoncare:using_pill"
+    ]
+  },
+  "ash_meter_normal": {
+    "category": "player",
+    "subtitle": "subtitles.dragoncare.ash_meter_normal",
+    "sounds": [
+      {
+        "name": "dragoncare:ash_meter_normal",
+        "stream": false
+      }
+    ]
+  }
+}

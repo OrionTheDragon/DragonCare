@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:generic",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:written_book",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{title: 'Дневник охотника (21-30)', author: 'Неизвестный охотник', generation: 3, pages: ['{\"translate\":\"book.dragoncare.hunter3.p1\"}', '{\"translate\":\"book.dragoncare.hunter3.p2\"}', '{\"translate\":\"book.dragoncare.hunter3.p3\"}', '{\"translate\":\"book.dragoncare.hunter3.p4\"}', '{\"translate\":\"book.dragoncare.hunter3.p5\"}', '{\"translate\":\"book.dragoncare.hunter3.p6\"}', '{\"translate\":\"book.dragoncare.hunter3.p7\"}', '{\"translate\":\"book.dragoncare.hunter3.p8\"}', '{\"translate\":\"book.dragoncare.hunter3.p9\"}', '{\"translate\":\"book.dragoncare.hunter3.p10\"}', '{\"translate\":\"book.dragoncare.hunter3.p11\"}', '{\"translate\":\"book.dragoncare.hunter3.p12\"}', '{\"translate\":\"book.dragoncare.hunter3.p13\"}', '{\"translate\":\"book.dragoncare.hunter3.p14\"}', '{\"translate\":\"book.dragoncare.hunter3.p15\"}', '{\"translate\":\"book.dragoncare.hunter3.p16\"}']}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

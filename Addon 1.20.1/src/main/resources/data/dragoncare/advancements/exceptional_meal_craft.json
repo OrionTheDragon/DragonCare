@@ -1,0 +1,40 @@
+{
+  "display": {
+    "icon": {
+      "item": "dragoncare:exceptional_dragon_meal"
+    },
+    "title": {
+      "translate": "advancements.dragoncare.exceptional_meal_craft.title",
+      "color": "yellow",
+      "italic": false
+    },
+    "description": {
+      "translate": "advancements.dragoncare.exceptional_meal_craft.description",
+      "color": "yellow"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "dragoncare:syringe_craft",
+  "criteria": {
+    "has_meal": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "dragoncare:exceptional_dragon_meal"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_meal"
+    ]
+  ]
+}

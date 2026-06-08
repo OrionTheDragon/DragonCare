@@ -1,0 +1,31 @@
+{
+  "display": {
+    "icon": {
+      "id": "iceandfire:dragon_horn"
+    },
+    "title": {
+      "translate": "advancements.dragoncare.tamed_fire_dragon.title",
+      "color": "red",
+      "italic": false
+    },
+    "description": {
+      "translate": "advancements.dragoncare.tamed_fire_dragon.description",
+      "color": "red"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "parent": "dragoncare:taming_started",
+  "criteria": {
+    "tamed": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "tamed"
+    ]
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/stem_growth5",
+  "render_type": "cutout",
+  "textures": {
+    "stem": "dragoncare:block/dragon_fruit_stem"
+  }
+}

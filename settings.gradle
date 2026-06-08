@@ -1,0 +1,4 @@
+rootProject.name = 'DragonCare'
+
+include 'Addon 1.20.1'
+include 'Addon'

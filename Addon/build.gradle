@@ -1,0 +1,71 @@
+plugins {
+    id 'dev.architectury.loom' version '1.10.455'
+    id 'architectury-plugin' version '3.4.164'
+}
+
+architectury {
+    minecraft = minecraft_version
+    platformSetupLoomIde()
+    neoForge()
+}
+
+loom {
+    mixin {
+        useLegacyMixinAp = true
+        defaultRefmapName = "dragoncare.refmap.json"
+    }
+}
+
+group = maven_group
+version = mod_version
+
+base {
+    archivesName = archives_name
+}
+
+repositories {
+    // Доступные зеркала (без maven.architectury.dev и maven.neoforged.net)
+    maven { url = "https://maven.creeperhost.net/" }   // NeoForge + Architectury API
+    maven { url = "https://maven.fabricmc.net/" }      // Yarn mappings
+    maven { url = "https://api.modrinth.com/maven" }
+    maven { url = 'https://jitpack.io' }
+    maven { url = "https://maven.blamejared.com/" }
+    maven { url = "https://modmaven.dev" }
+    flatDir { dirs 'mappings-patch' }
+    mavenCentral()
+}
+
+dependencies {
+    minecraft "net.minecraft:minecraft:${minecraft_version}"
+    mappings loom.layered {
+        it.mappings("net.fabricmc:yarn:${yarn_mappings}:v2")
+        it.mappings("dev.architectury:yarn-mappings-patch-neoforge:${yarn_mappings_patch_neoforge_version}")
+        it.mappings("com.iafenvoy:yarn-mappings-patch-neoforge-mods:1.0")
+    }
+    neoForge "net.neoforged:neoforge:${neoforge_version}"
+
+    modImplementation "dev.architectury:architectury-neoforge:${architectury_api_version}"
+
+    // Uranus - required because DragonBaseEntity implements Uranus interfaces
+    modCompileOnly "maven.modrinth:uranus:BBb3HOQ5"
+
+    // IceAndFire CE - place the NeoForge jar in libs/ folder
+    modImplementation fileTree(dir: 'libs', include: ['*.jar'])
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.release = 21
+}
+
+processResources {
+    def modVersion = project.version
+    inputs.property 'version', modVersion
+    filesMatching('META-INF/neoforge.mods.toml') {
+        expand version: modVersion
+    }
+}

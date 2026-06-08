@@ -1,0 +1,12 @@
+{
+  "type": "dragoncare:add_item_with_chance",
+  "conditions": [],
+  "loot_tables": [
+    "minecraft:blocks/short_grass",
+    "minecraft:blocks/tall_grass"
+  ],
+  "item": "dragoncare:dragon_fruit_seeds",
+  "min": 1,
+  "max": 1,
+  "chance": 0.0005
+}

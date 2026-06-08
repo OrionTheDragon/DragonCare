@@ -1,0 +1,31 @@
+{
+  "display": {
+    "icon": {
+      "id": "minecraft:clock"
+    },
+    "title": {
+      "translate": "advancements.dragoncare.taming_started.title",
+      "color": "gold",
+      "italic": false
+    },
+    "description": {
+      "translate": "advancements.dragoncare.taming_started.description",
+      "color": "gold"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "dragoncare:dragon_befriended",
+  "criteria": {
+    "taming_started": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "taming_started"
+    ]
+  ]
+}

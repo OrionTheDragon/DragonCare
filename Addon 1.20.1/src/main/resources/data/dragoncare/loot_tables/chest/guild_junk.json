@@ -1,0 +1,161 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "name": "leviathan_scales",
+      "rolls": { "type": "minecraft:uniform", "min": 0, "max": 5 },
+      "entries": [
+        { "type": "minecraft:item", "name": "iceandfire:sea_serpent_scales_blue",     "weight": 1 },
+        { "type": "minecraft:item", "name": "iceandfire:sea_serpent_scales_bronze",   "weight": 1 },
+        { "type": "minecraft:item", "name": "iceandfire:sea_serpent_scales_deepblue", "weight": 1 },
+        { "type": "minecraft:item", "name": "iceandfire:sea_serpent_scales_green",    "weight": 1 },
+        { "type": "minecraft:item", "name": "iceandfire:sea_serpent_scales_purple",   "weight": 1 },
+        { "type": "minecraft:item", "name": "iceandfire:sea_serpent_scales_red",      "weight": 1 },
+        { "type": "minecraft:item", "name": "iceandfire:sea_serpent_scales_teal",     "weight": 1 }
+      ]
+    },
+    {
+      "name": "cyclops_eye",
+      "rolls": 1,
+      "entries": [
+        { "type": "minecraft:empty", "weight": 87 },
+        { "type": "minecraft:item", "name": "iceandfire:cyclops_eye", "weight": 13 }
+      ]
+    },
+    {
+      "name": "gorgon_head",
+      "rolls": 1,
+      "entries": [
+        { "type": "minecraft:empty", "weight": 95 },
+        { "type": "minecraft:item", "name": "iceandfire:gorgon_head", "weight": 5 }
+      ]
+    },
+    {
+      "name": "dragon_blood",
+      "rolls": { "type": "minecraft:binomial", "n": 5, "p": 0.2 },
+      "entries": [
+        { "type": "minecraft:item", "name": "iceandfire:fire_dragon_blood",      "weight": 1 },
+        { "type": "minecraft:item", "name": "iceandfire:ice_dragon_blood",       "weight": 1 },
+        { "type": "minecraft:item", "name": "iceandfire:lightning_dragon_blood", "weight": 1 }
+      ]
+    },
+    {
+      "name": "dragon_flesh",
+      "rolls": { "type": "minecraft:binomial", "n": 5, "p": 0.2 },
+      "entries": [
+        { "type": "minecraft:item", "name": "iceandfire:fire_dragon_flesh",      "weight": 1 },
+        { "type": "minecraft:item", "name": "iceandfire:ice_dragon_flesh",       "weight": 1 },
+        { "type": "minecraft:item", "name": "iceandfire:lightning_dragon_flesh", "weight": 1 }
+      ]
+    },
+    {
+      "name": "dragonsteel",
+      "rolls": 1,
+      "entries": [
+        { "type": "minecraft:empty", "weight": 67 },
+        { "type": "minecraft:item", "name": "iceandfire:dragonsteel_fire_ingot",      "weight": 11 },
+        { "type": "minecraft:item", "name": "iceandfire:dragonsteel_ice_ingot",       "weight": 11 },
+        { "type": "minecraft:item", "name": "iceandfire:dragonsteel_lightning_ingot", "weight": 11 }
+      ]
+    },
+    {
+      "name": "charred_blocks",
+      "rolls": { "type": "minecraft:uniform", "min": 2, "max": 10 },
+      "entries": [
+        { "type": "minecraft:item", "name": "iceandfire:chared_cobblestone", "weight": 1 },
+        { "type": "minecraft:item", "name": "iceandfire:chared_dirt",        "weight": 1 },
+        { "type": "minecraft:item", "name": "iceandfire:chared_dirt_path",   "weight": 1 },
+        { "type": "minecraft:item", "name": "iceandfire:chared_grass",       "weight": 1 },
+        { "type": "minecraft:item", "name": "iceandfire:chared_gravel",      "weight": 1 },
+        { "type": "minecraft:item", "name": "iceandfire:chared_stone",       "weight": 1 }
+      ]
+    },
+    {
+      "name": "burnt_torches",
+      "rolls": { "type": "minecraft:uniform", "min": 0, "max": 10 },
+      "entries": [
+        { "type": "minecraft:item", "name": "iceandfire:burnt_torch", "weight": 1 }
+      ]
+    },
+    {
+      "name": "deathworm_tongue",
+      "rolls": 1,
+      "entries": [
+        { "type": "minecraft:empty", "weight": 95 },
+        { "type": "minecraft:item", "name": "iceandfire:deathworm_tounge", "weight": 5 }
+      ]
+    },
+    {
+      "name": "amphithere_feather",
+      "rolls": { "type": "minecraft:binomial", "n": 5, "p": 0.2 },
+      "entries": [
+        { "type": "minecraft:item", "name": "iceandfire:amphithere_feather", "weight": 1 }
+      ]
+    },
+    {
+      "name": "hippogryph_talon",
+      "rolls": 1,
+      "entries": [
+        { "type": "minecraft:empty", "weight": 91 },
+        { "type": "minecraft:item", "name": "iceandfire:hippogryph_talon", "weight": 9 }
+      ]
+    },
+    {
+      "name": "wither_shard",
+      "rolls": { "type": "minecraft:uniform", "min": 0, "max": 4 },
+      "entries": [
+        { "type": "minecraft:item", "name": "iceandfire:wither_shard", "weight": 1 }
+      ]
+    },
+    {
+      "name": "blindfold",
+      "rolls": { "type": "minecraft:uniform", "min": 0, "max": 1 },
+      "entries": [
+        { "type": "minecraft:item", "name": "iceandfire:blindfold", "weight": 1 }
+      ]
+    },
+    {
+      "name": "vanilla_junk",
+      "rolls": { "type": "minecraft:uniform", "min": 3, "max": 8 },
+      "entries": [
+        {
+          "type": "minecraft:item", "name": "minecraft:rotten_flesh", "weight": 12,
+          "functions": [
+            { "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1, "max": 3 } }
+          ]
+        },
+        {
+          "type": "minecraft:item", "name": "minecraft:stick", "weight": 12,
+          "functions": [
+            { "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1, "max": 4 } }
+          ]
+        },
+        {
+          "type": "minecraft:item", "name": "minecraft:string", "weight": 10,
+          "functions": [
+            { "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1, "max": 3 } }
+          ]
+        },
+        {
+          "type": "minecraft:item", "name": "minecraft:feather", "weight": 10,
+          "functions": [
+            { "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1, "max": 3 } }
+          ]
+        },
+        { "type": "minecraft:item", "name": "minecraft:bone",   "weight": 8 },
+        { "type": "minecraft:item", "name": "minecraft:paper",  "weight": 8 },
+        { "type": "minecraft:item", "name": "minecraft:leather", "weight": 6 },
+        {
+          "type": "minecraft:item", "name": "minecraft:wheat_seeds", "weight": 10,
+          "functions": [
+            { "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1, "max": 4 } }
+          ]
+        },
+        { "type": "minecraft:item", "name": "minecraft:melon_seeds",    "weight": 5 },
+        { "type": "minecraft:item", "name": "minecraft:pumpkin_seeds",  "weight": 5 },
+        { "type": "minecraft:item", "name": "minecraft:beetroot_seeds", "weight": 5 },
+        { "type": "minecraft:item", "name": "minecraft:flint",          "weight": 6 }
+      ]
+    }
+  ]
+}

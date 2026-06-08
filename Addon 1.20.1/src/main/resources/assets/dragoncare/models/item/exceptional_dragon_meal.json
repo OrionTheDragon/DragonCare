@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "dragoncare:item/exceptional_dragon_meal"
+  },
+  "gui_light": "front"
+}

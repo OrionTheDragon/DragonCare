@@ -1,0 +1,31 @@
+{
+  "display": {
+    "icon": {
+      "item": "dragoncare:dragon_brush"
+    },
+    "title": {
+      "translate": "advancements.dragoncare.fresh_look.title",
+      "color": "aqua",
+      "italic": false
+    },
+    "description": {
+      "translate": "advancements.dragoncare.fresh_look.description",
+      "color": "aqua"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "dragoncare:dragon_brush_craft",
+  "criteria": {
+    "cleaned": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "cleaned"
+    ]
+  ]
+}

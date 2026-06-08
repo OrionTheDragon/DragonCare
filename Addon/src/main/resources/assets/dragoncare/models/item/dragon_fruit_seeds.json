@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "dragoncare:item/dragon_fruit_seeds_o"
+  },
+  "gui_light": "front"
+}

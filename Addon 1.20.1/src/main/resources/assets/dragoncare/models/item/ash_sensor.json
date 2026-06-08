@@ -1,0 +1,208 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "dragoncare:item/ash_sensor_off"
+  },
+  "display": {
+    "thirdperson_righthand": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "translation": [
+        0,
+        3,
+        1
+      ],
+      "scale": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        0,
+        -90,
+        25
+      ],
+      "translation": [
+        1.13,
+        3.2,
+        1.13
+      ],
+      "scale": [
+        0.68,
+        0.68,
+        0.68
+      ]
+    },
+    "firstperson_lefthand": {
+      "rotation": [
+        0,
+        90,
+        -25
+      ],
+      "translation": [
+        1.13,
+        3.2,
+        1.13
+      ],
+      "scale": [
+        0.68,
+        0.68,
+        0.68
+      ]
+    }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "dragoncare:sensor_on": 0.0
+      },
+      "model": "dragoncare:item/ash_sensor_off"
+    },
+    {
+      "predicate": {
+        "dragoncare:sensor_on": 1.0,
+        "dragoncare:ash_level": 0.0
+      },
+      "model": "dragoncare:item/ash_sensor_00"
+    },
+    {
+      "predicate": {
+        "dragoncare:sensor_on": 1.0,
+        "dragoncare:ash_level": 0.053
+      },
+      "model": "dragoncare:item/ash_sensor_01"
+    },
+    {
+      "predicate": {
+        "dragoncare:sensor_on": 1.0,
+        "dragoncare:ash_level": 0.105
+      },
+      "model": "dragoncare:item/ash_sensor_02"
+    },
+    {
+      "predicate": {
+        "dragoncare:sensor_on": 1.0,
+        "dragoncare:ash_level": 0.158
+      },
+      "model": "dragoncare:item/ash_sensor_03"
+    },
+    {
+      "predicate": {
+        "dragoncare:sensor_on": 1.0,
+        "dragoncare:ash_level": 0.211
+      },
+      "model": "dragoncare:item/ash_sensor_04"
+    },
+    {
+      "predicate": {
+        "dragoncare:sensor_on": 1.0,
+        "dragoncare:ash_level": 0.263
+      },
+      "model": "dragoncare:item/ash_sensor_05"
+    },
+    {
+      "predicate": {
+        "dragoncare:sensor_on": 1.0,
+        "dragoncare:ash_level": 0.316
+      },
+      "model": "dragoncare:item/ash_sensor_06"
+    },
+    {
+      "predicate": {
+        "dragoncare:sensor_on": 1.0,
+        "dragoncare:ash_level": 0.368
+      },
+      "model": "dragoncare:item/ash_sensor_07"
+    },
+    {
+      "predicate": {
+        "dragoncare:sensor_on": 1.0,
+        "dragoncare:ash_level": 0.421
+      },
+      "model": "dragoncare:item/ash_sensor_08"
+    },
+    {
+      "predicate": {
+        "dragoncare:sensor_on": 1.0,
+        "dragoncare:ash_level": 0.474
+      },
+      "model": "dragoncare:item/ash_sensor_09"
+    },
+    {
+      "predicate": {
+        "dragoncare:sensor_on": 1.0,
+        "dragoncare:ash_level": 0.526
+      },
+      "model": "dragoncare:item/ash_sensor_10"
+    },
+    {
+      "predicate": {
+        "dragoncare:sensor_on": 1.0,
+        "dragoncare:ash_level": 0.579
+      },
+      "model": "dragoncare:item/ash_sensor_11"
+    },
+    {
+      "predicate": {
+        "dragoncare:sensor_on": 1.0,
+        "dragoncare:ash_level": 0.632
+      },
+      "model": "dragoncare:item/ash_sensor_12"
+    },
+    {
+      "predicate": {
+        "dragoncare:sensor_on": 1.0,
+        "dragoncare:ash_level": 0.684
+      },
+      "model": "dragoncare:item/ash_sensor_13"
+    },
+    {
+      "predicate": {
+        "dragoncare:sensor_on": 1.0,
+        "dragoncare:ash_level": 0.737
+      },
+      "model": "dragoncare:item/ash_sensor_14"
+    },
+    {
+      "predicate": {
+        "dragoncare:sensor_on": 1.0,
+        "dragoncare:ash_level": 0.789
+      },
+      "model": "dragoncare:item/ash_sensor_15"
+    },
+    {
+      "predicate": {
+        "dragoncare:sensor_on": 1.0,
+        "dragoncare:ash_level": 0.842
+      },
+      "model": "dragoncare:item/ash_sensor_16"
+    },
+    {
+      "predicate": {
+        "dragoncare:sensor_on": 1.0,
+        "dragoncare:ash_level": 0.895
+      },
+      "model": "dragoncare:item/ash_sensor_17"
+    },
+    {
+      "predicate": {
+        "dragoncare:sensor_on": 1.0,
+        "dragoncare:ash_level": 0.947
+      },
+      "model": "dragoncare:item/ash_sensor_18"
+    },
+    {
+      "predicate": {
+        "dragoncare:sensor_on": 1.0,
+        "dragoncare:ash_level": 1.0
+      },
+      "model": "dragoncare:item/ash_sensor_19"
+    }
+  ],
+  "gui_light": "front"
+}

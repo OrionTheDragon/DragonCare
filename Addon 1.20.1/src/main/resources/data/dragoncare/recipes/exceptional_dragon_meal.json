@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "M": {
+      "item": "iceandfire:dragon_meal"
+    },
+    "O": {
+      "item": "minecraft:obsidian"
+    },
+    "D": {
+      "item": "minecraft:diamond_block"
+    }
+  },
+  "pattern": [
+    "MOM",
+    "ODO",
+    "MOM"
+  ],
+  "result": {
+    "id": "dragoncare:exceptional_dragon_meal"
+  },
+  "show_notification": true
+}

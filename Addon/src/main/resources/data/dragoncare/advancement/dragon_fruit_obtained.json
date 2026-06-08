@@ -1,0 +1,38 @@
+{
+  "display": {
+    "icon": {
+      "id": "dragoncare:dragon_fruit"
+    },
+    "title": {
+      "translate": "advancements.dragoncare.dragon_fruit_obtained.title",
+      "color": "light_purple",
+      "italic": false
+    },
+    "description": {
+      "translate": "advancements.dragoncare.dragon_fruit_obtained.description",
+      "color": "light_purple"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "parent": "dragoncare:dragon_befriended",
+  "criteria": {
+    "has_fruit": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "dragoncare:dragon_fruit"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_fruit"
+    ]
+  ]
+}

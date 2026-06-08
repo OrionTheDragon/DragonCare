@@ -1,0 +1,40 @@
+{
+  "display": {
+    "icon": {
+      "item": "dragoncare:dragon_phone"
+    },
+    "title": {
+      "translate": "advancements.dragoncare.dragon_phone_craft.title",
+      "color": "aqua",
+      "italic": false
+    },
+    "description": {
+      "translate": "advancements.dragoncare.dragon_phone_craft.description",
+      "color": "aqua"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "dragoncare:syringe_craft",
+  "criteria": {
+    "has_phone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "dragoncare:dragon_phone"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_phone"
+    ]
+  ]
+}

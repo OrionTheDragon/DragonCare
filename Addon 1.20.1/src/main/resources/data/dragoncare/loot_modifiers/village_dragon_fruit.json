@@ -1,0 +1,28 @@
+{
+  "type": "dragoncare:add_item_with_chance",
+  "conditions": [],
+  "loot_tables": [
+    "minecraft:chests/village/village_armorer",
+    "minecraft:chests/village/village_butcher",
+    "minecraft:chests/village/village_cartographer",
+    "minecraft:chests/village/village_desert_house",
+    "minecraft:chests/village/village_fisher",
+    "minecraft:chests/village/village_fletcher",
+    "minecraft:chests/village/village_mason",
+    "minecraft:chests/village/village_plains_house",
+    "minecraft:chests/village/village_savanna_house",
+    "minecraft:chests/village/village_shepherd",
+    "minecraft:chests/village/village_snowy_house",
+    "minecraft:chests/village/village_tannery",
+    "minecraft:chests/village/village_taiga_house",
+    "minecraft:chests/village/village_temple",
+    "minecraft:chests/village/village_toolsmith",
+    "minecraft:chests/village/village_weaponsmith"
+  ],
+  "item": "dragoncare:dragon_fruit",
+  "min": 1,
+  "max": 1,
+  "chance": 0.1,
+  "step": 0.05,
+  "max_chance": 0.5
+}

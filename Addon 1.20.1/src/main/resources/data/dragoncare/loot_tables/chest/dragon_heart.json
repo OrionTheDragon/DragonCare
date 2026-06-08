@@ -1,0 +1,111 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "name": "dragon_bones",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "iceandfire:dragonbone",
+          "functions": [
+            { "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 2, "max": 5 } }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "dragon_blood",
+      "rolls": { "type": "minecraft:uniform", "min": 7, "max": 10 },
+      "entries": [
+        { "type": "minecraft:item", "name": "iceandfire:fire_dragon_blood",      "weight": 1 },
+        { "type": "minecraft:item", "name": "iceandfire:ice_dragon_blood",       "weight": 1 },
+        { "type": "minecraft:item", "name": "iceandfire:lightning_dragon_blood", "weight": 1 }
+      ]
+    },
+    {
+      "name": "dragon_flesh",
+      "rolls": { "type": "minecraft:uniform", "min": 10, "max": 15 },
+      "entries": [
+        { "type": "minecraft:item", "name": "iceandfire:fire_dragon_flesh",      "weight": 1 },
+        { "type": "minecraft:item", "name": "iceandfire:ice_dragon_flesh",       "weight": 1 },
+        { "type": "minecraft:item", "name": "iceandfire:lightning_dragon_flesh", "weight": 1 }
+      ]
+    },
+    {
+      "name": "dragon_heart",
+      "rolls": 1,
+      "entries": [
+        { "type": "minecraft:item", "name": "iceandfire:fire_dragon_heart",      "weight": 1 },
+        { "type": "minecraft:item", "name": "iceandfire:ice_dragon_heart",       "weight": 1 },
+        { "type": "minecraft:item", "name": "iceandfire:lightning_dragon_heart", "weight": 1 }
+      ]
+    },
+    {
+      "name": "junk",
+      "rolls": { "type": "minecraft:uniform", "min": 15, "max": 25 },
+      "entries": [
+        {
+          "type": "minecraft:item", "name": "minecraft:bread", "weight": 20,
+          "functions": [
+            { "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1, "max": 4 } }
+          ]
+        },
+        {
+          "type": "minecraft:item", "name": "minecraft:wheat", "weight": 20,
+          "functions": [
+            { "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1, "max": 4 } }
+          ]
+        },
+        {
+          "type": "minecraft:item", "name": "minecraft:redstone", "weight": 15,
+          "functions": [
+            { "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1, "max": 4 } }
+          ]
+        },
+        {
+          "type": "minecraft:item", "name": "minecraft:gunpowder", "weight": 15,
+          "functions": [
+            { "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1, "max": 4 } }
+          ]
+        },
+        {
+          "type": "minecraft:item", "name": "minecraft:string", "weight": 15,
+          "functions": [
+            { "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1, "max": 4 } }
+          ]
+        },
+        {
+          "type": "minecraft:item", "name": "minecraft:bone", "weight": 15,
+          "functions": [
+            { "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1, "max": 4 } }
+          ]
+        },
+        {
+          "type": "minecraft:item", "name": "minecraft:iron_ingot", "weight": 10,
+          "functions": [
+            { "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1, "max": 4 } }
+          ]
+        },
+        {
+          "type": "minecraft:item", "name": "minecraft:gold_ingot", "weight": 5,
+          "functions": [
+            { "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1, "max": 3 } }
+          ]
+        },
+        { "type": "minecraft:item", "name": "minecraft:saddle",   "weight": 2 },
+        { "type": "minecraft:item", "name": "minecraft:name_tag", "weight": 2 },
+        {
+          "type": "minecraft:item", "name": "minecraft:enchanted_book", "weight": 5,
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": { "type": "minecraft:uniform", "min": 20, "max": 30 }
+            }
+          ]
+        },
+        { "type": "minecraft:item", "name": "minecraft:golden_apple", "weight": 3 }
+      ]
+    }
+  ]
+}

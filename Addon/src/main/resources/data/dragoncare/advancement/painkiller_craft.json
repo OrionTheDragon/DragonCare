@@ -1,0 +1,38 @@
+{
+  "display": {
+    "icon": {
+      "id": "dragoncare:dragon_painkiller"
+    },
+    "title": {
+      "translate": "advancements.dragoncare.painkiller_craft.title",
+      "color": "yellow",
+      "italic": false
+    },
+    "description": {
+      "translate": "advancements.dragoncare.painkiller_craft.description",
+      "color": "yellow"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "dragoncare:syringe_craft",
+  "criteria": {
+    "has_painkiller": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "dragoncare:dragon_painkiller"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_painkiller"
+    ]
+  ]
+}

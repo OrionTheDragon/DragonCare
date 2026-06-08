@@ -1,0 +1,62 @@
+plugins {
+    id 'dev.architectury.loom' version '1.7.435'
+    id 'architectury-plugin' version '3.4.164'
+}
+
+architectury {
+    minecraft = minecraft_version
+    forge()
+}
+
+loom {
+    forge {
+        mixinConfig "dragoncare.mixins.json"
+    }
+}
+
+group = maven_group
+version = mod_version
+
+base {
+    archivesName = archives_name
+}
+
+repositories {
+    maven { url = "https://maven.creeperhost.net/" } 
+    maven { url = "https://maven.fabricmc.net/" } 
+    maven { url = "https://api.modrinth.com/maven" }
+    maven { url = 'https://jitpack.io' }
+    maven { url = "https://maven.blamejared.com/" }
+    maven { url = "https://modmaven.dev" }
+    flatDir { dirs 'libs' }
+}
+
+dependencies {
+    minecraft "net.minecraft:minecraft:${minecraft_version}"
+    mappings loom.layered {
+        it.mappings("net.fabricmc:yarn:${yarn_mappings}:v2")
+    }
+    
+    forge "net.minecraftforge:forge:${forge_version}"
+
+    // Include jars from libs folder (e.g. IceAndFire-CE-1.20.1 jar)
+    modImplementation fileTree(dir: 'libs', include: ['*.jar'])
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.release = 17
+    options.encoding = 'UTF-8'
+}
+
+processResources {
+    def modVersion = project.version
+    inputs.property 'version', modVersion
+    filesMatching('META-INF/mods.toml') {
+        expand version: modVersion
+    }
+}

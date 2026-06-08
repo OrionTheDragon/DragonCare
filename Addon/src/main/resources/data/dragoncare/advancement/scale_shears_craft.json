@@ -1,0 +1,38 @@
+{
+  "display": {
+    "icon": {
+      "id": "dragoncare:scale_shears"
+    },
+    "title": {
+      "translate": "advancements.dragoncare.scale_shears_craft.title",
+      "color": "aqua",
+      "italic": false
+    },
+    "description": {
+      "translate": "advancements.dragoncare.scale_shears_craft.description",
+      "color": "aqua"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "dragoncare:syringe_craft",
+  "criteria": {
+    "has_shears": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "dragoncare:scale_shears"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_shears"
+    ]
+  ]
+}

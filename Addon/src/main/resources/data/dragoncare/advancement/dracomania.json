@@ -1,0 +1,73 @@
+{
+  "display": {
+    "icon": {
+      "id": "dragoncare:dracomania_icon"
+    },
+    "title": {
+      "translate": "advancements.dragoncare.dracomania.title",
+      "color": "gold",
+      "italic": false
+    },
+    "description": {
+      "translate": "advancements.dragoncare.dracomania.description",
+      "color": "gold"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "dragoncare:tamed_three_elements",
+  "criteria": {
+    "bronze": {
+      "trigger": "minecraft:impossible"
+    },
+    "gray": {
+      "trigger": "minecraft:impossible"
+    },
+    "green": {
+      "trigger": "minecraft:impossible"
+    },
+    "red": {
+      "trigger": "minecraft:impossible"
+    },
+    "blue": {
+      "trigger": "minecraft:impossible"
+    },
+    "sapphire": {
+      "trigger": "minecraft:impossible"
+    },
+    "silver": {
+      "trigger": "minecraft:impossible"
+    },
+    "white": {
+      "trigger": "minecraft:impossible"
+    },
+    "amethyst": {
+      "trigger": "minecraft:impossible"
+    },
+    "black": {
+      "trigger": "minecraft:impossible"
+    },
+    "copper": {
+      "trigger": "minecraft:impossible"
+    },
+    "electric": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    ["bronze"],
+    ["gray"],
+    ["green"],
+    ["red"],
+    ["blue"],
+    ["sapphire"],
+    ["silver"],
+    ["white"],
+    ["amethyst"],
+    ["black"],
+    ["copper"],
+    ["electric"]
+  ]
+}

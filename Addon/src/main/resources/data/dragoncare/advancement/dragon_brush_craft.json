@@ -1,0 +1,38 @@
+{
+  "display": {
+    "icon": {
+      "id": "dragoncare:dragon_brush"
+    },
+    "title": {
+      "translate": "advancements.dragoncare.dragon_brush_craft.title",
+      "color": "aqua",
+      "italic": false
+    },
+    "description": {
+      "translate": "advancements.dragoncare.dragon_brush_craft.description",
+      "color": "aqua"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "dragoncare:root",
+  "criteria": {
+    "has_brush": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "dragoncare:dragon_brush"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_brush"
+    ]
+  ]
+}

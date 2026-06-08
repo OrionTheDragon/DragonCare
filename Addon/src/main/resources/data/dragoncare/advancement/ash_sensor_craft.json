@@ -1,0 +1,38 @@
+{
+  "display": {
+    "icon": {
+      "id": "dragoncare:ash_sensor"
+    },
+    "title": {
+      "translate": "advancements.dragoncare.ash_sensor_craft.title",
+      "color": "aqua",
+      "italic": false
+    },
+    "description": {
+      "translate": "advancements.dragoncare.ash_sensor_craft.description",
+      "color": "aqua"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "dragoncare:root",
+  "criteria": {
+    "has_ash_sensor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "dragoncare:ash_sensor"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_ash_sensor"
+    ]
+  ]
+}

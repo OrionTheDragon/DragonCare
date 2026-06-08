@@ -1,0 +1,31 @@
+{
+  "display": {
+    "icon": {
+      "id": "dragoncare:dragon_fruit"
+    },
+    "title": {
+      "translate": "advancements.dragoncare.root.title",
+      "color": "gold",
+      "italic": false
+    },
+    "description": {
+      "translate": "advancements.dragoncare.root.description",
+      "color": "gold"
+    },
+    "background": "iceandfire:textures/block/dragonscale_sapphire.png",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "tick": {
+      "trigger": "minecraft:tick"
+    }
+  },
+  "requirements": [
+    [
+      "tick"
+    ]
+  ]
+}

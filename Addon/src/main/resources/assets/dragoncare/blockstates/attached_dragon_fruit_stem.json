@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "dragoncare:block/attached_dragon_fruit_stem",
+      "y": 180
+    },
+    "facing=north": {
+      "model": "dragoncare:block/attached_dragon_fruit_stem",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "dragoncare:block/attached_dragon_fruit_stem",
+      "y": 270
+    },
+    "facing=west": {
+      "model": "dragoncare:block/attached_dragon_fruit_stem"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "display": {
+    "icon": {
+      "item": "dragoncare:ash_tablets"
+    },
+    "title": {
+      "translate": "advancements.dragoncare.ash_tablets_craft.title",
+      "color": "aqua",
+      "italic": false
+    },
+    "description": {
+      "translate": "advancements.dragoncare.ash_tablets_craft.description",
+      "color": "aqua"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "dragoncare:root",
+  "criteria": {
+    "has_ash_tablets": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "dragoncare:ash_tablets"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_ash_tablets"
+    ]
+  ]
+}

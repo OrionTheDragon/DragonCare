@@ -1,0 +1,31 @@
+{
+  "display": {
+    "icon": {
+      "id": "iceandfire:dragon_meal"
+    },
+    "title": {
+      "translate": "advancements.dragoncare.dragon_befriended.title",
+      "color": "green",
+      "italic": false
+    },
+    "description": {
+      "translate": "advancements.dragoncare.dragon_befriended.description",
+      "color": "green"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "dragoncare:exceptional_meal_craft",
+  "criteria": {
+    "befriended": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "befriended"
+    ]
+  ]
+}

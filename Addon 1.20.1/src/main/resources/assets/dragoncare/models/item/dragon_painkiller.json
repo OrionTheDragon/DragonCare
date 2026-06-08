@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "dragoncare:item/painkiller_for_the_dragon_o"
+  },
+  "gui_light": "front"
+}

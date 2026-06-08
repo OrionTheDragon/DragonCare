@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "LSG",
+    "BMB",
+    "HSL"
+  ],
+  "key": {
+    "L": {
+      "item": "minecraft:milk_bucket"
+    },
+    "S": {
+      "item": "minecraft:sugar"
+    },
+    "H": {
+      "item": "minecraft:honey_bottle"
+    },
+    "B": {
+      "item": "minecraft:bone_meal"
+    },
+    "M": {
+      "item": "dragoncare:exceptional_dragon_meal"
+    },
+    "G": {
+      "item": "minecraft:glowstone_dust"
+    }
+  },
+  "result": {
+    "id": "dragoncare:dragon_painkiller"
+  },
+  "show_notification": true
+}

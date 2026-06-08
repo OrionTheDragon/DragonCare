@@ -1,0 +1,25 @@
+{
+    "required": true,
+    "package": "com.dragoncare.mixin",
+    "compatibilityLevel": "JAVA_21",
+    "minVersion": "0.8",
+    "refmap": "dragoncare.refmap.json",
+    "mixins": [
+        "ClampedEntityAttributeMixin",
+        "DragonBaseEntityMixin",
+        "DragonAgingMixin",
+        "MobEntityAccessor",
+        "worldgen.DragonRoostPieceMixin",
+        "worldgen.DragonCavePieceMixin"
+    ],
+    "client": [
+        "client.DragonScreenHandlerAccessor",
+        "client.DragonScreenMixin",
+        "client.DragonTextureProviderMixin",
+        "client.AdvancementWidgetAccessor",
+        "client.AdvancementTabMixin"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    }
+}
