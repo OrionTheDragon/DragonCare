@@ -2,11 +2,17 @@
 
 [English](#english-description) | [Русский](#русское-описание)
 
+![Supported Versions](https://img.shields.io/badge/Minecraft-1.20.1%20Forge%20%7C%201.21.1%20NeoForge-success)
+
 ---
 
 ## English Description
 
 **DragonCare Addon** extends the experience of *Ice and Fire CE* by introducing new interactive mechanics with dragons, encouraging players to build a connection with these magnificent creatures rather than treating them solely as targets.
+
+The mod is available in two versions within this repository:
+- **1.20.1 Forge**
+- **1.21.1 NeoForge**
 
 The mod introduces a variety of new tools, blocks, and mechanics, including a blood syringe, scale shears, painkillers, specialized treats, a progressive affection system, a dragon tracking phone, ash poisoning hazards, and custom ruined hunter structures to explore.
 
@@ -36,6 +42,10 @@ In the original *Ice and Fire CE*, dragons are primarily perceived as a threat, 
 ## Русское описание
 
 **DragonCare Addon** расширяет *Ice and Fire CE* новыми механиками взаимодействия с драконами, предлагая игрокам альтернативу стандартной охоте и истреблению.
+
+Мод доступен в двух версиях в этом репозитории:
+- **1.20.1 Forge**
+- **1.21.1 NeoForge**
 
 Мод добавляет шприц для сбора крови, ножницы для чешуи, обезболивающее, особые корма, систему привязанности, драконий телефон, механику отравления пеплом и заброшенные постройки охотников.
 
