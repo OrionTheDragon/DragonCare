@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "IRI",
+    "GDG",
+    "IRI"
+  ],
+  "key": {
+    "I": { "item": "minecraft:iron_ingot" },
+    "R": { "item": "minecraft:redstone" },
+    "G": { "item": "minecraft:gold_ingot" },
+    "D": { "item": "minecraft:diamond" }
+  },
+  "result": {"item": "dragoncare:dragon_phone" },
+  "show_notification": true,
+  "conditions": [ { "type": "dragoncare:simplify_crafts" } ]
+}

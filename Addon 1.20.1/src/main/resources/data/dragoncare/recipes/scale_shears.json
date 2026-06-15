@@ -17,8 +17,15 @@
       "item": "minecraft:shears"
     }
   },
-  "result": {
-    "id": "dragoncare:scale_shears"
+  "result": {"item": "dragoncare:scale_shears"
   },
-  "show_notification": true
+  "show_notification": true,
+  "conditions": [
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "dragoncare:simplify_crafts"
+      }
+    }
+  ]
 }

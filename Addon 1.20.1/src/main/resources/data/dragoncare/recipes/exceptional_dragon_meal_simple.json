@@ -2,14 +2,17 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "M": {
-      "item": "iceandfire:dragon_meal"
-    },
+    "M": [
+      { "item": "minecraft:beef" },
+      { "item": "minecraft:porkchop" },
+      { "item": "minecraft:mutton" },
+      { "item": "minecraft:chicken" }
+    ],
     "O": {
       "item": "minecraft:obsidian"
     },
     "D": {
-      "item": "minecraft:diamond_block"
+      "item": "minecraft:diamond"
     }
   },
   "pattern": [
@@ -22,10 +25,7 @@
   "show_notification": true,
   "conditions": [
     {
-      "type": "forge:not",
-      "value": {
-        "type": "dragoncare:simplify_crafts"
-      }
+      "type": "dragoncare:simplify_crafts"
     }
   ]
 }

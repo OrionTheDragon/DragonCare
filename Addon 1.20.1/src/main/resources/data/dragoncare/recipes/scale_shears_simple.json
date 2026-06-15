@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " D ",
+    " S ",
+    " O "
+  ],
+  "key": {
+    "D": { "item": "minecraft:diamond" },
+    "S": { "item": "minecraft:shears" },
+    "O": { "item": "minecraft:obsidian" }
+  },
+  "result": {"item": "dragoncare:scale_shears" },
+  "show_notification": true,
+  "conditions": [ { "type": "dragoncare:simplify_crafts" } ]
+}

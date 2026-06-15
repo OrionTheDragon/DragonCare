@@ -17,8 +17,7 @@
     " I ",
     "  B"
   ],
-  "result": {
-    "id": "dragoncare:dragon_blood_syringe"
+  "result": {"item": "dragoncare:dragon_blood_syringe"
   },
   "show_notification": true
 }

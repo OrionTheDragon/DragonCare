@@ -26,8 +26,15 @@
       "item": "minecraft:glowstone_dust"
     }
   },
-  "result": {
-    "id": "dragoncare:dragon_painkiller"
+  "result": {"item": "dragoncare:dragon_painkiller"
   },
-  "show_notification": true
+  "show_notification": true,
+  "conditions": [
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "dragoncare:simplify_crafts"
+      }
+    }
+  ]
 }

@@ -7,14 +7,31 @@
     "IWI"
   ],
   "key": {
-    "I": { "item": "minecraft:iron_ingot" },
-    "C": { "item": "minecraft:compass" },
-    "G": { "item": "minecraft:gold_ingot" },
-    "D": { "item": "minecraft:diamond" },
-    "W": { "item": "minecraft:clock" }
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "C": {
+      "item": "minecraft:compass"
+    },
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "W": {
+      "item": "minecraft:clock"
+    }
   },
-  "result": {
-    "id": "dragoncare:dragon_phone",
+  "result": {"item": "dragoncare:dragon_phone",
     "count": 1
-  }
+  },
+  "conditions": [
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "dragoncare:simplify_crafts"
+      }
+    }
+  ]
 }

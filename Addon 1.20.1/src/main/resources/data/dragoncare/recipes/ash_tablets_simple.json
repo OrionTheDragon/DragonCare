@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "SCS",
+    "P P",
+    "MAM"
+  ],
+  "key": {
+    "S": { "item": "minecraft:sugar" },
+    "C": { "item": "minecraft:carrot" },
+    "P": { "item": "minecraft:potion" },
+    "M": { "item": "minecraft:milk_bucket" },
+    "A": { "item": "minecraft:apple" }
+  },
+  "result": {"item": "dragoncare:ash_tablets", "count": 12 },
+  "show_notification": true,
+  "conditions": [ { "type": "dragoncare:simplify_crafts" } ]
+}
