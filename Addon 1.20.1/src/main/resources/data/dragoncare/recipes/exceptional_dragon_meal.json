@@ -20,7 +20,7 @@
   "result": {"item": "dragoncare:exceptional_dragon_meal"
   },
   "show_notification": true,
-  "conditions": [
+  "forge:conditions": [
     {
       "type": "forge:not",
       "value": {

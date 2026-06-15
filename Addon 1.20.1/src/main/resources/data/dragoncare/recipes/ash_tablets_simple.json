@@ -15,5 +15,5 @@
   },
   "result": {"item": "dragoncare:ash_tablets", "count": 12 },
   "show_notification": true,
-  "conditions": [ { "type": "dragoncare:simplify_crafts" } ]
+  "forge:conditions": [ { "type": "dragoncare:simplify_crafts" } ]
 }

@@ -14,5 +14,5 @@
   },
   "result": {"item": "dragoncare:dragon_phone" },
   "show_notification": true,
-  "conditions": [ { "type": "dragoncare:simplify_crafts" } ]
+  "forge:conditions": [ { "type": "dragoncare:simplify_crafts" } ]
 }

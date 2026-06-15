@@ -29,7 +29,7 @@
   "result": {"item": "dragoncare:dragon_painkiller"
   },
   "show_notification": true,
-  "conditions": [
+  "forge:conditions": [
     {
       "type": "forge:not",
       "value": {

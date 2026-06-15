@@ -20,7 +20,7 @@
   "result": {"item": "dragoncare:scale_shears"
   },
   "show_notification": true,
-  "conditions": [
+  "forge:conditions": [
     {
       "type": "forge:not",
       "value": {
