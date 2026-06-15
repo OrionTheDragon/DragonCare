@@ -73,7 +73,11 @@ public class DragonCare {
             lastSimplifyCrafts = currentSimplifyCrafts;
             net.minecraft.server.MinecraftServer server = net.minecraftforge.server.ServerLifecycleHooks.getCurrentServer();
             if (server != null) {
-                server.execute(() -> server.reloadResources(server.getDataPackManager().getEnabledNames()));
+                server.execute(() -> {
+                    server.reloadResources(server.getDataPackManager().getEnabledNames()).thenAccept(v -> {
+                        server.getPlayerManager().onDataPacksReloaded();
+                    });
+                });
             }
         }
     }
