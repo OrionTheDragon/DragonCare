@@ -7,13 +7,33 @@
     "MAM"
   ],
   "key": {
-    "S": { "item": "minecraft:sugar" },
-    "C": { "item": "minecraft:carrot" },
-    "P": { "item": "minecraft:potion" },
-    "M": { "item": "minecraft:milk_bucket" },
-    "A": { "item": "minecraft:apple" }
+    "S": {
+      "item": "minecraft:sugar"
+    },
+    "C": {
+      "item": "minecraft:carrot"
+    },
+    "P": {
+      "type": "neoforge:components",
+      "items": "minecraft:potion",
+      "components": {
+        "minecraft:potion_contents": "minecraft:water"
+      }
+    },
+    "M": {
+      "item": "minecraft:milk_bucket"
+    },
+    "A": {
+      "item": "minecraft:apple"
+    }
   },
-  "result": { "id": "dragoncare:ash_tablets", "count": 12 },
+  "result": {
+    "id": "dragoncare:ash_tablets"
+  },
   "show_notification": true,
-  "neoforge:conditions": [ { "type": "dragoncare:simplify_crafts" } ]
+  "neoforge:conditions": [
+    {
+      "type": "dragoncare:simplify_crafts"
+    }
+  ]
 }

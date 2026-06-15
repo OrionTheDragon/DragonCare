@@ -23,7 +23,11 @@
             "item": "minecraft:carrot"
           },
           "P": {
-            "item": "minecraft:potion"
+            "type": "forge:nbt",
+            "item": "minecraft:potion",
+            "nbt": {
+              "Potion": "minecraft:water"
+            }
           },
           "M": {
             "item": "minecraft:milk_bucket"
@@ -33,8 +37,7 @@
           }
         },
         "result": {
-          "item": "dragoncare:ash_tablets",
-          "count": 12
+          "item": "dragoncare:ash_tablets"
         },
         "show_notification": true
       }
