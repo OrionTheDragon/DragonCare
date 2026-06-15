@@ -1,37 +1,45 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "misc",
-  "pattern": [
-    "LSH",
-    "BMB",
-    "GSL"
-  ],
-  "key": {
-    "L": {
-      "item": "minecraft:milk_bucket"
-    },
-    "S": {
-      "item": "minecraft:sugar"
-    },
-    "H": {
-      "item": "minecraft:potion"
-    },
-    "B": {
-      "item": "minecraft:bone_meal"
-    },
-    "M": {
-      "item": "iceandfire:dragon_meal"
-    },
-    "G": {
-      "item": "minecraft:lapis_lazuli"
-    }
-  },
-  "result": {"item": "dragoncare:dragon_painkiller"
-  },
-  "show_notification": true,
-  "forge:conditions": [
+  "type": "forge:conditional",
+  "recipes": [
     {
-      "type": "dragoncare:simplify_crafts"
+      "conditions": [
+        {
+          "type": "dragoncare:simplify_crafts"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "category": "misc",
+        "pattern": [
+          "LSH",
+          "BMB",
+          "GSL"
+        ],
+        "key": {
+          "L": {
+            "item": "minecraft:milk_bucket"
+          },
+          "S": {
+            "item": "minecraft:sugar"
+          },
+          "H": {
+            "item": "minecraft:potion"
+          },
+          "B": {
+            "item": "minecraft:bone_meal"
+          },
+          "M": {
+            "item": "iceandfire:dragon_meal"
+          },
+          "G": {
+            "item": "minecraft:lapis_lazuli"
+          }
+        },
+        "result": {
+          "item": "dragoncare:dragon_painkiller"
+        },
+        "show_notification": true
+      }
     }
   ]
 }

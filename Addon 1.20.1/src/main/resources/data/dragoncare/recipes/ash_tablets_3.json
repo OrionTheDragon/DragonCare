@@ -1,46 +1,54 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "MCM",
-    "BWB",
-    "SAS"
-  ],
-  "key": {
-    "S": {
-      "item": "minecraft:sugar"
-    },
-    "C": {
-      "item": "minecraft:golden_carrot"
-    },
-    "B": [
-      {
-        "item": "iceandfire:fire_dragon_blood"
-      },
-      {
-        "item": "iceandfire:ice_dragon_blood"
-      },
-      {
-        "item": "iceandfire:lightning_dragon_blood"
-      }
-    ],
-    "W": {
-      "item": "minecraft:nether_wart"
-    },
-    "M": {
-      "item": "minecraft:milk_bucket"
-    },
-    "A": {
-      "item": "minecraft:golden_apple"
-    }
-  },
-  "result": {"item": "dragoncare:ash_tablets",
-    "count": 1
-  },
-  "forge:conditions": [
+  "type": "forge:conditional",
+  "recipes": [
     {
-      "type": "forge:not",
-      "value": {
-        "type": "dragoncare:simplify_crafts"
+      "conditions": [
+        {
+          "type": "forge:not",
+          "value": {
+            "type": "dragoncare:simplify_crafts"
+          }
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "pattern": [
+          "MCM",
+          "BWB",
+          "SAS"
+        ],
+        "key": {
+          "S": {
+            "item": "minecraft:sugar"
+          },
+          "C": {
+            "item": "minecraft:golden_carrot"
+          },
+          "B": [
+            {
+              "item": "iceandfire:fire_dragon_blood"
+            },
+            {
+              "item": "iceandfire:ice_dragon_blood"
+            },
+            {
+              "item": "iceandfire:lightning_dragon_blood"
+            }
+          ],
+          "W": {
+            "item": "minecraft:nether_wart"
+          },
+          "M": {
+            "item": "minecraft:milk_bucket"
+          },
+          "A": {
+            "item": "minecraft:golden_apple"
+          }
+        },
+        "result": {
+          "item": "dragoncare:ash_tablets",
+          "count": 1
+        }
       }
     }
   ]

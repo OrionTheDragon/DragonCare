@@ -1,36 +1,44 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "misc",
-  "pattern": [
-    "ICI",
-    "GDG",
-    "IWI"
-  ],
-  "key": {
-    "I": {
-      "item": "minecraft:iron_ingot"
-    },
-    "C": {
-      "item": "minecraft:compass"
-    },
-    "G": {
-      "item": "minecraft:gold_ingot"
-    },
-    "D": {
-      "item": "minecraft:diamond"
-    },
-    "W": {
-      "item": "minecraft:clock"
-    }
-  },
-  "result": {"item": "dragoncare:dragon_phone",
-    "count": 1
-  },
-  "forge:conditions": [
+  "type": "forge:conditional",
+  "recipes": [
     {
-      "type": "forge:not",
-      "value": {
-        "type": "dragoncare:simplify_crafts"
+      "conditions": [
+        {
+          "type": "forge:not",
+          "value": {
+            "type": "dragoncare:simplify_crafts"
+          }
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "category": "misc",
+        "pattern": [
+          "ICI",
+          "GDG",
+          "IWI"
+        ],
+        "key": {
+          "I": {
+            "item": "minecraft:iron_ingot"
+          },
+          "C": {
+            "item": "minecraft:compass"
+          },
+          "G": {
+            "item": "minecraft:gold_ingot"
+          },
+          "D": {
+            "item": "minecraft:diamond"
+          },
+          "W": {
+            "item": "minecraft:clock"
+          }
+        },
+        "result": {
+          "item": "dragoncare:dragon_phone",
+          "count": 1
+        }
       }
     }
   ]

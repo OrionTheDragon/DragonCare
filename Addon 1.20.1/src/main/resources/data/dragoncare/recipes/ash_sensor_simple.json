@@ -1,34 +1,42 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "misc",
-  "pattern": [
-    "DLD",
-    "IOI",
-    "DCD"
-  ],
-  "key": {
-    "D": {
-      "item": "minecraft:diamond"
-    },
-    "L": {
-      "item": "minecraft:white_stained_glass"
-    },
-    "I": {
-      "item": "minecraft:light_blue_dye"
-    },
-    "O": {
-      "item": "minecraft:redstone"
-    },
-    "C": {
-      "item": "minecraft:comparator"
-    }
-  },
-  "result": {"item": "dragoncare:ash_sensor"
-  },
-  "show_notification": true,
-  "forge:conditions": [
+  "type": "forge:conditional",
+  "recipes": [
     {
-      "type": "dragoncare:simplify_crafts"
+      "conditions": [
+        {
+          "type": "dragoncare:simplify_crafts"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "category": "misc",
+        "pattern": [
+          "DLD",
+          "IOI",
+          "DCD"
+        ],
+        "key": {
+          "D": {
+            "item": "minecraft:diamond"
+          },
+          "L": {
+            "item": "minecraft:white_stained_glass"
+          },
+          "I": {
+            "item": "minecraft:light_blue_dye"
+          },
+          "O": {
+            "item": "minecraft:redstone"
+          },
+          "C": {
+            "item": "minecraft:comparator"
+          }
+        },
+        "result": {
+          "item": "dragoncare:ash_sensor"
+        },
+        "show_notification": true
+      }
     }
   ]
 }

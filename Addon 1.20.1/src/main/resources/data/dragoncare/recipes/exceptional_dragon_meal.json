@@ -1,30 +1,38 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "misc",
-  "key": {
-    "M": {
-      "item": "iceandfire:dragon_meal"
-    },
-    "O": {
-      "item": "minecraft:obsidian"
-    },
-    "D": {
-      "item": "minecraft:diamond_block"
-    }
-  },
-  "pattern": [
-    "MOM",
-    "ODO",
-    "MOM"
-  ],
-  "result": {"item": "dragoncare:exceptional_dragon_meal"
-  },
-  "show_notification": true,
-  "forge:conditions": [
+  "type": "forge:conditional",
+  "recipes": [
     {
-      "type": "forge:not",
-      "value": {
-        "type": "dragoncare:simplify_crafts"
+      "conditions": [
+        {
+          "type": "forge:not",
+          "value": {
+            "type": "dragoncare:simplify_crafts"
+          }
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "category": "misc",
+        "key": {
+          "M": {
+            "item": "iceandfire:dragon_meal"
+          },
+          "O": {
+            "item": "minecraft:obsidian"
+          },
+          "D": {
+            "item": "minecraft:diamond_block"
+          }
+        },
+        "pattern": [
+          "MOM",
+          "ODO",
+          "MOM"
+        ],
+        "result": {
+          "item": "dragoncare:exceptional_dragon_meal"
+        },
+        "show_notification": true
       }
     }
   ]

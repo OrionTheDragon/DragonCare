@@ -1,36 +1,44 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "misc",
-  "pattern": [
-    "DLD",
-    "IOI",
-    "DCD"
-  ],
-  "key": {
-    "D": {
-      "item": "minecraft:diamond"
-    },
-    "L": {
-      "item": "minecraft:daylight_detector"
-    },
-    "I": {
-      "item": "minecraft:glow_ink_sac"
-    },
-    "O": {
-      "item": "minecraft:observer"
-    },
-    "C": {
-      "item": "minecraft:comparator"
-    }
-  },
-  "result": {"item": "dragoncare:ash_sensor"
-  },
-  "show_notification": true,
-  "forge:conditions": [
+  "type": "forge:conditional",
+  "recipes": [
     {
-      "type": "forge:not",
-      "value": {
-        "type": "dragoncare:simplify_crafts"
+      "conditions": [
+        {
+          "type": "forge:not",
+          "value": {
+            "type": "dragoncare:simplify_crafts"
+          }
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "category": "misc",
+        "pattern": [
+          "DLD",
+          "IOI",
+          "DCD"
+        ],
+        "key": {
+          "D": {
+            "item": "minecraft:diamond"
+          },
+          "L": {
+            "item": "minecraft:daylight_detector"
+          },
+          "I": {
+            "item": "minecraft:glow_ink_sac"
+          },
+          "O": {
+            "item": "minecraft:observer"
+          },
+          "C": {
+            "item": "minecraft:comparator"
+          }
+        },
+        "result": {
+          "item": "dragoncare:ash_sensor"
+        },
+        "show_notification": true
       }
     }
   ]

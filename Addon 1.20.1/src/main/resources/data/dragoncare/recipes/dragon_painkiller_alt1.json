@@ -1,39 +1,47 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "misc",
-  "pattern": [
-    "LBH",
-    "SMS",
-    "GBL"
-  ],
-  "key": {
-    "L": {
-      "item": "minecraft:milk_bucket"
-    },
-    "S": {
-      "item": "minecraft:sugar"
-    },
-    "H": {
-      "item": "minecraft:honey_bottle"
-    },
-    "B": {
-      "item": "minecraft:bone_meal"
-    },
-    "M": {
-      "item": "dragoncare:exceptional_dragon_meal"
-    },
-    "G": {
-      "item": "minecraft:glowstone_dust"
-    }
-  },
-  "result": {"item": "dragoncare:dragon_painkiller"
-  },
-  "show_notification": true,
-  "forge:conditions": [
+  "type": "forge:conditional",
+  "recipes": [
     {
-      "type": "forge:not",
-      "value": {
-        "type": "dragoncare:simplify_crafts"
+      "conditions": [
+        {
+          "type": "forge:not",
+          "value": {
+            "type": "dragoncare:simplify_crafts"
+          }
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "category": "misc",
+        "pattern": [
+          "LBH",
+          "SMS",
+          "GBL"
+        ],
+        "key": {
+          "L": {
+            "item": "minecraft:milk_bucket"
+          },
+          "S": {
+            "item": "minecraft:sugar"
+          },
+          "H": {
+            "item": "minecraft:honey_bottle"
+          },
+          "B": {
+            "item": "minecraft:bone_meal"
+          },
+          "M": {
+            "item": "dragoncare:exceptional_dragon_meal"
+          },
+          "G": {
+            "item": "minecraft:glowstone_dust"
+          }
+        },
+        "result": {
+          "item": "dragoncare:dragon_painkiller"
+        },
+        "show_notification": true
       }
     }
   ]

@@ -1,31 +1,47 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "misc",
-  "key": {
-    "M": [
-      { "item": "minecraft:beef" },
-      { "item": "minecraft:porkchop" },
-      { "item": "minecraft:mutton" },
-      { "item": "minecraft:chicken" }
-    ],
-    "O": {
-      "item": "minecraft:obsidian"
-    },
-    "D": {
-      "item": "minecraft:diamond"
-    }
-  },
-  "pattern": [
-    "MOM",
-    "ODO",
-    "MOM"
-  ],
-  "result": {"item": "dragoncare:exceptional_dragon_meal"
-  },
-  "show_notification": true,
-  "forge:conditions": [
+  "type": "forge:conditional",
+  "recipes": [
     {
-      "type": "dragoncare:simplify_crafts"
+      "conditions": [
+        {
+          "type": "dragoncare:simplify_crafts"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "category": "misc",
+        "key": {
+          "M": [
+            {
+              "item": "minecraft:beef"
+            },
+            {
+              "item": "minecraft:porkchop"
+            },
+            {
+              "item": "minecraft:mutton"
+            },
+            {
+              "item": "minecraft:chicken"
+            }
+          ],
+          "O": {
+            "item": "minecraft:obsidian"
+          },
+          "D": {
+            "item": "minecraft:diamond"
+          }
+        },
+        "pattern": [
+          "MOM",
+          "ODO",
+          "MOM"
+        ],
+        "result": {
+          "item": "dragoncare:exceptional_dragon_meal"
+        },
+        "show_notification": true
+      }
     }
   ]
 }
