@@ -28,6 +28,13 @@ public class DragonCare {
         ModSounds.SOUNDS.register(modEventBus);
         ModLootModifiers.SERIALIZERS.register(modEventBus);
 
+        // Move registration to RegisterEvent
+        modEventBus.addListener((net.minecraftforge.registries.RegisterEvent event) -> {
+            if (event.getRegistryKey().equals(net.minecraftforge.registries.ForgeRegistries.Keys.RECIPE_SERIALIZERS)) {
+                net.minecraftforge.common.crafting.CraftingHelper.register(com.dragoncare.recipe.SimplifyCraftsCondition.Serializer.INSTANCE);
+            }
+        });
+
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, AddonConfig.SPEC);
 
         modEventBus.addListener((net.minecraftforge.fml.event.config.ModConfigEvent.Loading event) -> {
@@ -53,10 +60,21 @@ public class DragonCare {
         });
     }
 
+    private static boolean lastSimplifyCrafts = false;
+
     private static void syncConfigs() {
         if (AddonConfig.PREVENT_DRAGON_FIGHT_ALL.get() && AddonConfig.PREVENT_DRAGON_FIGHT_BABIES.get()) {
             AddonConfig.PREVENT_DRAGON_FIGHT_BABIES.set(false);
             AddonConfig.SPEC.save();
+        }
+
+        boolean currentSimplifyCrafts = AddonConfig.SIMPLIFY_CRAFTS.get();
+        if (currentSimplifyCrafts != lastSimplifyCrafts) {
+            lastSimplifyCrafts = currentSimplifyCrafts;
+            net.minecraft.server.MinecraftServer server = net.minecraftforge.server.ServerLifecycleHooks.getCurrentServer();
+            if (server != null) {
+                server.execute(() -> server.reloadResources(server.getDataPackManager().getEnabledNames()));
+            }
         }
     }
 }
