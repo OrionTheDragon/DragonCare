@@ -9,8 +9,24 @@
           "name": "minecraft:written_book",
           "functions": [
             {
-              "function": "minecraft:set_nbt",
-              "tag": "{title: 'Дневник охотника (1-10)', author: 'Неизвестный охотник', generation: 3, pages: ['{\"translate\":\"book.dragoncare.hunter1.p1\"}', '{\"translate\":\"book.dragoncare.hunter1.p2\"}', '{\"translate\":\"book.dragoncare.hunter1.p3\"}', '{\"translate\":\"book.dragoncare.hunter1.p4\"}', '{\"translate\":\"book.dragoncare.hunter1.p5\"}', '{\"translate\":\"book.dragoncare.hunter1.p6\"}', '{\"translate\":\"book.dragoncare.hunter1.p7\"}', '{\"translate\":\"book.dragoncare.hunter1.p8\"}']}"
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:written_book_content": {
+                  "title": { "raw": "Дневник охотника (1-10)" },
+                  "author": "Неизвестный охотник",
+                  "generation": 3,
+                  "pages": [
+                    "{\"translate\":\"book.dragoncare.hunter1.p1\"}",
+                    "{\"translate\":\"book.dragoncare.hunter1.p2\"}",
+                    "{\"translate\":\"book.dragoncare.hunter1.p3\"}",
+                    "{\"translate\":\"book.dragoncare.hunter1.p4\"}",
+                    "{\"translate\":\"book.dragoncare.hunter1.p5\"}",
+                    "{\"translate\":\"book.dragoncare.hunter1.p6\"}",
+                    "{\"translate\":\"book.dragoncare.hunter1.p7\"}",
+                    "{\"translate\":\"book.dragoncare.hunter1.p8\"}"
+                  ]
+                }
+              }
             }
           ]
         }

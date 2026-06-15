@@ -66,6 +66,9 @@ public class AddonConfig {
     public static final ModConfigSpec.IntValue DRAGON_FRUIT_STEM_GROWTH_CHANCE;
     public static final ModConfigSpec.IntValue DRAGON_FRUIT_SPAWN_CHANCE;
 
+    // Crafting
+    public static final ModConfigSpec.BooleanValue SIMPLIFY_CRAFTS;
+
     static {
         ModConfigSpec.Builder b = new ModConfigSpec.Builder();
 
@@ -263,6 +266,17 @@ public class AddonConfig {
                         "Lower values make the fruit appear less frequently.")
                 .translation(I18N + "dragon_fruit.fruit_spawn_chance")
                 .defineInRange("fruit_spawn_chance", 50, 1, 100);
+        b.pop();
+
+        // ===== Crafting =====
+        b.comment("Crafting settings")
+                .translation(I18N + "crafting")
+                .push("crafting");
+        SIMPLIFY_CRAFTS = b.comment(
+                        "If true, simplifies crafting recipes for various items (Ash Sensor, Tablets, Painkiller, etc.)",
+                        "When this setting is toggled in-game, recipes will automatically reload (may cause a brief lag spike).")
+                .translation(I18N + "crafting.simplify_crafts")
+                .define("simplify_crafts", false);
         b.pop();
 
         SPEC = b.build();

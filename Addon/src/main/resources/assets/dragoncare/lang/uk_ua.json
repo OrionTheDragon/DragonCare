@@ -313,6 +313,9 @@
   "dragoncare.config.dragon_fruit.tooltip": "Налаштування швидкості росту драконячого фрукта",
   "dragoncare.config.dragon_fruit.stem_growth_chance.tooltip": "Шанс (%) успішного спрацювання тіка росту стебла.\n100 = як у ванільного кавуна/гарбуза, 50 = удвічі повільніше.\nЧим нижче значення, тим повільніше росте стебло.",
   "dragoncare.config.dragon_fruit.fruit_spawn_chance.tooltip": "Шанс (%) що зріле стебло дасть плід при кожному тіку.\n100 = як у ванільного кавуна/гарбуза, 50 = удвічі повільніше.\nЧим нижче значення, тим рідше з'являється плід.",
+  "dragoncare.config.crafting": "Крафти",
+  "dragoncare.config.crafting.simplify_crafts": "Спростити крафти",
+  "dragoncare.config.crafting.simplify_crafts.tooltip": "Якщо увімкнено, замінює деякі складні рецепти на простіші (Датчик попелу, Пігулки, Знеболювальне тощо).\nУвага: Зміна цього налаштування безпосередньо у грі викличе автоматичне перезавантаження рецептів, що може спричинити короткочасний лаг.",
   "subtitles.dragoncare.using_pill": "Таблетка проковтнута",
   "item.dragoncare.guild_map": "Карта Гільдії мисливців на драконів",
   "dragoncare.config.dragon.taming": "Приручення драконів",
@@ -362,5 +365,15 @@
   "advancements.dragoncare.dracomania.description": "Приручи дракона кожного кольору. Головне — не забувай годувати цю різнокольорову ораву.",
   "advancements.dragoncare.tamed_three_elements.title": "Володар стихій",
   "advancements.dragoncare.tamed_three_elements.description": "Приручити вогняного, крижаного та грозового дракона.",
-  "item.dragoncare.dracomania_icon": "Іконка Дракоманії"
+  "item.dragoncare.dracomania_icon": "Іконка Дракоманії",
+  "dragoncare.configuration.scale_shears": "Ножиці для луски",
+  "dragoncare.configuration.syringe": "Шприц",
+  "dragoncare.configuration.painkiller": "Знеболювальне",
+  "dragoncare.configuration.dragon": "Дракон",
+  "dragoncare.configuration.dragon.ai_spawning": "ШІ та спавн дитинчат",
+  "dragoncare.configuration.dragon.taming": "Приручення драконів",
+  "dragoncare.configuration.dragon.dirt": "Забруднення драконів",
+  "dragoncare.configuration.ash_poisoning": "Попелясте отруєння",
+  "dragoncare.configuration.dragon_fruit": "Драконячий фрукт",
+  "dragoncare.configuration.crafting": "Крафти"
 }

@@ -347,7 +347,7 @@ public class ModEvents {
             mob.goalSelector.add(2, new com.dragoncare.mechanics.AvoidAshGoal(mob, 1.25D));
         }
 
-        if (!(event.getEntity() instanceof EntityDragonBase dragon)) return;
+        if (!(event.getEntity() instanceof DragonBaseEntity dragon)) return;
 
         if (!com.dragoncare.config.AddonConfig.DISABLE_NEW_BABY_AI.get()) {
             dragon.goalSelector.getGoals().removeIf(g -> 
@@ -357,20 +357,20 @@ public class ModEvents {
                 g.getGoal() instanceof com.dragoncare.mechanics.ai.ParentProtectBabiesGoal
             );
             // Add follow goal for all baby/juvenile dragons (both tamed and wild)
-            accessor.dragoncare$getGoalSelector().add(4, new com.dragoncare.mechanics.ai.BabyDragonFollowAdultGoal(dragon, 1.15D));
+            dragon.goalSelector.add(4, new com.dragoncare.mechanics.ai.BabyDragonFollowAdultGoal(dragon, 1.15D));
             
             // Add Tempt goal for all baby dragons (both tamed and wild)
-            accessor.dragoncare$getGoalSelector().add(3, new com.dragoncare.mechanics.ai.WildDragonTemptGoal(dragon, 1.0D));
+            dragon.goalSelector.add(3, new com.dragoncare.mechanics.ai.WildDragonTemptGoal(dragon, 1.0D));
 
             if (!dragon.isTamed()) {
                 // Add Flee goals for untamed dragons
                 if (!com.dragoncare.config.AddonConfig.DISABLE_BABY_PANIC.get()) {
-                    accessor.dragoncare$getGoalSelector().add(2, new com.dragoncare.mechanics.ai.WildDragonFleePlayerGoal(dragon, 16.0D, 1.5D));
+                    dragon.goalSelector.add(2, new com.dragoncare.mechanics.ai.WildDragonFleePlayerGoal(dragon, 16.0D, 1.5D));
                 }
             }
             
             // Add parent protection goal for adult dragons (checks stage internally)
-            accessor.dragoncare$getGoalSelector().add(3, new com.dragoncare.mechanics.ai.ParentProtectBabiesGoal(dragon, 32.0D, 1.0D));
+            dragon.goalSelector.add(3, new com.dragoncare.mechanics.ai.ParentProtectBabiesGoal(dragon, 32.0D, 1.0D));
         }
 
         MinecraftServer server = dragon.getServer();

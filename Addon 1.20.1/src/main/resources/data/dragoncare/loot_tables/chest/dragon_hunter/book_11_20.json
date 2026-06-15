@@ -9,8 +9,30 @@
           "name": "minecraft:written_book",
           "functions": [
             {
-              "function": "minecraft:set_nbt",
-              "tag": "{title: 'Дневник охотника (11-20)', author: 'Неизвестный охотник', generation: 3, pages: ['{\"translate\":\"book.dragoncare.hunter2.p1\"}', '{\"translate\":\"book.dragoncare.hunter2.p2\"}', '{\"translate\":\"book.dragoncare.hunter2.p3\"}', '{\"translate\":\"book.dragoncare.hunter2.p4\"}', '{\"translate\":\"book.dragoncare.hunter2.p5\"}', '{\"translate\":\"book.dragoncare.hunter2.p6\"}', '{\"translate\":\"book.dragoncare.hunter2.p7\"}', '{\"translate\":\"book.dragoncare.hunter2.p8\"}', '{\"translate\":\"book.dragoncare.hunter2.p9\"}', '{\"translate\":\"book.dragoncare.hunter2.p10\"}', '{\"translate\":\"book.dragoncare.hunter2.p11\"}', '{\"translate\":\"book.dragoncare.hunter2.p12\"}', '{\"translate\":\"book.dragoncare.hunter2.p13\"}', '{\"translate\":\"book.dragoncare.hunter2.p14\"}']}"
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:written_book_content": {
+                  "title": { "raw": "Дневник охотника (11-20)" },
+                  "author": "Неизвестный охотник",
+                  "generation": 3,
+                  "pages": [
+                    "{\"translate\":\"book.dragoncare.hunter2.p1\"}",
+                    "{\"translate\":\"book.dragoncare.hunter2.p2\"}",
+                    "{\"translate\":\"book.dragoncare.hunter2.p3\"}",
+                    "{\"translate\":\"book.dragoncare.hunter2.p4\"}",
+                    "{\"translate\":\"book.dragoncare.hunter2.p5\"}",
+                    "{\"translate\":\"book.dragoncare.hunter2.p6\"}",
+                    "{\"translate\":\"book.dragoncare.hunter2.p7\"}",
+                    "{\"translate\":\"book.dragoncare.hunter2.p8\"}",
+                    "{\"translate\":\"book.dragoncare.hunter2.p9\"}",
+                    "{\"translate\":\"book.dragoncare.hunter2.p10\"}",
+                    "{\"translate\":\"book.dragoncare.hunter2.p11\"}",
+                    "{\"translate\":\"book.dragoncare.hunter2.p12\"}",
+                    "{\"translate\":\"book.dragoncare.hunter2.p13\"}",
+                    "{\"translate\":\"book.dragoncare.hunter2.p14\"}"
+                  ]
+                }
+              }
             }
           ]
         }

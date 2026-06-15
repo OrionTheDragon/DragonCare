@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "dragoncare:dracomania_icon"
+      "id": "dragoncare:dracomania_icon"
     },
     "title": {
       "translate": "advancements.dragoncare.dracomania.title",
@@ -57,41 +57,17 @@
     }
   },
   "requirements": [
-    [
-      "bronze"
-    ],
-    [
-      "gray"
-    ],
-    [
-      "green"
-    ],
-    [
-      "red"
-    ],
-    [
-      "blue"
-    ],
-    [
-      "sapphire"
-    ],
-    [
-      "silver"
-    ],
-    [
-      "white"
-    ],
-    [
-      "amethyst"
-    ],
-    [
-      "black"
-    ],
-    [
-      "copper"
-    ],
-    [
-      "electric"
-    ]
+    ["bronze"],
+    ["gray"],
+    ["green"],
+    ["red"],
+    ["blue"],
+    ["sapphire"],
+    ["silver"],
+    ["white"],
+    ["amethyst"],
+    ["black"],
+    ["copper"],
+    ["electric"]
   ]
 }

@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "dragoncare:dragon_blood_syringe"
+      "id": "dragoncare:dragon_blood_syringe"
     },
     "title": {
       "translate": "advancements.dragoncare.syringe_craft.title",
@@ -24,9 +24,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "dragoncare:dragon_blood_syringe"
-            ]
+            "items": "dragoncare:dragon_blood_syringe"
           }
         ]
       }

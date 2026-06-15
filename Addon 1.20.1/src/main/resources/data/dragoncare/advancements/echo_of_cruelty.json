@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "dragoncare:scale_shears"
+      "id": "dragoncare:scale_shears"
     },
     "title": {
       "translate": "advancements.dragoncare.echo_of_cruelty.title",

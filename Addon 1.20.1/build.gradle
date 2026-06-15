@@ -12,6 +12,9 @@ loom {
     forge {
         mixinConfig "dragoncare.mixins.json"
     }
+    mixin {
+        defaultRefmapName = "dragoncare-refmap.json"
+    }
 }
 
 group = maven_group

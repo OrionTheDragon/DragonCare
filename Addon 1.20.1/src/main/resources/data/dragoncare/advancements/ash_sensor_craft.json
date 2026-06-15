@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "dragoncare:ash_sensor"
+      "id": "dragoncare:ash_sensor"
     },
     "title": {
       "translate": "advancements.dragoncare.ash_sensor_craft.title",
@@ -24,9 +24,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "dragoncare:ash_sensor"
-            ]
+            "items": "dragoncare:ash_sensor"
           }
         ]
       }

@@ -313,6 +313,9 @@
   "dragoncare.config.dragon_fruit.tooltip": "Настройки скорости роста драконьего фрукта",
   "dragoncare.config.dragon_fruit.stem_growth_chance.tooltip": "Шанс (%) успешного срабатывания тика роста стебля.\n100 = как у ванильного арбуза/тыквы, 50 = в два раза медленнее.\nЧем ниже значение, тем медленнее растёт стебель.",
   "dragoncare.config.dragon_fruit.fruit_spawn_chance.tooltip": "Шанс (%) что зрелый стебель даст плод при каждом тике.\n100 = как у ванильного арбуза/тыквы, 50 = в два раза медленнее.\nЧем ниже значение, тем реже появляется плод.",
+  "dragoncare.config.crafting": "Крафты",
+  "dragoncare.config.crafting.simplify_crafts": "Упростить крафты",
+  "dragoncare.config.crafting.simplify_crafts.tooltip": "Если включено, заменяет некоторые сложные рецепты на более простые (Датчик пепла, Таблетки, Обезбол и т.д.).\nВнимание: Изменение этой настройки прямо в игре вызовет автоматическую перезагрузку рецептов, что может вызвать кратковременный лаг.",
   "subtitles.dragoncare.using_pill": "Таблетка проглочена",
   "item.dragoncare.guild_map": "Карта Гильдии охотников на драконов",
   "dragoncare.config.dragon.taming": "Приручение драконов",
@@ -362,5 +365,15 @@
   "advancements.dragoncare.dracomania.description": "Приручи дракона каждого цвета. Главное — не забывай кормить эту разноцветную ораву.",
   "advancements.dragoncare.tamed_three_elements.title": "Повелитель стихий",
   "advancements.dragoncare.tamed_three_elements.description": "Приручить огненного, ледяного и грозового дракона.",
-  "item.dragoncare.dracomania_icon": "Иконка Дракомании"
+  "item.dragoncare.dracomania_icon": "Иконка Дракомании",
+  "dragoncare.configuration.scale_shears": "Ножницы для чешуи",
+  "dragoncare.configuration.syringe": "Шприц",
+  "dragoncare.configuration.painkiller": "Обезболивающее",
+  "dragoncare.configuration.dragon": "Дракон",
+  "dragoncare.configuration.dragon.ai_spawning": "ИИ и спавн детенышей",
+  "dragoncare.configuration.dragon.taming": "Приручение драконов",
+  "dragoncare.configuration.dragon.dirt": "Загрязнение драконов",
+  "dragoncare.configuration.ash_poisoning": "Пепельное отравление",
+  "dragoncare.configuration.dragon_fruit": "Драконий фрукт",
+  "dragoncare.configuration.crafting": "Крафты"
 }

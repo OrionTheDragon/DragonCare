@@ -35,7 +35,7 @@ if ($gameChoice -eq "1") {
     $mcVersion = "1.21.1"
 }
 
-$propertiesPath = Join-Path $PSScriptRoot $targetDir "gradle.properties"
+$propertiesPath = Join-Path (Join-Path $PSScriptRoot $targetDir) "gradle.properties"
 
 if (-not (Test-Path $propertiesPath)) {
     Write-Host "Error: gradle.properties not found at $propertiesPath!" -ForegroundColor Red
@@ -73,12 +73,49 @@ Write-Host ""
 Write-Host "Selected Game Version: $mcVersion" -ForegroundColor Green
 Write-Host "Current Addon Version: $currentNumber" -ForegroundColor Yellow
 Write-Host ""
-Write-Host "Step 2: Enter the new Addon Version digits (e.g. 1.0.1)" -ForegroundColor White
+Write-Host "Step 2: Select how to bump the version" -ForegroundColor White
 
-$addonNumber = ""
-while ($addonNumber -eq "") {
-    $addonNumber = Read-Host "New Addon Version"
-    $addonNumber = $addonNumber.Trim()
+$nextPatch = ""
+$nextMinor = ""
+$nextMajor = ""
+
+if ($currentNumber -match "^(\d+)\.(\d+)\.(\d+)$") {
+    $major = [int]$Matches[1]
+    $minor = [int]$Matches[2]
+    $patch = [int]$Matches[3]
+    
+    $nextPatch = "$major.$minor.$($patch + 1)"
+    $nextMinor = "$major.$($minor + 1).0"
+    $nextMajor = "$($major + 1).0.0"
+}
+
+if ($nextPatch) {
+    Write-Host "1. Patch (-> $nextPatch)" -ForegroundColor Gray
+    Write-Host "2. Minor (-> $nextMinor)" -ForegroundColor Gray
+    Write-Host "3. Major (-> $nextMajor)" -ForegroundColor Gray
+    Write-Host "4. Custom input" -ForegroundColor Gray
+    Write-Host ""
+    
+    $addonNumber = ""
+    while ($addonNumber -eq "") {
+        $choice = Read-Host "Your choice [1-4]"
+        if ($choice -eq "1") { $addonNumber = $nextPatch }
+        elseif ($choice -eq "2") { $addonNumber = $nextMinor }
+        elseif ($choice -eq "3") { $addonNumber = $nextMajor }
+        elseif ($choice -eq "4") {
+            while ($addonNumber -eq "") {
+                $addonNumber = Read-Host "Enter custom version (e.g. 1.0.1)"
+                $addonNumber = $addonNumber.Trim()
+            }
+        }
+    }
+} else {
+    Write-Host "Could not parse current version format. Proceeding to custom input." -ForegroundColor Yellow
+    $addonNumber = ""
+    while ($addonNumber -eq "") {
+        $addonNumber = Read-Host "Enter new Addon Version (e.g. 1.0.1)"
+        $addonNumber = $addonNumber.Trim()
+    }
 }
 
 $newFullVersion = "$addonNumber - $gameSuffix"

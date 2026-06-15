@@ -13,9 +13,15 @@
       "item": "minecraft:golden_carrot"
     },
     "B": [
-      { "item": "iceandfire:fire_dragon_blood" },
-      { "item": "iceandfire:ice_dragon_blood" },
-      { "item": "iceandfire:lightning_dragon_blood" }
+      {
+        "item": "iceandfire:fire_dragon_blood"
+      },
+      {
+        "item": "iceandfire:ice_dragon_blood"
+      },
+      {
+        "item": "iceandfire:lightning_dragon_blood"
+      }
     ],
     "W": {
       "item": "minecraft:nether_wart"
@@ -30,5 +36,13 @@
   "result": {
     "id": "dragoncare:ash_tablets",
     "count": 1
-  }
+  },
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "dragoncare:simplify_crafts"
+      }
+    }
+  ]
 }

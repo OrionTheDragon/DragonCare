@@ -313,6 +313,9 @@
   "dragoncare.config.dragon_fruit.tooltip": "Dragon Fruit growth settings",
   "dragoncare.config.dragon_fruit.stem_growth_chance.tooltip": "Chance (%) that a stem growth tick will succeed.\n100 = same speed as vanilla melon/pumpkin, 50 = twice as slow.\nLower values make the stem grow slower.",
   "dragoncare.config.dragon_fruit.fruit_spawn_chance.tooltip": "Chance (%) that a mature stem will produce a fruit on each tick.\n100 = same speed as vanilla melon/pumpkin, 50 = twice as slow.\nLower values make the fruit appear less frequently.",
+  "dragoncare.config.crafting": "Crafting",
+  "dragoncare.config.crafting.simplify_crafts": "Simplify Crafting Recipes",
+  "dragoncare.config.crafting.simplify_crafts.tooltip": "If true, simplifies crafting recipes for various items (Ash Sensor, Tablets, Painkiller, etc.)\nWarning: Changing this setting in-game will trigger an automatic recipe reload, which may cause a brief lag spike.",
   "subtitles.dragoncare.using_pill": "Tablet swallowed",
   "item.dragoncare.guild_map": "Dragon Hunter Guild Map",
   "dragoncare.config.dragon.taming": "Dragon Taming",
@@ -362,5 +365,15 @@
   "advancements.dragoncare.dracomania.description": "Tame a dragon of every color. Most importantly, don't forget to feed this colorful crowd.",
   "advancements.dragoncare.tamed_three_elements.title": "Master of Elements",
   "advancements.dragoncare.tamed_three_elements.description": "Tame a fire, ice, and lightning dragon.",
-  "item.dragoncare.dracomania_icon": "Dracomania Icon"
+  "item.dragoncare.dracomania_icon": "Dracomania Icon",
+  "dragoncare.configuration.scale_shears": "Scale Shears",
+  "dragoncare.configuration.syringe": "Syringe",
+  "dragoncare.configuration.painkiller": "Painkiller",
+  "dragoncare.configuration.dragon": "Dragon",
+  "dragoncare.configuration.dragon.ai_spawning": "Baby AI & Spawning",
+  "dragoncare.configuration.dragon.taming": "Dragon Taming",
+  "dragoncare.configuration.dragon.dirt": "Dragon Dirt",
+  "dragoncare.configuration.ash_poisoning": "Ash Poisoning",
+  "dragoncare.configuration.dragon_fruit": "Dragon Fruit",
+  "dragoncare.configuration.crafting": "Crafting"
 }

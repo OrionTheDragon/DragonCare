@@ -29,5 +29,13 @@
   "result": {
     "id": "dragoncare:dragon_painkiller"
   },
-  "show_notification": true
+  "show_notification": true,
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "dragoncare:simplify_crafts"
+      }
+    }
+  ]
 }

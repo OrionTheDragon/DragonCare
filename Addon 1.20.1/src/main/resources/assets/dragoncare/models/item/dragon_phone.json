@@ -3361,13 +3361,5 @@
       ]
     }
   ],
-  "gui_light": "front",
-  "overrides": [
-    {
-      "predicate": {
-        "dragoncare:on": 1.0
-      },
-      "model": "dragoncare:item/dragon_phone_on"
-    }
-  ]
+  "gui_light": "front"
 }

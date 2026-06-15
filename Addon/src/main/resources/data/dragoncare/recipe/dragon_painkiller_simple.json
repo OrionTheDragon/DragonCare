@@ -2,9 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "pattern": [
-    "LBH",
-    "SMS",
-    "GBL"
+    "LSH",
+    "BMB",
+    "GSL"
   ],
   "key": {
     "L": {
@@ -14,16 +14,16 @@
       "item": "minecraft:sugar"
     },
     "H": {
-      "item": "minecraft:honey_bottle"
+      "item": "minecraft:potion"
     },
     "B": {
       "item": "minecraft:bone_meal"
     },
     "M": {
-      "item": "dragoncare:exceptional_dragon_meal"
+      "item": "iceandfire:dragon_meal"
     },
     "G": {
-      "item": "minecraft:glowstone_dust"
+      "item": "minecraft:lapis_lazuli"
     }
   },
   "result": {
@@ -32,10 +32,7 @@
   "show_notification": true,
   "neoforge:conditions": [
     {
-      "type": "neoforge:not",
-      "value": {
-        "type": "dragoncare:simplify_crafts"
-      }
+      "type": "dragoncare:simplify_crafts"
     }
   ]
 }

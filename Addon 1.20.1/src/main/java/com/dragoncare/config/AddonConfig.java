@@ -66,6 +66,9 @@ public class AddonConfig {
     public static final ForgeConfigSpec.IntValue DRAGON_FRUIT_STEM_GROWTH_CHANCE;
     public static final ForgeConfigSpec.IntValue DRAGON_FRUIT_SPAWN_CHANCE;
 
+    // Crafting
+    public static final ForgeConfigSpec.BooleanValue SIMPLIFY_CRAFTS;
+
     static {
         ForgeConfigSpec.Builder b = new ForgeConfigSpec.Builder();
 
@@ -265,6 +268,17 @@ public class AddonConfig {
                 .defineInRange("fruit_spawn_chance", 50, 1, 100);
         b.pop();
 
+        // ===== Crafting =====
+        b.comment("Crafting settings")
+                .translation(I18N + "crafting")
+                .push("crafting");
+        SIMPLIFY_CRAFTS = b.comment(
+                        "If true, simplifies crafting recipes for various items (Ash Sensor, Tablets, Painkiller, etc.)",
+                        "When this setting is toggled in-game, recipes will automatically reload (may cause a brief lag spike).")
+                .translation(I18N + "crafting.simplify_crafts")
+                .define("simplify_crafts", false);
+        b.pop();
+
         SPEC = b.build();
 
         SHEARS_S2_MIN = STAGE_VALUES.get("scale_shears.stage_2.min_scales");
@@ -353,5 +367,3 @@ public class AddonConfig {
         return Math.max(0, secondsValue.get()) * 20;
     }
 }
-
-

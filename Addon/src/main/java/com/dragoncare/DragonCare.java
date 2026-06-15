@@ -25,6 +25,7 @@ public class DragonCare {
         ModSounds.SOUNDS.register(modEventBus);
         ModLootModifiers.SERIALIZERS.register(modEventBus);
         ModDataComponents.COMPONENTS.register(modEventBus);
+        com.dragoncare.recipe.ModRecipeConditions.CONDITIONS.register(modEventBus);
 
         container.registerConfig(ModConfig.Type.COMMON, AddonConfig.SPEC);
 
@@ -44,10 +45,21 @@ public class DragonCare {
         }
     }
 
+    private static boolean lastSimplifyCrafts = false;
+
     private static void syncConfigs() {
         if (AddonConfig.PREVENT_DRAGON_FIGHT_ALL.get() && AddonConfig.PREVENT_DRAGON_FIGHT_BABIES.get()) {
             AddonConfig.PREVENT_DRAGON_FIGHT_BABIES.set(false);
             AddonConfig.SPEC.save();
+        }
+
+        boolean currentSimplifyCrafts = AddonConfig.SIMPLIFY_CRAFTS.get();
+        if (currentSimplifyCrafts != lastSimplifyCrafts) {
+            lastSimplifyCrafts = currentSimplifyCrafts;
+            net.minecraft.server.MinecraftServer server = net.neoforged.neoforge.server.ServerLifecycleHooks.getCurrentServer();
+            if (server != null) {
+                server.execute(() -> server.reloadResources(server.getDataPackManager().getEnabledIds()));
+            }
         }
     }
 }

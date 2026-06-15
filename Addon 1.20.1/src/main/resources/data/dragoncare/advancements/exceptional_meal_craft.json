@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "dragoncare:exceptional_dragon_meal"
+      "id": "dragoncare:exceptional_dragon_meal"
     },
     "title": {
       "translate": "advancements.dragoncare.exceptional_meal_craft.title",
@@ -24,9 +24,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "dragoncare:exceptional_dragon_meal"
-            ]
+            "items": "dragoncare:exceptional_dragon_meal"
           }
         ]
       }

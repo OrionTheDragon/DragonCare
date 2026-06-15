@@ -62,17 +62,17 @@
       "entries": [
         {
           "type": "minecraft:loot_table",
-          "name": "dragoncare:chest/dragon_hunter/book_1_10",
+          "value": "dragoncare:chest/dragon_hunter/book_1_10",
           "weight": 1
         },
         {
           "type": "minecraft:loot_table",
-          "name": "dragoncare:chest/dragon_hunter/book_11_20",
+          "value": "dragoncare:chest/dragon_hunter/book_11_20",
           "weight": 1
         },
         {
           "type": "minecraft:loot_table",
-          "name": "dragoncare:chest/dragon_hunter/book_21_30",
+          "value": "dragoncare:chest/dragon_hunter/book_21_30",
           "weight": 1
         }
       ]

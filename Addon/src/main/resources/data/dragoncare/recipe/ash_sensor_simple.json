@@ -11,13 +11,13 @@
       "item": "minecraft:diamond"
     },
     "L": {
-      "item": "minecraft:daylight_detector"
+      "item": "minecraft:white_stained_glass"
     },
     "I": {
-      "item": "minecraft:glow_ink_sac"
+      "item": "minecraft:light_blue_dye"
     },
     "O": {
-      "item": "minecraft:observer"
+      "item": "minecraft:redstone"
     },
     "C": {
       "item": "minecraft:comparator"
@@ -29,10 +29,7 @@
   "show_notification": true,
   "neoforge:conditions": [
     {
-      "type": "neoforge:not",
-      "value": {
-        "type": "dragoncare:simplify_crafts"
-      }
+      "type": "dragoncare:simplify_crafts"
     }
   ]
 }
