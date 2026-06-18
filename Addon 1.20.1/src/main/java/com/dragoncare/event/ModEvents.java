@@ -52,6 +52,10 @@ public class ModEvents {
     public static void onLivingDeath(net.minecraftforge.event.entity.living.LivingDeathEvent event) {
         if (!event.getEntity().getWorld().isClient && event.getEntity() instanceof EntityDragonBase dragon) {
             com.dragoncare.mechanics.DragonFamilyManager.onDragonDeath(dragon);
+            UUID dragonId = dragon.getUuid();
+            com.dragoncare.item.ScaleShearsItem.clearDragon(dragonId);
+            com.dragoncare.item.SyringeItem.clearDragon(dragonId);
+            com.dragoncare.item.DragonPainkillerItem.clearDragon(dragonId);
         }
     }
 

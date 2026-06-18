@@ -117,6 +117,16 @@ public class DragonPainkillerItem extends Item {
         );
     }
 
+    public static void clearDragon(UUID dragonId) {
+        DRAGON_COOLDOWNS.remove(dragonId);
+        STAGE5_FIRST_USE.remove(dragonId);
+    }
+
+    public static void clearExpired(long currentTick) {
+        DRAGON_COOLDOWNS.entrySet().removeIf(e -> currentTick >= e.getValue());
+        STAGE5_FIRST_USE.entrySet().removeIf(e -> currentTick - e.getValue() > STAGE5_PAIR_WINDOW_TICKS);
+    }
+
     public static void clearCache() { DRAGON_COOLDOWNS.clear(); STAGE5_FIRST_USE.clear(); }
 }
 

@@ -153,6 +153,10 @@ public final class DirtTextureBlender {
 
         return (aOut << 24) | (bOut << 16) | (gOut << 8) | rOut;
     }
+
+    public static void clearCache() {
+        BLENDED_CACHE.clear();
+    }
 }
 
 

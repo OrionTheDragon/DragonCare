@@ -52,6 +52,10 @@ public class ModEvents {
     public static void onLivingDeath(net.neoforged.neoforge.event.entity.living.LivingDeathEvent event) {
         if (!event.getEntity().getWorld().isClient && event.getEntity() instanceof DragonBaseEntity dragon) {
             com.dragoncare.mechanics.DragonFamilyManager.onDragonDeath(dragon);
+            UUID dragonId = dragon.getUuid();
+            com.dragoncare.item.ScaleShearsItem.clearDragon(dragonId);
+            com.dragoncare.item.SyringeItem.clearDragon(dragonId);
+            com.dragoncare.item.DragonPainkillerItem.clearDragon(dragonId);
         }
     }
 
@@ -164,8 +168,18 @@ public class ModEvents {
     @SubscribeEvent
     public static void onServerTick(ServerTickEvent.Post event) {
         DragonTamingManager.tick(event.getServer());
+        processPendingHatches(event.getServer());
         com.dragoncare.mechanics.OrphanSpawner.tick(event.getServer().getOverworld());
-        if (event.getServer().getOverworld().getTime() % 6000 == 0) {
+        
+        long currentTick = event.getServer().getOverworld().getTime();
+        
+        if (currentTick % 1200 == 0) { // Every 1 minute
+            com.dragoncare.item.ScaleShearsItem.clearExpired(currentTick);
+            com.dragoncare.item.SyringeItem.clearExpired(currentTick);
+            com.dragoncare.item.DragonPainkillerItem.clearExpired(currentTick);
+        }
+        
+        if (currentTick % 6000 == 0) { // Every 5 minutes
             com.dragoncare.mechanics.DragonFamilyState.cleanupStaleEntries(event.getServer());
         }
     }

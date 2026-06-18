@@ -166,5 +166,14 @@ public class ScaleShearsItem extends Item {
         }
     }
 
+    public static void clearDragon(UUID dragonId) {
+        DRAGON_COOLDOWNS.remove(dragonId);
+    }
+
+    public static void clearExpired(long currentTick) {
+        DRAGON_COOLDOWNS.entrySet().removeIf(e -> currentTick >= e.getValue());
+        SCOLDING.entrySet().removeIf(e -> currentTick - e.getValue().firstTime > ONE_MINUTE_TICKS);
+    }
+
     public static void clearCache() { DRAGON_COOLDOWNS.clear(); SCOLDING.clear(); }
 }

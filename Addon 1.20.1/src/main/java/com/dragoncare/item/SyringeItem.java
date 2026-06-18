@@ -191,6 +191,19 @@ public class SyringeItem extends Item {
         }
     }
 
+    public static void clearDragon(UUID dragonId) {
+        SYRINGE_STATES.remove(dragonId);
+    }
+
+    public static void clearExpired(long currentTick) {
+        SYRINGE_STATES.entrySet().removeIf(e -> {
+            SyringeState s = e.getValue();
+            return s.cooldownEnd > 0L
+                    ? s.cooldownEnd <= currentTick
+                    : currentTick - s.windowStart > STALE_WINDOW_GUARD_TICKS;
+        });
+    }
+
     public static void clearCache() { SYRINGE_STATES.clear(); }
 }
 
