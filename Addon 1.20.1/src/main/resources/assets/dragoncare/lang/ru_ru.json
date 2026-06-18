@@ -375,5 +375,21 @@
   "dragoncare.configuration.dragon.dirt": "Загрязнение драконов",
   "dragoncare.configuration.ash_poisoning": "Пепельное отравление",
   "dragoncare.configuration.dragon_fruit": "Драконий фрукт",
-  "dragoncare.configuration.crafting": "Крафты"
+  "dragoncare.configuration.crafting": "Крафты",
+  "dragoncare.configuration.structures": "Генерация структур",
+  "dragoncare.config.structures": "Генерация структур",
+  "dragoncare.config.structures.disable_all": "Отключить все структуры",
+  "dragoncare.config.structures.disable_all.tooltip": "Если включено, генерация ВСЕХ структур из этого аддона полностью отключается.",
+  "dragoncare.config.structures.disable_guild": "Отключить Гильдию охотников",
+  "dragoncare.config.structures.disable_guild.tooltip": "Если включено, отключает генерацию структуры Гильдии охотников на драконов.",
+  "dragoncare.config.structures.disable_hunter_house": "Отключить Дом охотника",
+  "dragoncare.config.structures.disable_hunter_house.tooltip": "Если включено, отключает генерацию структуры Дома/Лагеря охотника на драконов.",
+  "dragoncare.config.structures.disable_village_forge": "Отключить Разрушенную кузницу",
+  "dragoncare.config.structures.disable_village_forge.tooltip": "Если включено, отключает генерацию Разрушенной драконьей кузницы в деревнях.",
+  "dragoncare.config.structures.guild_spawn_multiplier": "Множитель шанса Гильдии",
+  "dragoncare.config.structures.guild_spawn_multiplier.tooltip": "Множитель шанса спавна для Гильдии охотников на драконов.\n1.0 — стандартный шанс. Чем ниже значение, тем ниже шанс спавна.",
+  "dragoncare.config.structures.hunter_house_spawn_multiplier": "Множитель шанса Дома охотника",
+  "dragoncare.config.structures.hunter_house_spawn_multiplier.tooltip": "Множитель шанса спавна для Дома/Лагеря охотника на драконов.\n1.0 — стандартный шанс. Чем ниже значение, тем ниже шанс спавна.",
+  "dragoncare.config.structures.village_forge_spawn_multiplier": "Множитель шанса Разрушенной кузницы",
+  "dragoncare.config.structures.village_forge_spawn_multiplier.tooltip": "Множитель шанса спавна для Разрушенной драконьей кузницы в деревнях.\n1.0 — стандартный шанс. Чем ниже значение, тем ниже шанс спавна."
 }

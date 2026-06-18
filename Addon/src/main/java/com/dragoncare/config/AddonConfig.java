@@ -66,6 +66,15 @@ public class AddonConfig {
     public static final ModConfigSpec.IntValue DRAGON_FRUIT_STEM_GROWTH_CHANCE;
     public static final ModConfigSpec.IntValue DRAGON_FRUIT_SPAWN_CHANCE;
 
+    // Structures
+    public static final ModConfigSpec.BooleanValue DISABLE_ALL_STRUCTURES;
+    public static final ModConfigSpec.BooleanValue DISABLE_GUILD;
+    public static final ModConfigSpec.BooleanValue DISABLE_HUNTER_HOUSE;
+    public static final ModConfigSpec.BooleanValue DISABLE_VILLAGE_FORGE;
+    public static final ModConfigSpec.DoubleValue GUILD_SPAWN_MULTIPLIER;
+    public static final ModConfigSpec.DoubleValue HUNTER_HOUSE_SPAWN_MULTIPLIER;
+    public static final ModConfigSpec.DoubleValue VILLAGE_FORGE_SPAWN_MULTIPLIER;
+
     // Crafting
     public static final ModConfigSpec.BooleanValue SIMPLIFY_CRAFTS;
 
@@ -266,6 +275,43 @@ public class AddonConfig {
                         "Lower values make the fruit appear less frequently.")
                 .translation(I18N + "dragon_fruit.fruit_spawn_chance")
                 .defineInRange("fruit_spawn_chance", 50, 1, 100);
+        b.pop();
+
+        // ===== Structures =====
+        b.comment("Settings for world generation structures")
+                .translation(I18N + "structures")
+                .push("structures");
+        DISABLE_ALL_STRUCTURES = b.comment(
+                        "If true, ALL structure generation from this addon is completely disabled.")
+                .translation(I18N + "structures.disable_all")
+                .define("disable_all_structures", false);
+        DISABLE_GUILD = b.comment(
+                        "If true, disables the generation of the Dragon Hunter Guild structure.")
+                .translation(I18N + "structures.disable_guild")
+                .define("disable_guild", false);
+        DISABLE_HUNTER_HOUSE = b.comment(
+                        "If true, disables the generation of the Dragon Hunter House/Camp structure.")
+                .translation(I18N + "structures.disable_hunter_house")
+                .define("disable_hunter_house", false);
+        DISABLE_VILLAGE_FORGE = b.comment(
+                        "If true, disables the generation of the Ruined Dragon Forge in villages.")
+                .translation(I18N + "structures.disable_village_forge")
+                .define("disable_village_forge", false);
+        GUILD_SPAWN_MULTIPLIER = b.comment(
+                        "Spawn chance multiplier for the Dragon Hunter Guild.",
+                        "1.0 is default chance. Lower values = lower chance.")
+                .translation(I18N + "structures.guild_spawn_multiplier")
+                .defineInRange("guild_spawn_multiplier", 1.0D, 0.01D, 100.0D);
+        HUNTER_HOUSE_SPAWN_MULTIPLIER = b.comment(
+                        "Spawn chance multiplier for the Dragon Hunter House/Camp.",
+                        "1.0 is default chance. Lower values = lower chance.")
+                .translation(I18N + "structures.hunter_house_spawn_multiplier")
+                .defineInRange("hunter_house_spawn_multiplier", 1.0D, 0.01D, 100.0D);
+        VILLAGE_FORGE_SPAWN_MULTIPLIER = b.comment(
+                        "Spawn chance multiplier for the Ruined Dragon Forge in villages.",
+                        "1.0 is default chance. Lower values = lower chance.")
+                .translation(I18N + "structures.village_forge_spawn_multiplier")
+                .defineInRange("village_forge_spawn_multiplier", 1.0D, 0.01D, 100.0D);
         b.pop();
 
         // ===== Crafting =====

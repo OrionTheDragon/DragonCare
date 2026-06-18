@@ -180,6 +180,8 @@ public final class VillageForgePlacer {
 
     @SubscribeEvent
     public static void onChunkLoad(ChunkEvent.Load event) {
+        if (com.dragoncare.config.AddonConfig.DISABLE_ALL_STRUCTURES.get() || com.dragoncare.config.AddonConfig.DISABLE_VILLAGE_FORGE.get()) return;
+
         if (!(event.getLevel() instanceof ServerWorld world)) return;
         ChunkPos pos = event.getChunk().getPos();
         long n = DIAG_CHUNK_EVENTS.incrementAndGet();

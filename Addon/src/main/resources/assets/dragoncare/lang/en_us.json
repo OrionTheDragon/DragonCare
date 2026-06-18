@@ -375,5 +375,21 @@
   "dragoncare.configuration.dragon.dirt": "Dragon Dirt",
   "dragoncare.configuration.ash_poisoning": "Ash Poisoning",
   "dragoncare.configuration.dragon_fruit": "Dragon Fruit",
-  "dragoncare.configuration.crafting": "Crafting"
+  "dragoncare.configuration.crafting": "Crafting",
+  "dragoncare.configuration.structures": "Structure Generation",
+  "dragoncare.config.structures": "Structure Generation",
+  "dragoncare.config.structures.disable_all": "Disable All Structures",
+  "dragoncare.config.structures.disable_all.tooltip": "If true, ALL structure generation from this addon is completely disabled.",
+  "dragoncare.config.structures.disable_guild": "Disable Dragon Hunter Guild",
+  "dragoncare.config.structures.disable_guild.tooltip": "If true, disables the generation of the Dragon Hunter Guild structure.",
+  "dragoncare.config.structures.disable_hunter_house": "Disable Dragon Hunter House",
+  "dragoncare.config.structures.disable_hunter_house.tooltip": "If true, disables the generation of the Dragon Hunter House/Camp structure.",
+  "dragoncare.config.structures.disable_village_forge": "Disable Village Forge",
+  "dragoncare.config.structures.disable_village_forge.tooltip": "If true, disables the generation of the Ruined Dragon Forge in villages.",
+  "dragoncare.config.structures.guild_spawn_multiplier": "Guild Spawn Chance Multiplier",
+  "dragoncare.config.structures.guild_spawn_multiplier.tooltip": "Spawn chance multiplier for the Dragon Hunter Guild.\n1.0 is default chance. Lower values = lower chance.",
+  "dragoncare.config.structures.hunter_house_spawn_multiplier": "Hunter House Spawn Chance Multiplier",
+  "dragoncare.config.structures.hunter_house_spawn_multiplier.tooltip": "Spawn chance multiplier for the Dragon Hunter House/Camp.\n1.0 is default chance. Lower values = lower chance.",
+  "dragoncare.config.structures.village_forge_spawn_multiplier": "Village Forge Spawn Chance Multiplier",
+  "dragoncare.config.structures.village_forge_spawn_multiplier.tooltip": "Spawn chance multiplier for the Ruined Dragon Forge in villages.\n1.0 is default chance. Lower values = lower chance."
 }

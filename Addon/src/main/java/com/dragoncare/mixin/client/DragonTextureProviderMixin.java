@@ -19,9 +19,11 @@ public class DragonTextureProviderMixin {
             return; // Don't apply dirt to skeletons
         }
 
-        if (dragon instanceof com.iafenvoy.iceandfire.entity.FireDragonEntity) {
+        if (dragon instanceof com.iafenvoy.iceandfire.entity.FireDragonEntity || 
+            dragon instanceof com.iafenvoy.iceandfire.entity.IceDragonEntity || 
+            dragon instanceof com.iafenvoy.iceandfire.entity.LightningDragonEntity) {
             if (net.neoforged.fml.ModList.get().isLoaded("morecolordragon")) {
-                return; // morecolordragon applies dirt to Fire Dragons in a single pass to prevent dynamic texture conflicts
+                return; // morecolordragon applies dirt to Dragons in a single pass to prevent dynamic texture conflicts
             }
         }
 

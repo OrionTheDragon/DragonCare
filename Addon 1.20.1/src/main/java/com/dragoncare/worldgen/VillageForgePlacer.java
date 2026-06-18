@@ -180,6 +180,8 @@ public final class VillageForgePlacer {
 
     @SubscribeEvent
     public static void onChunkLoad(ChunkEvent.Load event) {
+        if (com.dragoncare.config.AddonConfig.DISABLE_ALL_STRUCTURES.get() || com.dragoncare.config.AddonConfig.DISABLE_VILLAGE_FORGE.get()) return;
+
         if (!(event.getLevel() instanceof ServerWorld world)) return;
         ChunkPos pos = event.getChunk().getPos();
         long n = DIAG_CHUNK_EVENTS.incrementAndGet();
@@ -264,6 +266,16 @@ public final class VillageForgePlacer {
 
             // Deterministic per-village RNG so re-rolls (during testing) match.
             long baseSeed = world.getSeed() ^ ((long) startPos.x * 341873128712L + (long) startPos.z * 132897987541L);
+            Random villageRng = new Random(baseSeed);
+
+            // Apply spawn multiplier from config. If 1.0, it's 100%. If 0.5, it's 50%.
+            double chance = com.dragoncare.config.AddonConfig.VILLAGE_FORGE_SPAWN_MULTIPLIER.get();
+            if (chance < 1.0 && villageRng.nextDouble() > chance) {
+                // Unlucky, pretend it was processed to save time on next loads
+                state.markProcessed(startPos);
+                INFLIGHT.remove(startPos.toLong());
+                continue;
+            }
 
             BlockBox bb = start.getBoundingBox();
             Vec3i center = bb.getCenter();

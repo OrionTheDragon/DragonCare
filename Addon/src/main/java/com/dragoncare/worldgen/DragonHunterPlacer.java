@@ -117,6 +117,8 @@ public final class DragonHunterPlacer {
 
     @SubscribeEvent
     public static void onChunkLoad(ChunkEvent.Load event) {
+        if (com.dragoncare.config.AddonConfig.DISABLE_ALL_STRUCTURES.get() || com.dragoncare.config.AddonConfig.DISABLE_HUNTER_HOUSE.get()) return;
+
         if (!(event.getLevel() instanceof ServerWorld world)) return;
         Chunk chunk = event.getChunk();
         ChunkPos chunkPos = chunk.getPos();
@@ -141,7 +143,9 @@ public final class DragonHunterPlacer {
         // we simply lose this region — same effective behaviour as before.
         state.markRegionProcessed(regionKey);
 
-        if (regionRng.nextDouble() < SPAWN_CHANCE) {
+        double chance = SPAWN_CHANCE * com.dragoncare.config.AddonConfig.HUNTER_HOUSE_SPAWN_MULTIPLIER.get();
+
+        if (regionRng.nextDouble() < chance) {
             int candidateChunkX = regionX * REGION_SIZE + regionRng.nextInt(REGION_SIZE);
             int candidateChunkZ = regionZ * REGION_SIZE + regionRng.nextInt(REGION_SIZE);
             int blockX = (candidateChunkX << 4) + 4 + regionRng.nextInt(8);

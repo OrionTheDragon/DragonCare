@@ -165,6 +165,8 @@ public final class DragonHunterGuildPlacer {
 
     @SubscribeEvent
     public static void onChunkLoad(ChunkEvent.Load event) {
+        if (com.dragoncare.config.AddonConfig.DISABLE_ALL_STRUCTURES.get() || com.dragoncare.config.AddonConfig.DISABLE_GUILD.get()) return;
+
         if (!(event.getLevel() instanceof ServerWorld world)) return;
         // Guilds are an Overworld-only feature — skip the Nether/End/custom dimensions.
         if (!world.getRegistryKey().equals(World.OVERWORLD)) return;
@@ -197,6 +199,8 @@ public final class DragonHunterGuildPlacer {
         } else if (missed == 3) {
             chance = 0.33;
         }
+
+        chance *= com.dragoncare.config.AddonConfig.GUILD_SPAWN_MULTIPLIER.get();
 
         if (regionRng.nextDouble() < chance) {
             // Drop the roll if the worker queue is already saturated. Doesn't mark

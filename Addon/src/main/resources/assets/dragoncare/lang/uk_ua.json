@@ -375,5 +375,21 @@
   "dragoncare.configuration.dragon.dirt": "Забруднення драконів",
   "dragoncare.configuration.ash_poisoning": "Попелясте отруєння",
   "dragoncare.configuration.dragon_fruit": "Драконячий фрукт",
-  "dragoncare.configuration.crafting": "Крафти"
+  "dragoncare.configuration.crafting": "Крафти",
+  "dragoncare.configuration.structures": "Генерація структур",
+  "dragoncare.config.structures": "Генерація структур",
+  "dragoncare.config.structures.disable_all": "Вимкнути всі структури",
+  "dragoncare.config.structures.disable_all.tooltip": "Якщо увімкнено, генерація ВСІХ структур з цього аддону повністю вимикається.",
+  "dragoncare.config.structures.disable_guild": "Вимкнути Гільдію мисливців",
+  "dragoncare.config.structures.disable_guild.tooltip": "Якщо увімкнено, вимикає генерацію структури Гільдії мисливців на драконів.",
+  "dragoncare.config.structures.disable_hunter_house": "Вимкнути Будинок мисливця",
+  "dragoncare.config.structures.disable_hunter_house.tooltip": "Якщо увімкнено, вимикає генерацію структури Будинку/Табору мисливця на драконів.",
+  "dragoncare.config.structures.disable_village_forge": "Вимкнути Зруйновану кузню",
+  "dragoncare.config.structures.disable_village_forge.tooltip": "Якщо увімкнено, вимикає генерацію Зруйнованої драконячої кузні в селах.",
+  "dragoncare.config.structures.guild_spawn_multiplier": "Множник шансу Гільдії",
+  "dragoncare.config.structures.guild_spawn_multiplier.tooltip": "Множник шансу спавну для Гільдії мисливців на драконів.\n1.0 — стандартний шанс. Чим нижче значення, тим нижчий шанс спавну.",
+  "dragoncare.config.structures.hunter_house_spawn_multiplier": "Множник шансу Будинку мисливця",
+  "dragoncare.config.structures.hunter_house_spawn_multiplier.tooltip": "Множник шансу спавну для Будинку/Табору мисливця на драконів.\n1.0 — стандартний шанс. Чим нижче значення, тим нижчий шанс спавну.",
+  "dragoncare.config.structures.village_forge_spawn_multiplier": "Множник шансу Зруйнованої кузні",
+  "dragoncare.config.structures.village_forge_spawn_multiplier.tooltip": "Множник шансу спавну для Зруйнованої драконячої кузні в селах.\n1.0 — стандартний шанс. Чим нижче значення, тим нижчий шанс спавну."
 }
