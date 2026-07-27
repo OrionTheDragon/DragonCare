@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "id": "minecraft:written_book"
+      "item": "minecraft:written_book"
     },
     "title": {
       "translate": "advancements.dragoncare.all_hunter_diaries.title",

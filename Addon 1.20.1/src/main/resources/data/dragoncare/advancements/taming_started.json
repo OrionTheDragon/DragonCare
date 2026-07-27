@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "id": "minecraft:clock"
+      "item": "minecraft:clock"
     },
     "title": {
       "translate": "advancements.dragoncare.taming_started.title",

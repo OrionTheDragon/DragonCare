@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "id": "dragoncare:dragon_phone"
+      "item": "dragoncare:dragon_phone"
     },
     "title": {
       "translate": "advancements.dragoncare.dragon_phone_craft.title",

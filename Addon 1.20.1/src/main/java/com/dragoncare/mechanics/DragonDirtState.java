@@ -40,6 +40,13 @@ public class DragonDirtState extends PersistentState {
         setDirty(true);
     }
 
+    /** Удаляет запись грязи дракона (вызывается при его гибели — прунинг по смерти). */
+    public void remove(UUID dragonId) {
+        if (data.remove(dragonId) != null) {
+            markDirty();
+        }
+    }
+
     @Override
     public NbtCompound writeNbt(NbtCompound nbt) {
         NbtList list = new NbtList();

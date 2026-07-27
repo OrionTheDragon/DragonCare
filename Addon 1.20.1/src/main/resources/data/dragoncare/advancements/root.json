@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "id": "dragoncare:dragon_fruit"
+      "item": "dragoncare:dragon_fruit"
     },
     "title": {
       "translate": "advancements.dragoncare.root.title",

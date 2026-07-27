@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "id": "dragoncare:dragon_painkiller"
+      "item": "dragoncare:dragon_painkiller"
     },
     "title": {
       "translate": "advancements.dragoncare.painkiller_craft.title",

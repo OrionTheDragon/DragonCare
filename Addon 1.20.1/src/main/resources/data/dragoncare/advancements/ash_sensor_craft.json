@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "id": "dragoncare:ash_sensor"
+      "item": "dragoncare:ash_sensor"
     },
     "title": {
       "translate": "advancements.dragoncare.ash_sensor_craft.title",

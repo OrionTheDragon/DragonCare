@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "id": "iceandfire:dragon_horn"
+      "item": "iceandfire:dragon_horn"
     },
     "title": {
       "translate": "advancements.dragoncare.tamed_fire_dragon.title",

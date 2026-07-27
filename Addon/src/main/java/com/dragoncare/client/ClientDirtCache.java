@@ -1,11 +1,13 @@
 package com.dragoncare.client;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class ClientDirtCache {
-    private static final Map<UUID, Integer> cache = new HashMap<>();
+    // ConcurrentHashMap: put() приходит из сетевого обработчика (клиентский поток),
+    // get() — из рендер-потока (DragonTextureProviderMixin) и тултипов. Совпадает с ClientBondCache.
+    private static final Map<UUID, Integer> cache = new ConcurrentHashMap<>();
 
     public static void put(UUID dragonId, int dirtLevel) {
         cache.put(dragonId, dirtLevel);

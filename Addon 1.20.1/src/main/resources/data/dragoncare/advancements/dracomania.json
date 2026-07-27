@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "id": "dragoncare:dracomania_icon"
+      "item": "dragoncare:dracomania_icon"
     },
     "title": {
       "translate": "advancements.dragoncare.dracomania.title",

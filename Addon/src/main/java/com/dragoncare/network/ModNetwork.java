@@ -118,20 +118,23 @@ public final class ModNetwork {
 
                     if (brush.isOf(ModItems.DRAGON_BRUSH.get())) {
                         int oldDirtLevel = com.dragoncare.mechanics.DragonDirtManager.getDirtLevel(sp.getServer(), dragon.getUuid());
-                        com.dragoncare.mechanics.DragonDirtManager.setDirtLevel(dragon, payload.newDirtLevel());
+                        // Чистка может только уменьшать грязь: зажимаем клиентское значение в [0, oldDirtLevel],
+                        // иначе поддельный пакет с отрицательным newDirtLevel даёт неограниченные очки связи.
+                        int newDirtLevel = Math.max(0, Math.min(payload.newDirtLevel(), oldDirtLevel));
+                        com.dragoncare.mechanics.DragonDirtManager.setDirtLevel(dragon, newDirtLevel);
                         if (payload.extraDamage() > 0 && !sp.isCreative()) {
                             brush.damage(payload.extraDamage(), sp, LivingEntity.getSlotForHand(brushHand));
                         }
-                        
-                        int cleanedLevels = oldDirtLevel - payload.newDirtLevel();
+
+                        int cleanedLevels = oldDirtLevel - newDirtLevel;
                         if (cleanedLevels > 0) {
-                            boolean isPerfect = (payload.newDirtLevel() == 0 && oldDirtLevel >= 3);
+                            boolean isPerfect = (newDirtLevel == 0 && oldDirtLevel >= 3);
                             int multiplier = isPerfect ? 2 : 1;
                             int points = cleanedLevels * multiplier;
                             com.dragoncare.taming.BondManager.onFeedBypass(sp, dragon, points);
 
                             // Advancements
-                            if (payload.newDirtLevel() == 0) {
+                            if (newDirtLevel == 0) {
                                 if (oldDirtLevel == 1) {
                                     com.dragoncare.advancement.AchievementGranter.grant(sp, com.dragoncare.advancement.AchievementGranter.FRESH_LOOK);
                                 } else if (oldDirtLevel == 5) {

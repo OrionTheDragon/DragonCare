@@ -56,6 +56,14 @@ public class ModEvents {
             com.dragoncare.item.ScaleShearsItem.clearDragon(dragonId);
             com.dragoncare.item.SyringeItem.clearDragon(dragonId);
             com.dragoncare.item.DragonPainkillerItem.clearDragon(dragonId);
+            // Прунинг по гибели: освобождаем сохранённые данные погибшего дракона.
+            // (Раньше периодический cleanupStaleEntries удалял данные и у ЖИВЫХ драконов
+            //  в выгруженных чанках, теряя связь/грязь питомцев — теперь чистим только по смерти.)
+            MinecraftServer server = dragon.getServer();
+            if (server != null) {
+                BondState.get(server).remove(dragonId);
+                com.dragoncare.mechanics.DragonDirtState.get(server).remove(dragonId);
+            }
         }
     }
 
@@ -179,9 +187,6 @@ public class ModEvents {
             com.dragoncare.item.DragonPainkillerItem.clearExpired(currentTick);
         }
         
-        if (currentTick % 6000 == 0) { // Every 5 minutes
-            com.dragoncare.mechanics.DragonFamilyState.cleanupStaleEntries(event.getServer());
-        }
     }
 
     /** Registers brigadier commands ({@code /dragonbond}, {@code /attachmentinfo}). */

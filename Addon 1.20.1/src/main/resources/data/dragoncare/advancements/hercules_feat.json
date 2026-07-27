@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "id": "dragoncare:dragon_brush"
+      "item": "dragoncare:dragon_brush"
     },
     "title": {
       "translate": "advancements.dragoncare.hercules_feat.title",

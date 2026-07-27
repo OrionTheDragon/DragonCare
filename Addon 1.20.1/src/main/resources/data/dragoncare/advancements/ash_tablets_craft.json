@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "id": "dragoncare:ash_tablets"
+      "item": "dragoncare:ash_tablets"
     },
     "title": {
       "translate": "advancements.dragoncare.ash_tablets_craft.title",

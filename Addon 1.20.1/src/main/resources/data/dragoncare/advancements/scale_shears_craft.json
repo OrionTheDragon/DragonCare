@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "id": "dragoncare:scale_shears"
+      "item": "dragoncare:scale_shears"
     },
     "title": {
       "translate": "advancements.dragoncare.scale_shears_craft.title",

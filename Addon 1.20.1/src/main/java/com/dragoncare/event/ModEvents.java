@@ -56,6 +56,14 @@ public class ModEvents {
             com.dragoncare.item.ScaleShearsItem.clearDragon(dragonId);
             com.dragoncare.item.SyringeItem.clearDragon(dragonId);
             com.dragoncare.item.DragonPainkillerItem.clearDragon(dragonId);
+            // Прунинг по гибели: освобождаем сохранённые данные погибшего дракона.
+            // (Раньше периодический cleanupStaleEntries удалял данные и у ЖИВЫХ драконов
+            //  в выгруженных чанках, теряя связь/грязь питомцев — теперь чистим только по смерти.)
+            MinecraftServer server = dragon.getServer();
+            if (server != null) {
+                BondState.get(server).remove(dragonId);
+                com.dragoncare.mechanics.DragonDirtState.get(server).remove(dragonId);
+            }
         }
     }
 
@@ -171,10 +179,12 @@ public class ModEvents {
         DragonTamingManager.tick(event.getServer());
         com.dragoncare.mechanics.OrphanSpawner.tick(event.getServer().getOverworld());
         processPendingHatches(event.getServer());
-        if (event.getServer().getOverworld().getTime() % 6000 == 0) {
-            com.dragoncare.mechanics.DragonFamilyState.cleanupStaleEntries(event.getServer());
-            com.dragoncare.taming.BondState.cleanupStaleEntries(event.getServer());
-            com.dragoncare.mechanics.DragonDirtState.cleanupStaleEntries(event.getServer());
+
+        long currentTick = event.getServer().getOverworld().getTime();
+        if (currentTick % 1200 == 0) { // Every 1 minute — освобождаем просроченные кулдауны предметов
+            com.dragoncare.item.ScaleShearsItem.clearExpired(currentTick);
+            com.dragoncare.item.SyringeItem.clearExpired(currentTick);
+            com.dragoncare.item.DragonPainkillerItem.clearExpired(currentTick);
         }
     }
 

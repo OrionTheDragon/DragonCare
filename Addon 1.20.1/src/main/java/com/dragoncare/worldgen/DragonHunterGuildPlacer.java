@@ -200,6 +200,8 @@ public final class DragonHunterGuildPlacer {
             chance = 0.33;
         }
 
+        chance *= com.dragoncare.config.AddonConfig.GUILD_SPAWN_MULTIPLIER.get();
+
         if (regionRng.nextDouble() < chance) {
             // Drop the roll if the worker queue is already saturated. Doesn't mark
             // the region as missed — we just defer; another nearby region will pick

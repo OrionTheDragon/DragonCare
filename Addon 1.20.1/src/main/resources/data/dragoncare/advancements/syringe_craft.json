@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "id": "dragoncare:dragon_blood_syringe"
+      "item": "dragoncare:dragon_blood_syringe"
     },
     "title": {
       "translate": "advancements.dragoncare.syringe_craft.title",

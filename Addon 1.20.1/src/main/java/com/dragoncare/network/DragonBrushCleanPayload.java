@@ -43,20 +43,23 @@ public record DragonBrushCleanPayload(UUID dragonId, int newDirtLevel, int extra
 
             if (brush.isOf(ModItems.DRAGON_BRUSH.get())) {
                 int oldDirtLevel = com.dragoncare.mechanics.DragonDirtManager.getDirtLevel(sp.getServer(), dragon.getUuid());
-                com.dragoncare.mechanics.DragonDirtManager.setDirtLevel(dragon, this.newDirtLevel);
+                // Чистка может только уменьшать грязь: зажимаем клиентское значение в [0, oldDirtLevel],
+                // иначе поддельный пакет с отрицательным newDirtLevel даёт неограниченные очки связи.
+                int newDirtLevel = Math.max(0, Math.min(this.newDirtLevel, oldDirtLevel));
+                com.dragoncare.mechanics.DragonDirtManager.setDirtLevel(dragon, newDirtLevel);
                 if (this.extraDamage > 0 && !sp.isCreative()) {
                     final Hand finalBrushHand = brushHand;
                     brush.damage(this.extraDamage, sp, (p) -> p.sendToolBreakStatus(finalBrushHand));
                 }
-                
-                int cleanedLevels = oldDirtLevel - this.newDirtLevel;
+
+                int cleanedLevels = oldDirtLevel - newDirtLevel;
                 if (cleanedLevels > 0) {
-                    boolean isPerfect = (this.newDirtLevel == 0 && oldDirtLevel >= 3);
+                    boolean isPerfect = (newDirtLevel == 0 && oldDirtLevel >= 3);
                     int multiplier = isPerfect ? 2 : 1;
                     int points = cleanedLevels * multiplier;
                     com.dragoncare.taming.BondManager.onFeedBypass(sp, dragon, points);
 
-                    if (this.newDirtLevel == 0) {
+                    if (newDirtLevel == 0) {
                         if (oldDirtLevel == 1) {
                             com.dragoncare.advancement.AchievementGranter.grant(sp, com.dragoncare.advancement.AchievementGranter.FRESH_LOOK);
                         } else if (oldDirtLevel == 5) {
