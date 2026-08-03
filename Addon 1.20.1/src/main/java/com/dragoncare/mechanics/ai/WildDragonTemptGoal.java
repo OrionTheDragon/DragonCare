@@ -17,7 +17,7 @@ public class WildDragonTemptGoal extends TemptGoal {
 
     @Override
     public boolean canStart() {
-        if (dragon.isSleeping()) return false;
+        if (!dragon.canMove()) return false;
         // Works for all Stage 1 and Stage 2 dragons (under 50 days)
         if (dragon.getAgeInDays() >= 50) return false;
         
@@ -33,7 +33,7 @@ public class WildDragonTemptGoal extends TemptGoal {
 
     @Override
     public boolean shouldContinue() {
-        if (dragon.getAgeInDays() >= 50) return false;
+        if (!dragon.canMove() || dragon.getAgeInDays() >= 50) return false;
         
         boolean shouldContinue = super.shouldContinue();
         if (shouldContinue && this.closestPlayer != null) {

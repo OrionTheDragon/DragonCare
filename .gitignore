@@ -4,6 +4,9 @@
 # Allow only these specific folders and files in the root
 !/Addon 1.20.1/
 !/Addon/
+!/AGENTS.md
+!/docs/
+!/docs/*.md
 !/settings.gradle
 !/bump_version.bat
 !/bump_version.ps1
@@ -20,6 +23,15 @@ run/
 logs/
 crash-reports/
 *.log
+*.hprof
+*.jar
+!Addon/mappings-patch/yarn-mappings-patch-neoforge-1.21+build.4.jar
+*.zip
+token*.txt
+temp*/
+dump*/
+decomp*/
+temp_decomp/
 
 # Ignore scratch scripts and personal logs inside allowed folders
 *.py
@@ -31,4 +43,6 @@ crash-reports/
 !LICENSE
 *.md
 !README.md
+!AGENTS.md
+!docs/*.md
 *.class

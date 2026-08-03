@@ -17,7 +17,7 @@ public class WildDragonTemptGoal extends TemptGoal {
 
     @Override
     public boolean canStart() {
-        if (dragon.isSleeping()) return false;
+        if (DragonAiGuards.isMovementLocked(dragon)) return false;
         // Works for all Stage 1 and Stage 2 dragons (under 50 days)
         if (dragon.getAgeInDays() >= 50) return false;
         
@@ -33,7 +33,7 @@ public class WildDragonTemptGoal extends TemptGoal {
 
     @Override
     public boolean shouldContinue() {
-        if (dragon.getAgeInDays() >= 50) return false;
+        if (DragonAiGuards.isMovementLocked(dragon) || dragon.getAgeInDays() >= 50) return false;
         
         boolean shouldContinue = super.shouldContinue();
         if (shouldContinue && this.closestPlayer != null) {
@@ -46,9 +46,13 @@ public class WildDragonTemptGoal extends TemptGoal {
 
     @Override
     public void tick() {
+        if (DragonAiGuards.isMovementLocked(dragon)) {
+            dragon.getNavigation().stop();
+            return;
+        }
         super.tick();
         // Prevent the dragon from falling asleep while following the food
-        if (dragon instanceof DragonSleepPreventer preventer) {
+        if (!dragon.isTamed() && dragon instanceof DragonSleepPreventer preventer) {
             preventer.dragoncare$setSleepCooldown(40); // Prevent sleep for 2 seconds (constantly refreshed)
         }
     }

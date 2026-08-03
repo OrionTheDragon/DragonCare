@@ -1,5 +1,6 @@
 package com.dragoncare.mechanics;
 
+import com.dragoncare.mechanics.ai.DragonAiGuards;
 import net.minecraft.entity.ai.NoPenaltyTargeting;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.pathing.Path;
@@ -38,6 +39,10 @@ public class AvoidAshGoal extends Goal {
 
     @Override
     public boolean canStart() {
+        if (mob instanceof com.iafenvoy.iceandfire.entity.DragonBaseEntity dragon
+                && DragonAiGuards.isMovementLocked(dragon)) {
+            return false;
+        }
         if (retryCooldown > 0) {
             retryCooldown--;
             return false;
@@ -63,6 +68,10 @@ public class AvoidAshGoal extends Goal {
 
     @Override
     public boolean shouldContinue() {
+        if (mob instanceof com.iafenvoy.iceandfire.entity.DragonBaseEntity dragon
+                && DragonAiGuards.isMovementLocked(dragon)) {
+            return false;
+        }
         return !mob.getNavigation().isIdle();
     }
 

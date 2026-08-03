@@ -15,9 +15,12 @@
     "client": [
         "client.DragonScreenHandlerAccessor",
         "client.DragonScreenMixin",
+        "client.DragonBaseEntityRendererMixin",
         "client.DragonTextureProviderMixin",
         "client.AdvancementWidgetAccessor",
-        "client.AdvancementTabMixin"
+        "client.AdvancementTabMixin",
+        "client.DragonCareControllersMixin",
+        "client.DragonAnimationMaskMixin"
     ],
     "injectors": {
         "defaultRequire": 1

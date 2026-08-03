@@ -4,27 +4,15 @@
     {
       "rolls": 1.0,
       "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.99
+        }
+      ],
       "entries": [
         {
           "type": "minecraft:item",
-          "functions": [
-            {
-              "function": "minecraft:limit_count",
-              "limit": {
-                "min": 0,
-                "max": 3
-              }
-            },
-            {
-              "function": "minecraft:apply_bonus",
-              "enchantment": "minecraft:fortune",
-              "formula": "minecraft:binomial_with_bonus_count",
-              "parameters": {
-                "extra": 3,
-                "probability": 0.33333334
-              }
-            }
-          ],
           "name": "dragoncare:dragon_fruit_seeds"
         }
       ]

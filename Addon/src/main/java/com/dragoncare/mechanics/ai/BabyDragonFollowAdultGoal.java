@@ -26,12 +26,12 @@ public class BabyDragonFollowAdultGoal extends Goal {
     public BabyDragonFollowAdultGoal(DragonBaseEntity dragon, double speed) {
         this.dragon = dragon;
         this.speed = speed;
-        this.setControls(EnumSet.of(Control.MOVE));
+        this.setControls(EnumSet.of(Control.MOVE, Control.LOOK));
     }
 
     @Override
     public boolean canStart() {
-        if (!dragon.canMove() || dragon.isModelDead()) {
+        if (DragonAiGuards.isMovementLocked(dragon)) {
             return false;
         }
 
@@ -89,7 +89,7 @@ public class BabyDragonFollowAdultGoal extends Goal {
 
     @Override
     public boolean shouldContinue() {
-        if (!dragon.canMove() || dragon.isModelDead() || dragon.getTarget() != null) {
+        if (DragonAiGuards.isMovementLocked(dragon) || dragon.getTarget() != null) {
             return false;
         }
 
@@ -129,6 +129,10 @@ public class BabyDragonFollowAdultGoal extends Goal {
 
     @Override
     public void start() {
+        if (DragonAiGuards.isMovementLocked(dragon)) {
+            this.targetAdult = null;
+            return;
+        }
         this.updateCountdownTicks = 0;
     }
 
@@ -140,7 +144,10 @@ public class BabyDragonFollowAdultGoal extends Goal {
 
     @Override
     public void tick() {
-        if (targetAdult == null) return;
+        if (targetAdult == null || DragonAiGuards.isMovementLocked(dragon)) {
+            dragon.getNavigation().stop();
+            return;
+        }
 
         // Face the target
         dragon.getLookControl().lookAt(targetAdult, 10.0F, (float) dragon.getMaxLookPitchChange());
@@ -205,4 +212,5 @@ public class BabyDragonFollowAdultGoal extends Goal {
         }
         return false;
     }
+
 }

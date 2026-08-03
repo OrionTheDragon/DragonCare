@@ -33,7 +33,7 @@ public final class ModNetwork {
 
     @SubscribeEvent
     public static void register(RegisterPayloadHandlersEvent event) {
-        PayloadRegistrar registrar = event.registrar("1");
+        PayloadRegistrar registrar = event.registrar("2");
 
         registrar.playToClient(
                 BondSyncPayload.ID,
@@ -48,6 +48,16 @@ public final class ModNetwork {
                 DragonDirtSyncPayload.CODEC,
                 (payload, context) -> context.enqueueWork(() ->
                         com.dragoncare.client.ClientDirtCache.put(payload.dragonId(), payload.dirtLevel())
+                )
+        );
+
+        registrar.playToClient(
+                WoundDebugPayload.ID,
+                WoundDebugPayload.CODEC,
+                (payload, context) -> context.enqueueWork(() ->
+                        com.dragoncare.client.ClientWoundDebugState.apply(
+                                payload.dragonId(), payload.mode(), payload.percent()
+                        )
                 )
         );
 

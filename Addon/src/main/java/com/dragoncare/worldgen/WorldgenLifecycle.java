@@ -24,21 +24,22 @@ public final class WorldgenLifecycle {
 
     @SubscribeEvent
     public static void onServerStarting(ServerStartingEvent event) {
-        LOG.info("[DIAG] ServerStartingEvent fired — loading addon schematics");
+        LOG.debug("[DIAG] ServerStartingEvent fired — loading addon schematics");
         AddonSchematics.loadAll(event.getServer().getRegistryManager());
-        LOG.info("[DIAG] Forge schematic buckets: BASIC={}, DRAIN={}, HEART={}",
+        LOG.debug("[DIAG] Forge schematic buckets: BASIC={}, DRAIN={}, HEART={}",
                 AddonSchematics.forgeCount(AddonSchematics.Category.BASIC),
                 AddonSchematics.forgeCount(AddonSchematics.Category.DRAIN),
                 AddonSchematics.forgeCount(AddonSchematics.Category.HEART));
-        LOG.info("[DIAG] Hunter wood variants loaded: {}",
+        LOG.debug("[DIAG] Hunter wood variants loaded: {}",
                 AddonSchematics.dragonHunterWoodTypes());
     }
 
     @SubscribeEvent
     public static void onServerStopped(ServerStoppedEvent event) {
-        LOG.info("[DIAG] ServerStoppedEvent — clearing schematics & placer state");
+        LOG.debug("[DIAG] ServerStoppedEvent — clearing schematics & placer state");
         AddonSchematics.clear();
         DragonHunterPlacer.clearStatic();
         DragonHunterGuildPlacer.clearStatic();
+        VillageForgePlacer.clearCache();
     }
 }

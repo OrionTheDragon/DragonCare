@@ -11,7 +11,7 @@ import net.minecraftforge.network.simple.SimpleChannel;
 
 public final class ModNetwork {
 
-    private static final String PROTOCOL_VERSION = "1";
+    private static final String PROTOCOL_VERSION = "2";
     public static final SimpleChannel INSTANCE = NetworkRegistry.newSimpleChannel(
             new Identifier(DragonCare.MOD_ID, "main"),
             () -> PROTOCOL_VERSION,
@@ -31,6 +31,7 @@ public final class ModNetwork {
         INSTANCE.registerMessage(id++, RefreshListPayload.class, RefreshListPayload::encode, RefreshListPayload::new, RefreshListPayload::handle);
         INSTANCE.registerMessage(id++, SelectDragonPayload.class, SelectDragonPayload::encode, SelectDragonPayload::new, SelectDragonPayload::handle);
         INSTANCE.registerMessage(id++, DragonBrushCleanPayload.class, DragonBrushCleanPayload::encode, DragonBrushCleanPayload::new, DragonBrushCleanPayload::handle);
+        INSTANCE.registerMessage(id++, WoundDebugPayload.class, WoundDebugPayload::encode, WoundDebugPayload::new, WoundDebugPayload::handle);
     }
 }
 

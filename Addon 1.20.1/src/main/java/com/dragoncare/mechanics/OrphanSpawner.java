@@ -19,43 +19,54 @@ public class OrphanSpawner {
 
     public static void tick(ServerWorld world) {
         if (com.dragoncare.config.AddonConfig.DISABLE_WILD_BABY_SPAWNS.get()) return;
+        if (!world.getRegistryKey().equals(net.minecraft.world.World.OVERWORLD)) return;
 
         // Process every 200 ticks (10 seconds)
         if (world.getTime() % 200 != 0) return;
 
         Random random = world.getRandom();
 
-        for (ServerPlayerEntity player : world.getPlayers()) {
-            // Very rare chance: 0.5% per 10 seconds. Roughly 1 spawn every 33 minutes of walking.
-            if (random.nextDouble() > 0.005) continue;
+        var players = world.getPlayers();
+        if (players.isEmpty()) return;
 
-            // Pick a random surface position around the player (radius 32-64 blocks)
-            double angle = random.nextDouble() * Math.PI * 2;
-            int dist = 32 + random.nextInt(33);
-            int rx = player.getBlockX() + (int)(Math.cos(angle) * dist);
-            int rz = player.getBlockZ() + (int)(Math.sin(angle) * dist);
+        // One world-wide roll prevents multiplayer servers from multiplying the rate.
+        // 0.165% is approximately pink-sheep rarity with a ~1% relative increase.
+        if (random.nextDouble() >= 0.00165D) return;
+        ServerPlayerEntity player = players.get(random.nextInt(players.size()));
 
-            BlockPos targetPos = world.getTopPosition(Heightmap.Type.WORLD_SURFACE, new BlockPos(rx, 0, rz));
+        // Pick a random surface position around the player (radius 32-64 blocks)
+        double angle = random.nextDouble() * Math.PI * 2;
+        int dist = 32 + random.nextInt(33);
+        int rx = player.getBlockX() + (int)(Math.cos(angle) * dist);
+        int rz = player.getBlockZ() + (int)(Math.sin(angle) * dist);
 
-            // Ensure it's not a fluid or dangerous block, and not deep underground
-            if (targetPos.getY() < world.getSeaLevel()) continue;
-            if (!world.getBlockState(targetPos.down()).isSolidBlock(world, targetPos.down())) continue;
+        // Only newly explored chunks qualify. Inhabited time is persistent, so revisiting
+        // or reloading a chunk does not make it eligible again.
+        var chunk = world.getChunkManager().getChunk(
+                rx >> 4, rz >> 4, net.minecraft.world.chunk.ChunkStatus.FULL, false);
+        if (chunk == null || chunk.getInhabitedTime() > 1200L) return;
 
-            RegistryEntry<Biome> biome = world.getBiome(targetPos);
-            EntityType<? extends EntityDragonBase> entityType = null;
+        BlockPos targetPos = world.getTopPosition(Heightmap.Type.WORLD_SURFACE, new BlockPos(rx, 0, rz));
 
-            if (biome.isIn(BiomeTags.IS_JUNGLE) || biome.isIn(BiomeTags.IS_SAVANNA)) {
-                entityType = (EntityType<? extends EntityDragonBase>) Registries.ENTITY_TYPE.get(Identifier.of("iceandfire", "lightning_dragon"));
-            } else if (biome.isIn(BiomeTags.IS_TAIGA) && biome.value().getTemperature() < 0.15F) {
-                entityType = (EntityType<? extends EntityDragonBase>) Registries.ENTITY_TYPE.get(Identifier.of("iceandfire", "ice_dragon"));
-            } else if (biome.isIn(BiomeTags.IS_MOUNTAIN) || biome.isIn(BiomeTags.IS_BADLANDS)) {
-                entityType = (EntityType<? extends EntityDragonBase>) Registries.ENTITY_TYPE.get(Identifier.of("iceandfire", "fire_dragon"));
-            }
+        // Ensure it's not a fluid or dangerous block, and not deep underground
+        if (targetPos.getY() < world.getSeaLevel()) return;
+        if (!world.getBlockState(targetPos.down()).isSolidBlock(world, targetPos.down())) return;
 
-            if (entityType != null) {
-                EntityDragonBase baby = entityType.create(world);
-                if (baby != null) {
-                    baby.setGender(random.nextBoolean());
+        RegistryEntry<Biome> biome = world.getBiome(targetPos);
+        EntityType<? extends EntityDragonBase> entityType = null;
+
+        if (biome.isIn(BiomeTags.IS_JUNGLE) || biome.isIn(BiomeTags.IS_SAVANNA)) {
+            entityType = (EntityType<? extends EntityDragonBase>) Registries.ENTITY_TYPE.get(Identifier.of("iceandfire", "lightning_dragon"));
+        } else if (biome.isIn(BiomeTags.IS_TAIGA) && biome.value().getTemperature() < 0.15F) {
+            entityType = (EntityType<? extends EntityDragonBase>) Registries.ENTITY_TYPE.get(Identifier.of("iceandfire", "ice_dragon"));
+        } else if (biome.isIn(BiomeTags.IS_MOUNTAIN) || biome.isIn(BiomeTags.IS_BADLANDS)) {
+            entityType = (EntityType<? extends EntityDragonBase>) Registries.ENTITY_TYPE.get(Identifier.of("iceandfire", "fire_dragon"));
+        }
+
+        if (entityType != null) {
+            EntityDragonBase baby = entityType.create(world);
+            if (baby != null) {
+                baby.setGender(random.nextBoolean());
                     
                     // 50/50 for Stage 1 or 2
                     if (random.nextBoolean()) {
@@ -74,8 +85,7 @@ public class OrphanSpawner {
                     baby.updatePositionAndAngles(targetPos.getX() + 0.5, targetPos.getY() + 1.0, targetPos.getZ() + 0.5, random.nextFloat() * 360, 0);
                     baby.setHunger(30); // A bit hungry, makes them look lost
 
-                    world.spawnEntity(baby);
-                }
+                world.spawnEntity(baby);
             }
         }
     }

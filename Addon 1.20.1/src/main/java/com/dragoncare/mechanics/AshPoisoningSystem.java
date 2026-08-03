@@ -184,8 +184,8 @@ public class AshPoisoningSystem {
         
         int minX = center.getX() - radius;
         int maxX = center.getX() + radius;
-        int minY = center.getY() - radius;
-        int maxY = center.getY() + radius;
+        int minY = Math.max(world.getBottomY(), center.getY() - radius);
+        int maxY = Math.min(world.getTopY() - 1, center.getY() + radius);
         int minZ = center.getZ() - radius;
         int maxZ = center.getZ() + radius;
 

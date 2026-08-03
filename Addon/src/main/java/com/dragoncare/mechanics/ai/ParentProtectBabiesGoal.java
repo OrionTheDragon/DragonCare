@@ -33,7 +33,7 @@ public class ParentProtectBabiesGoal extends Goal {
     @Override
     public boolean canStart() {
         if (parent.getDragonStage() < 3) return false;
-        if (!parent.canMove() || parent.isModelDead()) return false;
+        if (DragonAiGuards.isMovementLocked(parent)) return false;
         
         // Don't interrupt active combat
         if (parent.getTarget() != null) return false;
@@ -79,7 +79,7 @@ public class ParentProtectBabiesGoal extends Goal {
 
     @Override
     public boolean shouldContinue() {
-        if (!parent.canMove() || parent.isModelDead() || parent.getTarget() != null) return false;
+        if (DragonAiGuards.isMovementLocked(parent) || parent.getTarget() != null) return false;
         if (targetBaby == null || !targetBaby.isAlive() || targetBaby.getWorld() != parent.getWorld()) return false;
 
         // Stop returning when they get close enough (e.g., within 10 blocks) or if the pathing times out
@@ -88,6 +88,10 @@ public class ParentProtectBabiesGoal extends Goal {
 
     @Override
     public void start() {
+        if (DragonAiGuards.isMovementLocked(parent)) {
+            this.targetBaby = null;
+            return;
+        }
         if (parent.isFlying() || parent.isHovering()) {
             // Force landing sequence if they are in the air
             parent.setFlying(false);
@@ -108,6 +112,10 @@ public class ParentProtectBabiesGoal extends Goal {
 
     @Override
     public void tick() {
+        if (DragonAiGuards.isMovementLocked(parent)) {
+            parent.getNavigation().stop();
+            return;
+        }
         if (targetBaby != null) {
             this.pathingTimeout--;
             // Update path periodically
@@ -117,4 +125,5 @@ public class ParentProtectBabiesGoal extends Goal {
             }
         }
     }
+
 }

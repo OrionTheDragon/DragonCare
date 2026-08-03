@@ -391,5 +391,13 @@
   "dragoncare.config.structures.hunter_house_spawn_multiplier": "Hunter House Spawn Chance Multiplier",
   "dragoncare.config.structures.hunter_house_spawn_multiplier.tooltip": "Spawn chance multiplier for the Dragon Hunter House/Camp.\n1.0 is default chance. Lower values = lower chance.",
   "dragoncare.config.structures.village_forge_spawn_multiplier": "Village Forge Spawn Chance Multiplier",
-  "dragoncare.config.structures.village_forge_spawn_multiplier.tooltip": "Spawn chance multiplier for the Ruined Dragon Forge in villages.\n1.0 is default chance. Lower values = lower chance."
+  "dragoncare.config.structures.village_forge_spawn_multiplier.tooltip": "Spawn chance multiplier for the Ruined Dragon Forge in villages.\n1.0 is default chance. Lower values = lower chance.",
+  "commands.dragoncare.wounds.no_dragon": "Look directly at a living dragon within 64 blocks.",
+  "commands.dragoncare.wounds.set": "Wound debug visibility set to %s%%.",
+  "commands.dragoncare.wounds.animate": "Wound debug animation started: 0%% to 100%% at 1%% per second.",
+  "commands.dragoncare.wounds.reset": "Wound debug override cleared. Real health is used again.",
+  "commands.dragoncare.anim.no_dragon": "Look directly at a living dragon within 64 blocks.",
+  "commands.dragoncare.anim.watch": "Animation diagnostics started for %s. State changes are written to chat and latest.log.",
+  "commands.dragoncare.anim.stop": "Animation diagnostics stopped.",
+  "commands.dragoncare.anim.lost": "Animation diagnostics stopped because the dragon is no longer loaded."
 }

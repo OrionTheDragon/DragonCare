@@ -35,6 +35,10 @@ public class HunterDiaryTracker {
         }
 
         DiaryState state = DiaryState.get(server);
+        if (totalDiariesCount > 0 && state.getCount(player.getUuid()) >= totalDiariesCount) {
+            return;
+        }
+
         boolean newlyFound = false;
 
         // Scan inventory for written books
@@ -56,6 +60,10 @@ public class HunterDiaryTracker {
         if (newlyFound && totalDiariesCount > 0 && state.getCount(player.getUuid()) >= totalDiariesCount) {
             AchievementGranter.grant(player, AchievementGranter.ALL_HUNTER_DIARIES);
         }
+    }
+
+    public static void clearCache() {
+        totalDiariesCount = -1;
     }
 
     private static int calculateTotalDiaries(MinecraftServer server) {

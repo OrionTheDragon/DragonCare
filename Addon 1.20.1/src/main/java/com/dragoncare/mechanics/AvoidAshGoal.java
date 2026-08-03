@@ -38,6 +38,9 @@ public class AvoidAshGoal extends Goal {
 
     @Override
     public boolean canStart() {
+        if (mob instanceof com.iafenvoy.iceandfire.entity.EntityDragonBase dragon && !dragon.canMove()) {
+            return false;
+        }
         if (retryCooldown > 0) {
             retryCooldown--;
             return false;
@@ -63,6 +66,9 @@ public class AvoidAshGoal extends Goal {
 
     @Override
     public boolean shouldContinue() {
+        if (mob instanceof com.iafenvoy.iceandfire.entity.EntityDragonBase dragon && !dragon.canMove()) {
+            return false;
+        }
         return !mob.getNavigation().isIdle();
     }
 

@@ -194,6 +194,7 @@ public class ModEvents {
         BondCommands.register(event.getDispatcher());
         ModCommands.register(event.getDispatcher());
         com.dragoncare.command.DirtCommands.register(event.getDispatcher());
+        com.dragoncare.command.WoundDebugCommands.register(event.getDispatcher());
     }
 
     /** Cleanup memory in AshPoisoningSystem when a player logs out. */
@@ -216,6 +217,13 @@ public class ModEvents {
     @SubscribeEvent
     public static void onServerStopped(ServerStoppedEvent event) {
         PENDING_HATCH.clear();
+        com.dragoncare.advancement.HunterDiaryTracker.clearCache();
+        com.dragoncare.dragonphone.PhoneGlowTickHandler.clearCache();
+        com.dragoncare.item.DragonPainkillerItem.clearCache();
+        com.dragoncare.item.ScaleShearsItem.clearCache();
+        com.dragoncare.item.SyringeItem.clearCache();
+        com.dragoncare.mechanics.AshPoisoningSystem.clearCache();
+        com.dragoncare.taming.DragonTamingManager.clearCache();
     }
 
     private static void processPendingHatches(MinecraftServer server) {

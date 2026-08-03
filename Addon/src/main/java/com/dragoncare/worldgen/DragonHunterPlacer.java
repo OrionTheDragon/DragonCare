@@ -120,6 +120,7 @@ public final class DragonHunterPlacer {
         if (com.dragoncare.config.AddonConfig.DISABLE_ALL_STRUCTURES.get() || com.dragoncare.config.AddonConfig.DISABLE_HUNTER_HOUSE.get()) return;
 
         if (!(event.getLevel() instanceof ServerWorld world)) return;
+        if (!world.getRegistryKey().equals(net.minecraft.world.World.OVERWORLD)) return;
         Chunk chunk = event.getChunk();
         ChunkPos chunkPos = chunk.getPos();
 
@@ -182,6 +183,7 @@ public final class DragonHunterPlacer {
      */
     private static boolean attemptPlacement(PendingCandidate c) {
         ServerWorld world = c.world;
+        if (!world.getRegistryKey().equals(net.minecraft.world.World.OVERWORLD)) return true;
         ServerChunkManager scm = world.getChunkManager();
 
         // Anchor chunk must be fully loaded for biome / heightmap to be meaningful.

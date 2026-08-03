@@ -391,5 +391,9 @@
   "dragoncare.config.structures.hunter_house_spawn_multiplier": "Множитель шанса Дома охотника",
   "dragoncare.config.structures.hunter_house_spawn_multiplier.tooltip": "Множитель шанса спавна для Дома/Лагеря охотника на драконов.\n1.0 — стандартный шанс. Чем ниже значение, тем ниже шанс спавна.",
   "dragoncare.config.structures.village_forge_spawn_multiplier": "Множитель шанса Разрушенной кузницы",
-  "dragoncare.config.structures.village_forge_spawn_multiplier.tooltip": "Множитель шанса спавна для Разрушенной драконьей кузницы в деревнях.\n1.0 — стандартный шанс. Чем ниже значение, тем ниже шанс спавна."
+  "dragoncare.config.structures.village_forge_spawn_multiplier.tooltip": "Множитель шанса спавна для Разрушенной драконьей кузницы в деревнях.\n1.0 — стандартный шанс. Чем ниже значение, тем ниже шанс спавна.",
+  "commands.dragoncare.wounds.no_dragon": "Посмотрите прямо на живого дракона в пределах 64 блоков.",
+  "commands.dragoncare.wounds.set": "Видимость ран в режиме отладки установлена на %s%%.",
+  "commands.dragoncare.wounds.animate": "Запущена анимация ран: от 0%% до 100%% со скоростью 1%% в секунду.",
+  "commands.dragoncare.wounds.reset": "Режим отладки ран сброшен. Снова используется настоящее здоровье."
 }

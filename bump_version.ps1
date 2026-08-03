@@ -143,7 +143,9 @@ if ($buildChoice -eq "" -or $buildChoice.ToLower() -eq "y" -or $buildChoice.ToLo
     Set-Location $targetDirPath
     
     if (Test-Path "gradlew.bat") {
-        & .\gradlew.bat build -x test
+        Write-Host "Using the Windows Gradle wrapper (gradlew.bat)." -ForegroundColor DarkGray
+        Write-Host "Note: the first build after a Loom cache reset may take several minutes." -ForegroundColor DarkGray
+        & .\gradlew.bat build -x test --console=plain
         
         if ($LASTEXITCODE -eq 0) {
             Write-Host ""

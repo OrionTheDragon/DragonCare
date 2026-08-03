@@ -183,10 +183,11 @@ public final class VillageForgePlacer {
         if (com.dragoncare.config.AddonConfig.DISABLE_ALL_STRUCTURES.get() || com.dragoncare.config.AddonConfig.DISABLE_VILLAGE_FORGE.get()) return;
 
         if (!(event.getLevel() instanceof ServerWorld world)) return;
+        if (!world.getRegistryKey().equals(net.minecraft.world.World.OVERWORLD)) return;
         ChunkPos pos = event.getChunk().getPos();
         long n = DIAG_CHUNK_EVENTS.incrementAndGet();
         if (n == 1) {
-            LOG.info("[DIAG] First chunk-load event received: world={} chunk={} isNewChunk={}",
+            LOG.debug("[DIAG] First chunk-load event received: world={} chunk={} isNewChunk={}",
                     world.getRegistryKey().getValue(), pos, event.isNewChunk());
         }
         // Defer structure-start inspection: ChunkEvent.Load can fire before the
@@ -205,6 +206,7 @@ public final class VillageForgePlacer {
      */
     private static boolean attemptScan(PendingScan scan) {
         ServerWorld world = scan.world;
+        if (!world.getRegistryKey().equals(net.minecraft.world.World.OVERWORLD)) return true;
         ChunkPos pos = scan.pos;
 
         // Non-blocking FULL check — if the chunk isn't promoted yet, retry later.
@@ -266,6 +268,14 @@ public final class VillageForgePlacer {
 
             // Deterministic per-village RNG so re-rolls (during testing) match.
             long baseSeed = world.getSeed() ^ ((long) startPos.x * 341873128712L + (long) startPos.z * 132897987541L);
+            Random villageRng = new Random(baseSeed);
+
+            double chance = com.dragoncare.config.AddonConfig.VILLAGE_FORGE_SPAWN_MULTIPLIER.get();
+            if (chance < 1.0 && villageRng.nextDouble() >= chance) {
+                state.markProcessed(startPos);
+                INFLIGHT.remove(startPos.toLong());
+                continue;
+            }
 
             BlockBox bb = start.getBoundingBox();
             Vec3i center = bb.getCenter();
@@ -341,7 +351,7 @@ public final class VillageForgePlacer {
                 lastDumpChunkEvents = ce;
                 lastDumpVillagesDetected = vd;
                 lastDumpPlaceOk = pok;
-                LOG.info("[DIAG-STATS] chunkEvts={} scanOK={} scanRetry={} scanEmpty={} nonVillage={} " +
+                LOG.debug("[DIAG-STATS] chunkEvts={} scanOK={} scanRetry={} scanEmpty={} nonVillage={} " +
                                 "villagesSeen={} skipProc={} skipInfl={} queued={} " +
                                 "placeAttempts={} placeOK={} placeNoSchem={} placeNoY={} placeChunksPending={} placeGaveUp={} " +
                                 "qScan={} qPlace={}",
@@ -362,6 +372,7 @@ public final class VillageForgePlacer {
     private static boolean attemptPlacement(PendingForge c) {
         DIAG_PLACE_ATTEMPTS.incrementAndGet();
         ServerWorld world = c.world;
+        if (!world.getRegistryKey().equals(net.minecraft.world.World.OVERWORLD)) return true;
         Random rng = new Random(c.rngSeed);
         ServerChunkManager scm = world.getChunkManager();
 
@@ -493,7 +504,7 @@ public final class VillageForgePlacer {
             // residual sub-block dip that the variance check tolerated.
             fillFoundationUnder(world, origin, schem.rotatedWidth(rotation), schem.rotatedLength(rotation), schem.height);
             DIAG_PLACE_OK.incrementAndGet();
-            LOG.info("[DIAG] PLACED ruined dragon forge at {} dims={}x{}x{} (village start {}, retries={})",
+            LOG.debug("[DIAG] PLACED ruined dragon forge at {} dims={}x{}x{} (village start {}, retries={})",
                     origin, schem.width, schem.height, schem.length, c.villageStart, c.retries);
             return true;
         }
@@ -626,5 +637,10 @@ public final class VillageForgePlacer {
                 .orElse(false);
     }
 
-    public static void clearCache() { SCAN_INFLIGHT.clear(); INFLIGHT.clear(); }
+    public static void clearCache() {
+        PENDING.clear();
+        PENDING_SCANS.clear();
+        SCAN_INFLIGHT.clear();
+        INFLIGHT.clear();
+    }
 }

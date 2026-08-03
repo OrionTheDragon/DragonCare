@@ -1,6 +1,7 @@
 package com.dragoncare.mixin;
 
 import com.iafenvoy.iceandfire.entity.DragonBaseEntity;
+import com.iafenvoy.uranus.animation.Animation;
 import com.dragoncare.config.AddonConfig;
 import com.dragoncare.mechanics.DragonDirtManager;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
@@ -8,6 +9,7 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import com.dragoncare.mechanics.ai.DragonSleepPreventer;
@@ -20,6 +22,22 @@ import com.dragoncare.mechanics.ai.DragonSleepPreventer;
  */
 @Mixin(DragonBaseEntity.class)
 public abstract class DragonBaseEntityMixin implements DragonSleepPreventer {
+
+    @Redirect(
+            method = "playAmbientSound",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lcom/iafenvoy/iceandfire/entity/DragonBaseEntity;setAnimation(Lcom/iafenvoy/uranus/animation/Animation;)V"
+            ),
+            remap = false
+    )
+    private void dragoncare$keepOrderedSittingPoseDuringAmbientSound(
+            DragonBaseEntity dragon, Animation animation) {
+        if (dragon.isInSittingPose() && animation == DragonBaseEntity.ANIMATION_SPEAK) {
+            return;
+        }
+        dragon.setAnimation(animation);
+    }
 
     @Inject(method = "refreshDirtyAttributes", at = @At("TAIL"), remap = false)
     private void dragoncare$applyHealthOverride(CallbackInfo ci) {

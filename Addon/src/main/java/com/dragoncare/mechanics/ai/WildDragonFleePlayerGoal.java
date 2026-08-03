@@ -48,7 +48,7 @@ public class WildDragonFleePlayerGoal extends Goal {
 
     @Override
     public boolean canStart() {
-        if (dragon.isSleeping()) return false;
+        if (DragonAiGuards.isMovementLocked(dragon)) return false;
         if (dragon.isTamed() || dragon.getAgeInDays() > 25) return false;
         if (dragon.isModelDead()) return false;
 
@@ -104,7 +104,7 @@ public class WildDragonFleePlayerGoal extends Goal {
 
     @Override
     public boolean shouldContinue() {
-        if (dragon.isSleeping()) return false;
+        if (DragonAiGuards.isMovementLocked(dragon)) return false;
         if (dragon.isTamed() || dragon.getAgeInDays() > 25 || dragon.isModelDead()) return false;
         if (targetPlayer == null || targetPlayer.isRemoved() || !targetPlayer.isAlive()) return false;
         if (targetPlayer.isSpectator() || targetPlayer.isCreative()) return false;
@@ -114,6 +114,7 @@ public class WildDragonFleePlayerGoal extends Goal {
     }
     @Override
     public void start() {
+        if (DragonAiGuards.isMovementLocked(dragon)) return;
         if (dragon instanceof DragonSleepPreventer preventer) {
             preventer.dragoncare$setSleepCooldown(400); // 20 seconds cooldown before falling asleep again
         }
@@ -128,6 +129,10 @@ public class WildDragonFleePlayerGoal extends Goal {
 
     @Override
     public void tick() {
+        if (DragonAiGuards.isMovementLocked(dragon)) {
+            dragon.getNavigation().stop();
+            return;
+        }
         navigateAway();
     }
 

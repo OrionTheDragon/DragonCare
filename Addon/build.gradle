@@ -39,7 +39,7 @@ dependencies {
     minecraft "net.minecraft:minecraft:${minecraft_version}"
     mappings loom.layered {
         it.mappings("net.fabricmc:yarn:${yarn_mappings}:v2")
-        it.mappings("dev.architectury:yarn-mappings-patch-neoforge:${yarn_mappings_patch_neoforge_version}")
+        it.mappings(file("mappings-patch/yarn-mappings-patch-neoforge-1.21+build.4.jar"))
         it.mappings("com.iafenvoy:yarn-mappings-patch-neoforge-mods:1.0")
     }
     neoForge "net.neoforged:neoforge:${neoforge_version}"
@@ -49,8 +49,14 @@ dependencies {
     // Uranus - required because DragonBaseEntity implements Uranus interfaces
     modCompileOnly "maven.modrinth:uranus:BBb3HOQ5"
 
-    // IceAndFire CE - place the NeoForge jar in libs/ folder
-    modImplementation fileTree(dir: 'libs', include: ['*.jar'])
+    // Compile against the same GeckoLib renderer API used by Ice and Fire CE 2.1.
+    // Keep the old beta.17 jar as a local reference, but never put both CE versions
+    // on the compile classpath because their dragon renderer hierarchies differ.
+    modImplementation fileTree(
+            dir: 'libs',
+            include: ['*.jar'],
+            exclude: ['IceAndFireCE-2.0-beta.17-1.21.1-neoforge.jar']
+    )
 }
 
 java {

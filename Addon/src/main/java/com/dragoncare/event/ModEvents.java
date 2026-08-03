@@ -176,6 +176,7 @@ public class ModEvents {
     @SubscribeEvent
     public static void onServerTick(ServerTickEvent.Post event) {
         DragonTamingManager.tick(event.getServer());
+        com.dragoncare.command.DragonAnimationDebugCommands.tick(event.getServer());
         processPendingHatches(event.getServer());
         com.dragoncare.mechanics.OrphanSpawner.tick(event.getServer().getOverworld());
         
@@ -195,12 +196,15 @@ public class ModEvents {
         BondCommands.register(event.getDispatcher());
         ModCommands.register(event.getDispatcher());
         com.dragoncare.command.DirtCommands.register(event.getDispatcher());
+        com.dragoncare.command.WoundDebugCommands.register(event.getDispatcher());
+        com.dragoncare.command.DragonAnimationDebugCommands.register(event.getDispatcher());
     }
 
     /** Cleanup memory in AshPoisoningSystem when a player logs out. */
     @SubscribeEvent
     public static void onPlayerLoggedOut(PlayerEvent.PlayerLoggedOutEvent event) {
         com.dragoncare.mechanics.AshPoisoningSystem.onPlayerLoggedOut(event.getEntity().getUuid());
+        com.dragoncare.command.DragonAnimationDebugCommands.clearForPlayer(event.getEntity().getUuid());
     }
 
     /** Ensure Dragon Care root advancement is always granted on login. */
@@ -217,6 +221,14 @@ public class ModEvents {
     @SubscribeEvent
     public static void onServerStopped(ServerStoppedEvent event) {
         PENDING_HATCH.clear();
+        com.dragoncare.advancement.HunterDiaryTracker.clearCache();
+        com.dragoncare.dragonphone.PhoneGlowTickHandler.clearCache();
+        com.dragoncare.item.DragonPainkillerItem.clearCache();
+        com.dragoncare.item.ScaleShearsItem.clearCache();
+        com.dragoncare.item.SyringeItem.clearCache();
+        com.dragoncare.mechanics.AshPoisoningSystem.clearCache();
+        com.dragoncare.taming.DragonTamingManager.clearCache();
+        com.dragoncare.command.DragonAnimationDebugCommands.clear();
     }
 
     private static void processPendingHatches(MinecraftServer server) {
