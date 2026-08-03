@@ -8,8 +8,6 @@
 !/docs/
 !/docs/*.md
 !/settings.gradle
-!/bump_version.bat
-!/bump_version.ps1
 !/.gitignore
 
 # Standard ignore patterns for allowed folders
@@ -36,7 +34,8 @@ temp_decomp/
 # Ignore scratch scripts and personal logs inside allowed folders
 *.py
 *.ps1
-!/bump_version.ps1
+bump_version.bat
+bump_version.ps1
 *.jsx
 *.txt
 !CREDITS.txt
