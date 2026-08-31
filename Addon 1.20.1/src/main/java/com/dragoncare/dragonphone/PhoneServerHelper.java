@@ -100,7 +100,7 @@ public final class PhoneServerHelper {
 
     public static void sendList(ServerPlayerEntity player, boolean openScreen, @Nullable UUID selected) {
         List<DragonInfo> list = buildList(player);
-        com.dragoncare.network.ModNetwork.INSTANCE.send(net.minecraftforge.network.PacketDistributor.PLAYER.with(() -> (net.minecraft.server.network.ServerPlayerEntity)player), new DragonListPayload(list, selected, openScreen));
+        com.dragoncare.network.ModNetwork.INSTANCE.send(net.minecraftforge.network.PacketDistributor.PLAYER.with(() -> player), new DragonListPayload(list, selected, openScreen));
     }
 
     // ------------------------ РџРѕРёСЃРє Р°РєС‚РёРІРЅРѕРіРѕ С‚РµР»РµС„РѕРЅР° РІ РёРЅРІРµРЅС‚Р°СЂРµ ------------------------
@@ -177,7 +177,7 @@ public final class PhoneServerHelper {
         if (e.isGlowing()) b |= 0x40;
         // FALL_FLYING (Р±РёС‚ 7) Р¶РёРІС‘С‚ РЅР° LivingEntity вЂ” РґР»СЏ РґСЂР°РєРѕРЅРѕРІ С„Р°РєС‚РёС‡РµСЃРєРё РЅРµ РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ
         // (Сѓ РЅРёС… СЃРІРѕСЏ СЃРёСЃС‚РµРјР° РїРѕР»С‘С‚Р°), РїРѕСЌС‚РѕРјСѓ РїСЂРѕРїСѓСЃРєР°РµРј Р±РµР· РїРѕС‚РµСЂРё РІРёР·СѓР°Р»СЊРЅРѕР№ РёРЅС„РѕСЂРјР°С†РёРё.
-        if (e instanceof net.minecraft.entity.LivingEntity le && le.isFallFlying()) b |= 0x80;
+        if (e instanceof net.minecraft.entity.LivingEntity le && le.isFallFlying()) b = (byte) (b | 0x80);
         return b;
     }
 }

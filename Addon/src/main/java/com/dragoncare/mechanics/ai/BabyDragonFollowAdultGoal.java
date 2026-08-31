@@ -14,6 +14,7 @@ import java.util.List;
  * - Stage 2 juvenile (age 25-49 days) follows adults starting from Stage 4 (age >= 75 days).
  * - Strict type matching: fire to fire, ice to ice, lightning to lightning.
  */
+@SuppressWarnings("this-escape")
 public class BabyDragonFollowAdultGoal extends Goal {
     private final DragonBaseEntity dragon;
     private final double speed;

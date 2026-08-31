@@ -16,6 +16,7 @@ import java.util.EnumSet;
  * that signal — no separate block scan happens here.
  * <p>Modeled on piglins fleeing from soul fire.</p>
  */
+@SuppressWarnings("this-escape")
 public class AvoidAshGoal extends Goal {
 
     private static final int FLEE_HORIZONTAL = 16;

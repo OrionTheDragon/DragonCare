@@ -317,6 +317,7 @@
   "dragoncare.config.crafting.simplify_crafts": "Упростить крафты",
   "dragoncare.config.crafting.simplify_crafts.tooltip": "Если включено, заменяет некоторые сложные рецепты на более простые (Датчик пепла, Таблетки, Обезбол и т.д.).\nВнимание: Изменение этой настройки прямо в игре вызовет автоматическую перезагрузку рецептов, что может вызвать кратковременный лаг.",
   "subtitles.dragoncare.using_pill": "Таблетка проглочена",
+  "subtitles.dragoncare.ash_meter_normal": "Показания измерителя пепла нормализовались",
   "item.dragoncare.guild_map": "Карта Гильдии охотников на драконов",
   "dragoncare.config.dragon.taming": "Приручение драконов",
   "dragoncare.config.dragon.taming.duration_seconds": "Время приручения (в секундах)",
@@ -399,5 +400,9 @@
   "commands.dragoncare.anim.no_dragon": "Посмотрите прямо на живого дракона в пределах 64 блоков.",
   "commands.dragoncare.anim.watch": "Диагностика анимации запущена для %s. Изменения состояния записываются в чат и latest.log.",
   "commands.dragoncare.anim.stop": "Диагностика анимации остановлена.",
-  "commands.dragoncare.anim.lost": "Диагностика анимации остановлена: дракон больше не загружен."
+  "commands.dragoncare.anim.lost": "Диагностика анимации остановлена: дракон больше не загружен.",
+  "dragoncare.mod.description": "Уход за драконами, привязанность, ветеринарные инструменты, фермерство, отслеживание и взаимодействие с миром для Ice and Fire CE.",
+  "dragoncare.credits.wound_textures": "Текстуры оверлея ран драконов нарисовала художница IneraShadow.",
+  "dragoncare.credits.dragon_fruit_block_textures": "Текстуры блока и стебля драконьего фрукта, включая стадии роста (только текстуры блока, не предмета), нарисовала художница LadaVesta.",
+  "dragoncare.credits.norse_hall": "Оригинальная схема Norse Hall: DarkLordKaz. Модификация: Orion."
 }

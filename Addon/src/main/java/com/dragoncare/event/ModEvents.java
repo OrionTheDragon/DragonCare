@@ -327,9 +327,9 @@ public class ModEvents {
         if (dragon.getOwnerUuid() == null || !dragon.getOwnerUuid().equals(player.getUuid())) return;
 
         // Catch-up logic for Dracomania and base taming achievements
-        com.iafenvoy.iceandfire.data.DragonColor color = com.iafenvoy.iceandfire.data.DragonColor.getById(dragon.getVariant());
-        if (color != null) {
-            com.dragoncare.advancement.AchievementGranter.grantCriterion(player, com.dragoncare.advancement.AchievementGranter.DRACOMANIA, color.getName());
+        String variant = dragon.getVariant();
+        if (variant != null && !variant.isBlank()) {
+            com.dragoncare.advancement.AchievementGranter.grantCriterion(player, com.dragoncare.advancement.AchievementGranter.DRACOMANIA, variant);
         }
         if (dragon instanceof com.iafenvoy.iceandfire.entity.FireDragonEntity) {
             com.dragoncare.advancement.AchievementGranter.grant(player, com.dragoncare.advancement.AchievementGranter.TAMED_FIRE_DRAGON);

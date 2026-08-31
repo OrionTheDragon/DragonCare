@@ -100,7 +100,7 @@ public class DragonDirtManager {
         MinecraftServer server = dragon.getServer();
         if (server == null) return;
         int level = getDirtLevel(server, dragon.getUuid());
-        com.dragoncare.network.ModNetwork.INSTANCE.send(net.minecraftforge.network.PacketDistributor.PLAYER.with(() -> (net.minecraft.server.network.ServerPlayerEntity)player), new DragonDirtSyncPayload(dragon.getUuid(), level));
+        com.dragoncare.network.ModNetwork.INSTANCE.send(net.minecraftforge.network.PacketDistributor.PLAYER.with(() -> player), new DragonDirtSyncPayload(dragon.getUuid(), level));
     }
 
     public static void syncToTrackers(EntityDragonBase dragon, int level) {

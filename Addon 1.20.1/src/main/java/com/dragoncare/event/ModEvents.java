@@ -34,6 +34,7 @@ import net.minecraftforge.event.server.ServerStoppedEvent;
 import net.minecraftforge.event.TickEvent;
 
 @EventBusSubscriber(modid = DragonCare.MOD_ID)
+@SuppressWarnings("deprecation")
 public class ModEvents {
 
     /** Fallback if {@code IafCommonConfig.dragon.maxTamedDragonAge} is unavailable. */

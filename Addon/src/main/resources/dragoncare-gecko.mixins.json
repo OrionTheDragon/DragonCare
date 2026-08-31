@@ -1,0 +1,16 @@
+{
+    "required": true,
+    "package": "com.dragoncare.mixin.compat.gecko",
+    "compatibilityLevel": "JAVA_21",
+    "minVersion": "0.8",
+    "plugin": "com.dragoncare.mixin.DragonCareMixinPlugin",
+    "refmap": "geckoCompat-dragoncare.refmap.json",
+    "client": [
+        "DragonBaseEntityRendererMixin",
+        "DragonCareControllersMixin",
+        "DragonAnimationMaskMixin"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    }
+}

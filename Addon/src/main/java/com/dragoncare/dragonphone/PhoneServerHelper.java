@@ -179,7 +179,9 @@ public final class PhoneServerHelper {
         if (e.isGlowing()) b |= 0x40;
         // FALL_FLYING (бит 7) живёт на LivingEntity — для драконов фактически не используется
         // (у них своя система полёта), поэтому пропускаем без потери визуальной информации.
-        if (e instanceof net.minecraft.entity.LivingEntity le && le.isFallFlying()) b |= 0x80;
+        if (e instanceof net.minecraft.entity.LivingEntity le && le.isFallFlying()) {
+            b = (byte) (b | 0x80);
+        }
         return b;
     }
 }

@@ -391,9 +391,9 @@ public final class DragonTamingManager {
         grantTamedAdvancement(player, dragon);
 
         // Grant color-specific taming criterion for Dracomania
-        com.iafenvoy.iceandfire.data.DragonColor color = com.iafenvoy.iceandfire.data.DragonColor.getById(dragon.getVariant());
-        if (color != null) {
-            AchievementGranter.grantCriterion(player, AchievementGranter.DRACOMANIA, color.getName());
+        String variant = dragon.getVariant();
+        if (variant != null && !variant.isBlank()) {
+            AchievementGranter.grantCriterion(player, AchievementGranter.DRACOMANIA, variant);
         }
 
         player.sendMessage(

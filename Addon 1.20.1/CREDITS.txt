@@ -1,2 +1,20 @@
-Схема Norse Hall, Автор оригинальной постройки DarkLordKaz, модифицированно мной(Orion).
-Текстуры блока и стебля драконьего фрукта (включая стадии роста) — LadaVesta.
+DragonCare Credits
+==================
+
+English
+-------
+Dragon wound overlay textures were created by artist IneraShadow.
+Dragon Fruit block and stem textures, including growth stages (block textures only, not the item texture), were created by artist LadaVesta.
+Original Norse Hall structure: DarkLordKaz. Modified by Orion.
+
+Русский
+-------
+Текстуры оверлея ран драконов нарисовала художница IneraShadow.
+Текстуры блока и стебля драконьего фрукта, включая стадии роста (только текстуры блока, не предмета), нарисовала художница LadaVesta.
+Оригинальная схема Norse Hall: DarkLordKaz. Модификация: Orion.
+
+Українська
+----------
+Текстури накладання ран драконів створила художниця IneraShadow.
+Текстури блока та стебла драконячого фрукта, включно зі стадіями росту (лише текстури блока, не предмета), створила художниця LadaVesta.
+Оригінальна схема Norse Hall: DarkLordKaz. Модифікація: Orion.

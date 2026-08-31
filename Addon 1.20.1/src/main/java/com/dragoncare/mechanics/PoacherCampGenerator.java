@@ -8,6 +8,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 
+@SuppressWarnings({"deprecation", "unchecked"})
 public class PoacherCampGenerator {
 
     /**

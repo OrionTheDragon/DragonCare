@@ -56,11 +56,11 @@ public class OrphanSpawner {
         EntityType<? extends DragonBaseEntity> entityType = null;
 
         if (biome.isIn(BiomeTags.IS_JUNGLE) || biome.isIn(BiomeTags.IS_SAVANNA)) {
-            entityType = (EntityType<? extends DragonBaseEntity>) Registries.ENTITY_TYPE.get(Identifier.of("iceandfire", "lightning_dragon"));
+            entityType = IafEntities.LIGHTNING_DRAGON.get();
         } else if (biome.isIn(BiomeTags.IS_TAIGA) && biome.value().getTemperature() < 0.15F) {
-            entityType = (EntityType<? extends DragonBaseEntity>) Registries.ENTITY_TYPE.get(Identifier.of("iceandfire", "ice_dragon"));
+            entityType = IafEntities.ICE_DRAGON.get();
         } else if (biome.isIn(BiomeTags.IS_MOUNTAIN) || biome.isIn(BiomeTags.IS_BADLANDS)) {
-            entityType = (EntityType<? extends DragonBaseEntity>) Registries.ENTITY_TYPE.get(Identifier.of("iceandfire", "fire_dragon"));
+            entityType = IafEntities.FIRE_DRAGON.get();
         }
 
         if (entityType != null) {
@@ -81,7 +81,7 @@ public class OrphanSpawner {
                     }
                     
                     baby.setHealth(baby.getMaxHealth());
-                    baby.setVariant(com.iafenvoy.uranus.util.RandomHelper.randomOne(baby.dragonType.colors()).getName());
+                    baby.setVariant(com.dragoncare.compat.IafDragonVariants.randomVariant(baby, random.nextInt(4)));
                     baby.updatePositionAndAngles(targetPos.getX() + 0.5, targetPos.getY() + 1.0, targetPos.getZ() + 0.5, random.nextFloat() * 360, 0);
                     baby.setHunger(30); // A bit hungry, makes them look lost
 

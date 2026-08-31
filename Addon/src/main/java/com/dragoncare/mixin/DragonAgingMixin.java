@@ -36,7 +36,6 @@ public abstract class DragonAgingMixin {
             }
         } catch (Throwable ignored) {
             // Config not fully loaded (e.g. early world gen) — default: allow aging
-            ci.cancel();
         }
     }
 }

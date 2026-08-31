@@ -2,7 +2,6 @@ package com.dragoncare.mixin.worldgen;
 
 import com.dragoncare.mechanics.DragonFamilyManager;
 import com.dragoncare.mechanics.DragonFamilyState;
-import com.iafenvoy.iceandfire.data.DragonType;
 import com.iafenvoy.iceandfire.entity.DragonBaseEntity;
 import com.iafenvoy.iceandfire.entity.FireDragonEntity;
 import com.iafenvoy.iceandfire.entity.IceDragonEntity;
@@ -12,7 +11,6 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockBox;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
-import com.iafenvoy.iceandfire.world.structure.DragonCaveStructure;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.StructureAccessor;
@@ -23,6 +21,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+// DragonCavePiece is a protected nested class. A class-valued target would require
+// placing this mixin in IaF's package, which creates an illegal JPMS split package.
 @Mixin(targets = "com.iafenvoy.iceandfire.world.structure.DragonCaveStructure$DragonCavePiece")
 public abstract class DragonCavePieceMixin {
 
@@ -39,10 +39,9 @@ public abstract class DragonCavePieceMixin {
         DragonBaseEntity mother = cir.getReturnValue();
         if (mother == null) return;
         int typeIndex = 0; // 0=Fire, 1=Ice, 2=Lightning
-        DragonType type;
-        if (mother instanceof FireDragonEntity) { typeIndex = 0; type = com.iafenvoy.iceandfire.registry.IafDragonTypes.FIRE; }
-        else if (mother instanceof IceDragonEntity) { typeIndex = 1; type = com.iafenvoy.iceandfire.registry.IafDragonTypes.ICE; }
-        else if (mother instanceof LightningDragonEntity) { typeIndex = 2; type = com.iafenvoy.iceandfire.registry.IafDragonTypes.LIGHTNING; }
+        if (mother instanceof FireDragonEntity) { typeIndex = 0; }
+        else if (mother instanceof IceDragonEntity) { typeIndex = 1; }
+        else if (mother instanceof LightningDragonEntity) { typeIndex = 2; }
         else return;
 
         DragonFamilyState state = DragonFamilyState.get(server);
@@ -83,7 +82,8 @@ public abstract class DragonCavePieceMixin {
                         baby.setAgingDisabled(false);
                     }
                     baby.setHealth(baby.getMaxHealth());
-                    baby.setVariant(com.iafenvoy.uranus.util.RandomHelper.randomOne(type.colors()).getName());
+                    baby.setVariant(com.dragoncare.compat.IafDragonVariants.randomVariant(
+                            baby, random.nextInt(4)));
                     
                     double offsetX = (random.nextDouble() - 0.5) * 6.0;
                     double offsetZ = (random.nextDouble() - 0.5) * 6.0;

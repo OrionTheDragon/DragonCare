@@ -15,6 +15,7 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.biome.Biome;
 
+@SuppressWarnings({"deprecation", "unchecked"})
 public class OrphanSpawner {
 
     public static void tick(ServerWorld world) {

@@ -8,12 +8,32 @@ version = "${version}"
 displayName = "Dragon Care"
 authors = "OrionDragon"
 description = '''
-Аддон для Ice and Fire CE, добавляющий инструменты драконовода: шприц для сбора крови с живых драконов, обсидианово-алмазные ножницы для сбора чешуи, обезбол для безопасных процедур и исключительный драконий корм для поэтапного приручения диких драконов через систему доверия. Мод позволяет получать ресурсы без убийства драконов.
+English:
+An addon for Ice and Fire CE that adds dragon-care tools: a syringe for collecting blood from living dragons, obsidian-diamond shears for harvesting scales, painkillers for safe procedures, and exceptional dragon meal for gradually taming wild dragons through a trust system. The mod allows players to collect resources without killing dragons.
 
-Схема Norse Hall: DarkLordKaz (модиф. Orion).
-Текстуры блока и стебля драконьего фрукта: LadaVesta.
+Dragon wound overlay textures were created by artist IneraShadow.
+Dragon Fruit block and stem textures, including growth stages (block textures only, not the item texture), were created by artist LadaVesta.
+Norse Hall structure: DarkLordKaz (modified by Orion).
+
+Русский:
+Аддон для Ice and Fire CE, добавляющий инструменты драконовода: шприц для сбора крови с живых драконов, обсидианово-алмазные ножницы для сбора чешуи, обезболивающее для безопасных процедур и исключительный драконий корм для поэтапного приручения диких драконов через систему доверия. Мод позволяет получать ресурсы без убийства драконов.
+
+Текстуры оверлея ран драконов нарисовала художница IneraShadow.
+Текстуры блока и стебля драконьего фрукта, включая стадии роста (только текстуры блока, не предмета), нарисовала художница LadaVesta.
+Схема Norse Hall: DarkLordKaz (модификация Orion).
+
+Українська:
+Аддон для Ice and Fire CE, що додає інструменти догляду за драконами: шприц для збирання крові з живих драконів, обсидіаново-діамантові ножиці для збирання луски, знеболювальне для безпечних процедур та винятковий драконячий корм для поступового приручення диких драконів через систему довіри. Мод дає змогу отримувати ресурси без убивства драконів.
+
+Текстури накладання ран драконів створила художниця IneraShadow.
+Текстури блока та стебла драконячого фрукта, включно зі стадіями росту (лише текстури блока, не предмета), створила художниця LadaVesta.
+Схема Norse Hall: DarkLordKaz (модифікація Orion).
 '''
-credits = "Текстуры: LadaVesta (блок и стебель драконьего фрукта). Постройки: DarkLordKaz (Norse Hall)."
+credits = '''
+EN: Dragon wound overlay textures were created by artist IneraShadow. Dragon Fruit block and stem textures, including growth stages (block textures only, not the item texture), were created by artist LadaVesta. Norse Hall structure — DarkLordKaz (modified by Orion).
+RU: Текстуры оверлея ран драконов нарисовала художница IneraShadow. Текстуры блока и стебля драконьего фрукта, включая стадии роста (только текстуры блока, не предмета), нарисовала художница LadaVesta. Схема Norse Hall — DarkLordKaz (модификация Orion).
+UK: Текстури накладання ран драконів створила художниця IneraShadow. Текстури блока та стебла драконячого фрукта, включно зі стадіями росту (лише текстури блока, не предмета), створила художниця LadaVesta. Схема Norse Hall — DarkLordKaz (модифікація Orion).
+'''
 
 [[dependencies.dragoncare]]
 modId = "forge"

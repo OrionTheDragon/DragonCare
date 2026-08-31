@@ -30,6 +30,7 @@ import net.minecraft.loot.context.LootContextParameters;
  * <p>Зачем список таблиц внутри модификатора, а не {@code LootTableIdCondition} в JSON:
  * чтобы один JSON-файл мог покрыть все 16 типов деревенских сундуков без дублирования.</p>
  */
+@SuppressWarnings("deprecation")
 public class AddItemWithChanceModifier extends LootModifier {
 
     /** Codec для Item через Identifier — устойчив к разнице имён getCodec()/byNameCodec(). */

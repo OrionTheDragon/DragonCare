@@ -31,6 +31,7 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 @EventBusSubscriber(modid = DragonCare.MOD_ID)
+@SuppressWarnings("deprecation")
 public class AshPoisoningSystem {
 
     private static Set<Block> ASH_BLOCKS = null;
@@ -200,7 +201,7 @@ public class AshPoisoningSystem {
                 pos.set(x, 0, z);
                 
                 // РР·Р±РµРіР°РµРј Р·Р°РіСЂСѓР·РєРё С‡Р°РЅРєРѕРІ - РµСЃР»Рё С‡Р°РЅРє РЅРµ Р·Р°РіСЂСѓР¶РµРЅ, РїСЂРѕРїСѓСЃРєР°РµРј РІРµСЃСЊ (X, Z) СЃС‚РѕР»Р±РµС†
-                if (!world.isChunkLoaded(pos)) {
+                if (!world.getChunkManager().isChunkLoaded(pos.getX() >> 4, pos.getZ() >> 4)) {
                     // РџРµСЂРµРїСЂС‹РіРёРІР°РµРј Р·Р° РїСЂРµРґРµР»С‹ С‚РµРєСѓС‰РµРіРѕ С‡Р°РЅРєР° РїРѕ Z
                     z = (z | 15);
                     continue;

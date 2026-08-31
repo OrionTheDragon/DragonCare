@@ -22,7 +22,9 @@ public abstract class ClampedEntityAttributeMixin {
     @Shadow
     private double maxValue;
 
-    @Inject(method = "<init>", at = @At("RETURN"))
+    // Constructor names are never obfuscated; remapping this selector can put
+    // an external mapped owner into the refmap on newer Mixin runtimes.
+    @Inject(method = "<init>", at = @At("RETURN"), remap = false)
     private void dragoncare$liftMaxHealthCap(String translationKey, double fallback,
                                                    double min, double max, CallbackInfo ci) {
         // Match the max-health attribute robustly: both the legacy

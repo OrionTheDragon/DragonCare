@@ -1,6 +1,7 @@
 package com.dragoncare.worldgen;
 
 import com.dragoncare.DragonCare;
+import com.dragoncare.event.FrameKeeperEvents;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -104,6 +105,7 @@ public final class ParsedSchematic {
      * runs {@code processor} on each block-entity NBT before it's applied — useful for
      * substituting placeholder signs / chest loot tables / etc. at generation time.
      */
+    @SuppressWarnings("deprecation")
     public BlockBox placeInWorld(ServerWorld world, BlockPos origin, BlockRotation rotation,
                                  Random random, MarkerProcessor processor) {
         long t0 = System.nanoTime();
@@ -496,6 +498,7 @@ public final class ParsedSchematic {
                     if (!(e instanceof net.minecraft.entity.decoration.AbstractDecorationEntity)) {
                         e.refreshPositionAndAngles(finalWorldX, finalWorldY, finalWorldZ, e.getYaw(), e.getPitch());
                     }
+                    FrameKeeperEvents.markSchematicDecoration(e);
                     boolean spawned = world.spawnEntity(e);
                     java.util.UUID uuid = e.getUuid();
                     LOG.debug("[ENTITY-SPAWN] '{}' type={} spawned={} uuid={} FINAL Pos=({},{},{}) blockPos={} alive={} removed={} removalReason={}",

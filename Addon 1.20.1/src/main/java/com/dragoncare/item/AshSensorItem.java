@@ -24,6 +24,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+@SuppressWarnings("deprecation")
 public class AshSensorItem extends Item {
     
     private static Set<Block> ASH_BLOCKS = null;
@@ -151,7 +152,7 @@ public class AshSensorItem extends Item {
         for (int x = minX; x <= maxX; x++) {
             for (int z = minZ; z <= maxZ; z++) {
                 pos.set(x, 0, z);
-                if (!world.isChunkLoaded(pos)) {
+                if (!world.getChunkManager().isChunkLoaded(pos.getX() >> 4, pos.getZ() >> 4)) {
                     z = (z | 15);
                     continue;
                 }

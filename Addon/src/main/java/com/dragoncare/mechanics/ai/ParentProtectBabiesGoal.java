@@ -12,6 +12,7 @@ import java.util.List;
  * AI goal that forces a parent dragon to stay close to their babies.
  * If they wander or fly too far away, they will stop what they are doing and return.
  */
+@SuppressWarnings("this-escape")
 public class ParentProtectBabiesGoal extends Goal {
 
     private final DragonBaseEntity parent;

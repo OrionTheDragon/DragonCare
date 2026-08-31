@@ -104,6 +104,7 @@ public final class ParsedSchematic {
      * runs {@code processor} on each block-entity NBT before it's applied — useful for
      * substituting placeholder signs / chest loot tables / etc. at generation time.
      */
+    @SuppressWarnings("deprecation")
     public BlockBox placeInWorld(ServerWorld world, BlockPos origin, BlockRotation rotation,
                                  Random random, MarkerProcessor processor) {
         long t0 = System.nanoTime();

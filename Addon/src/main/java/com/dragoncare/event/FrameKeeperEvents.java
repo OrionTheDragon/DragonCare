@@ -1,6 +1,7 @@
 package com.dragoncare.event;
 
 import com.dragoncare.DragonCare;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.decoration.AbstractDecorationEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,10 +33,17 @@ import net.neoforged.neoforge.event.tick.EntityTickEvent;
 @EventBusSubscriber(modid = DragonCare.MOD_ID)
 public final class FrameKeeperEvents {
 
+    private static final String KEEP_SCHEMATIC_DECORATION = "dragoncare:keep_schematic_decoration";
     private static final Logger DC_LOG = LoggerFactory.getLogger("dragoncare/FrameKeeper");
     private static long DC_KEPT = 0L;
 
     private FrameKeeperEvents() {
+    }
+
+    public static void markSchematicDecoration(Entity entity) {
+        if (entity instanceof AbstractDecorationEntity) {
+            entity.getPersistentData().putBoolean(KEEP_SCHEMATIC_DECORATION, true);
+        }
     }
 
     @SubscribeEvent
@@ -43,6 +51,7 @@ public final class FrameKeeperEvents {
         if (!(event.getEntity() instanceof AbstractDecorationEntity decoration)) return;
         if (decoration.getWorld().isClient) return;
         if (decoration.isRemoved()) return;
+        if (!decoration.getPersistentData().getBoolean(KEEP_SCHEMATIC_DECORATION)) return;
 
         // Вмешиваемся только тогда, когда ваниль сама бы выбросила декорацию.
         boolean staysNaturally;

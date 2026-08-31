@@ -25,13 +25,25 @@ base {
 }
 
 repositories {
-    maven { url = "https://maven.creeperhost.net/" } 
-    maven { url = "https://maven.fabricmc.net/" } 
-    maven { url = "https://api.modrinth.com/maven" }
-    maven { url = 'https://jitpack.io' }
-    maven { url = "https://maven.blamejared.com/" }
-    maven { url = "https://modmaven.dev" }
-    flatDir { dirs 'libs' }
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = 'FabricOnly'
+                url = "https://maven.fabricmc.net/"
+            }
+        }
+        filter { includeGroup 'net.fabricmc' }
+    }
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = 'ArchitecturyMirrorOnly'
+                url = "https://maven.creeperhost.net/"
+            }
+        }
+        filter { includeGroupByRegex 'dev\\.architectury(\\..*)?' }
+    }
+    mavenCentral()
 }
 
 dependencies {
@@ -42,8 +54,9 @@ dependencies {
     
     forge "net.minecraftforge:forge:${forge_version}"
 
-    // Include jars from libs folder (e.g. IceAndFire-CE-1.20.1 jar)
-    modImplementation fileTree(dir: 'libs', include: ['*.jar'])
+    modImplementation files('libs/IceAndFireCE-1.2.5-1.20.1-forge.jar')
+    modImplementation files('libs/uranus-2.2.6-bugfix.2-1.20.1-forge.jar')
+    modRuntimeOnly files('libs/jupiter-2.3.7-1.20.1-forge.jar')
 }
 
 java {
@@ -54,11 +67,13 @@ java {
 tasks.withType(JavaCompile).configureEach {
     it.options.release = 17
     options.encoding = 'UTF-8'
+    options.compilerArgs += ['-Xlint:all,-processing', '-Werror']
 }
 
 processResources {
     def modVersion = project.version
     inputs.property 'version', modVersion
+    from('CREDITS.txt')
     filesMatching('META-INF/mods.toml') {
         expand version: modVersion
     }

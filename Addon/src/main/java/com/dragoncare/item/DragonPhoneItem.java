@@ -128,6 +128,7 @@ public class DragonPhoneItem extends Item {
     }
 
     /** Когда выкинутый телефон-сущность уничтожается/собирается — состояние «вкл» уже не имеет смысла. */
+    @SuppressWarnings("deprecation")
     @Override
     public void onItemEntityDestroyed(net.minecraft.entity.ItemEntity entity) {
         ItemStack s = entity.getStack();

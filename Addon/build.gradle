@@ -13,6 +13,13 @@ loom {
     mixin {
         useLegacyMixinAp = true
         defaultRefmapName = "dragoncare.refmap.json"
+        // IaF marks the nested structure pieces protected in InnerClasses, so
+        // Java cannot use a class-valued @Mixin target outside IaF's package.
+        // Keep only this misleading soft-target diagnostic disabled; injector
+        // and shadow validation remain strict and compilation still uses -Werror.
+        messages {
+            MIXIN_SOFT_TARGET_IS_PUBLIC = 'disabled'
+        }
     }
 }
 
@@ -31,6 +38,7 @@ repositories {
     maven { url = 'https://jitpack.io' }
     maven { url = "https://maven.blamejared.com/" }
     maven { url = "https://modmaven.dev" }
+    maven { url = "https://cursemaven.com" }
     flatDir { dirs 'mappings-patch' }
     mavenCentral()
 }
@@ -44,19 +52,87 @@ dependencies {
     }
     neoForge "net.neoforged:neoforge:${neoforge_version}"
 
-    modImplementation "dev.architectury:architectury-neoforge:${architectury_api_version}"
+    // The common code is compiled against the stable Tabula/Uranus API family.
+    // A different official IaF jar can be selected for compatibility verification:
+    //   gradlew build -PiafJar=path/to/iceandfire.jar
+    if (providers.gradleProperty('iafFileId').isPresent()) {
+        modImplementation "curse.maven:iceandfire-ce-1040076:${providers.gradleProperty('iafFileId').get()}"
+    } else {
+        def selectedIafJar = providers.gradleProperty('iafJar')
+                .map { file(it) }
+                .getOrElse(file('libs/IceAndFireCE-2.0-beta.17-1.21.1-neoforge.jar'))
+        modImplementation files(selectedIafJar)
+    }
 
-    // Uranus - required because DragonBaseEntity implements Uranus interfaces
-    modCompileOnly "maven.modrinth:uranus:BBb3HOQ5"
+    modCompileOnly files('libs/uranus-2.4.1-1.21.1-neoforge.jar')
+    modCompileOnly files('libs/geckolib-neoforge-1.21.1-4.9.2.jar')
+    // IaF 2.0 beta.5-15 expose Architectury registry/menu types in public APIs.
+    modCompileOnly files('libs/architectury-neoforge-13.0.8.jar')
+    modRuntimeOnly files('libs/architectury-neoforge-13.0.8.jar')
+    // Pinned API references used only by the isolated compatibility source sets.
+    modCompileOnly files('libs/iceandfire-2.1-beta.1.jar')
+    // Keep the two API references in separate Loom remap configurations. If
+    // both are remapped as one batch, duplicate IaF classes can poison Loom's
+    // per-artifact cache and swap the renderer hierarchy between the jars.
+    modCompileOnlyApi files('libs/IceAndFireCE-2.0-beta.17-1.21.1-neoforge.jar')
+    modRuntimeOnly files('libs/uranus-2.4.1-1.21.1-neoforge.jar')
+    modRuntimeOnly files('libs/jupiter-2.3.7-1.21.1-neoforge.jar')
+    // Official IaF jars embed this through JarJar. Loom's file-dependency dev
+    // runtime does not expand that nested jar, so declare it explicitly here.
+    // It remains an external runtime dependency and is never included in ours.
+    modRuntimeOnly "com.github.IAFEnvoy.Integration:integration-neoforge:${integration_version}"
 
-    // Compile against the same GeckoLib renderer API used by Ice and Fire CE 2.1.
-    // Keep the old beta.17 jar as a local reference, but never put both CE versions
-    // on the compile classpath because their dragon renderer hierarchies differ.
-    modImplementation fileTree(
-            dir: 'libs',
-            include: ['*.jar'],
-            exclude: ['IceAndFireCE-2.0-beta.17-1.21.1-neoforge.jar']
-    )
+    // GeckoLib is only a runtime dependency for the short-lived 2.1 beta family.
+    if (providers.gradleProperty('withGecko').map { it.toBoolean() }.getOrElse(false)) {
+        modRuntimeOnly files('libs/geckolib-neoforge-1.21.1-4.9.2.jar')
+    }
+}
+
+sourceSets {
+    geckoCompat {
+        java.srcDir 'src/geckoCompat/java'
+        // Keep Mixin AP validation pinned to the Gecko target hierarchy even when
+        // the selected main compatibility artifact is a Tabula release.
+        def geckoReference = configurations.compileClasspath.filter {
+            it.name.startsWith('iceandfire-2.1-beta.1-')
+        }
+        def otherDependencies = configurations.compileClasspath.filter {
+            !it.name.toLowerCase(Locale.ROOT).contains('iceandfire')
+        }
+        compileClasspath = sourceSets.main.output + geckoReference + otherDependencies
+        runtimeClasspath += output + compileClasspath
+    }
+    tabulaCompat {
+        java.srcDir 'src/tabulaCompat/java'
+        // Likewise, validate the Tabula mixin against a known 2.0 target even
+        // when the selected artifact is one of the Gecko 2.1 betas.
+        def tabulaReference = configurations.compileClasspath.filter {
+            it.name.startsWith('IceAndFireCE-2.0-beta.17-')
+        }
+        def otherDependencies = configurations.compileClasspath.filter {
+            !it.name.toLowerCase(Locale.ROOT).contains('iceandfire')
+        }
+        compileClasspath = sourceSets.main.output + tabulaReference + otherDependencies
+        runtimeClasspath += output + compileClasspath
+    }
+}
+
+// DragonCare is one mod assembled from three source sets. Register all of
+// them with Loom so development client/server runs see the same classes as
+// the packaged universal jar.
+loom {
+    mods {
+        dragoncare {
+            sourceSet sourceSets.main
+            sourceSet sourceSets.geckoCompat
+            sourceSet sourceSets.tabulaCompat
+        }
+    }
+}
+
+tasks.named('jar', Jar) {
+    from sourceSets.geckoCompat.output
+    from sourceSets.tabulaCompat.output
 }
 
 java {
@@ -66,11 +142,84 @@ java {
 
 tasks.withType(JavaCompile).configureEach {
     it.options.release = 21
+    it.options.compilerArgs += ['-Xlint:all,-processing', '-Werror']
+}
+
+tasks.register('verifyIafCompatibility') {
+    group = 'verification'
+    description = 'Validates the checked-in Ice and Fire CE 2.x compatibility manifest.'
+    def manifest = file('gradle/iaf-compatibility.properties')
+    inputs.file(manifest)
+    doLast {
+        Properties versions = new Properties()
+        manifest.withInputStream { versions.load(it) }
+        if (versions.isEmpty()) {
+            throw new GradleException('Ice and Fire compatibility manifest is empty')
+        }
+        versions.each { versionName, fileId ->
+            if (!(versionName ==~ /2\.(0|1)(-beta\.[0-9]+|-beta\.[0-9]+-bugfix|\.[0-9]+)?/) || !(fileId ==~ /[0-9]+/)) {
+                throw new GradleException("Invalid compatibility entry: ${versionName}=${fileId}")
+            }
+        }
+        logger.lifecycle("Validated ${versions.size()} Ice and Fire CE compatibility entries")
+    }
+}
+
+tasks.register('verifyReleaseJar') {
+    group = 'verification'
+    description = 'Rejects bundled dependencies, sources and local/private artifacts.'
+    dependsOn tasks.named('remapJar')
+    doLast {
+        File archive = tasks.named('remapJar').get().archiveFile.get().asFile
+        List<String> entries = []
+        zipTree(archive).visit { details ->
+            if (!details.directory) {
+                entries.add(details.relativePath.pathString)
+            }
+        }
+
+        List<String> required = [
+                'dragoncare.mixins.json',
+                'dragoncare-gecko.mixins.json',
+                'dragoncare-tabula.mixins.json',
+                'dragoncare-worldgen.mixins.json',
+                'geckoCompat-dragoncare.refmap.json',
+                'tabulaCompat-dragoncare.refmap.json',
+                'com/dragoncare/mixin/DragonCareMixinPlugin.class',
+                'com/dragoncare/mixin/injection/BeforeDragonSpawnEntity.class',
+                'com/dragoncare/mixin/compat/gecko/DragonCareControllersMixin.class',
+                'com/dragoncare/mixin/compat/tabula/DragonBaseEntityRendererMixin.class'
+        ]
+        List<String> missing = required.findAll { !entries.contains(it) }
+        if (!missing.isEmpty()) {
+            throw new GradleException("Release jar is missing compatibility entries: ${missing}")
+        }
+
+        List<String> forbidden = entries.findAll { entry ->
+            String lower = entry.toLowerCase(Locale.ROOT)
+            lower.endsWith('.jar') || lower.endsWith('.java') || lower.endsWith('.log')
+                    || lower.contains('decompiled') || lower.contains('crash')
+                    || lower.contains('token') || lower.contains('/cfr')
+                    || lower.startsWith('software/bernie/geckolib/')
+                    || lower.startsWith('com/iafenvoy/uranus/')
+                    || lower.startsWith('dev/architectury/')
+        }
+        if (!forbidden.isEmpty()) {
+            throw new GradleException("Release jar contains forbidden entries: ${forbidden}")
+        }
+        logger.lifecycle("Verified clean release jar: ${archive.name} (${entries.size()} entries)")
+    }
+}
+
+tasks.named('check') {
+    dependsOn tasks.named('verifyIafCompatibility')
+    dependsOn tasks.named('verifyReleaseJar')
 }
 
 processResources {
     def modVersion = project.version
     inputs.property 'version', modVersion
+    from('CREDITS.txt')
     filesMatching('META-INF/neoforge.mods.toml') {
         expand version: modVersion
     }

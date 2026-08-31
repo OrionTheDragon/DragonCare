@@ -135,6 +135,7 @@ public class DragonPhoneItem extends Item {
 
     /** РљРѕРіРґР° РІС‹РєРёРЅСѓС‚С‹Р№ С‚РµР»РµС„РѕРЅ-СЃСѓС‰РЅРѕСЃС‚СЊ СѓРЅРёС‡С‚РѕР¶Р°РµС‚СЃСЏ/СЃРѕР±РёСЂР°РµС‚СЃСЏ вЂ” СЃРѕСЃС‚РѕСЏРЅРёРµ В«РІРєР»В» СѓР¶Рµ РЅРµ РёРјРµРµС‚ СЃРјС‹СЃР»Р°. */
     @Override
+    @SuppressWarnings("deprecation")
     public void onItemEntityDestroyed(net.minecraft.entity.ItemEntity entity) {
         ItemStack s = entity.getStack();
         if (isOn(s)) setOn(s, false);

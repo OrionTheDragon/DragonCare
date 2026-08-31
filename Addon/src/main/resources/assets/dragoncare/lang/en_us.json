@@ -317,6 +317,7 @@
   "dragoncare.config.crafting.simplify_crafts": "Simplify Crafting Recipes",
   "dragoncare.config.crafting.simplify_crafts.tooltip": "If true, simplifies crafting recipes for various items (Ash Sensor, Tablets, Painkiller, etc.)\nWarning: Changing this setting in-game will trigger an automatic recipe reload, which may cause a brief lag spike.",
   "subtitles.dragoncare.using_pill": "Tablet swallowed",
+  "subtitles.dragoncare.ash_meter_normal": "Ash meter returns to normal",
   "item.dragoncare.guild_map": "Dragon Hunter Guild Map",
   "dragoncare.config.dragon.taming": "Dragon Taming",
   "dragoncare.config.dragon.taming.duration_seconds": "Taming Duration (Seconds)",
@@ -399,5 +400,9 @@
   "commands.dragoncare.anim.no_dragon": "Look directly at a living dragon within 64 blocks.",
   "commands.dragoncare.anim.watch": "Animation diagnostics started for %s. State changes are written to chat and latest.log.",
   "commands.dragoncare.anim.stop": "Animation diagnostics stopped.",
-  "commands.dragoncare.anim.lost": "Animation diagnostics stopped because the dragon is no longer loaded."
+  "commands.dragoncare.anim.lost": "Animation diagnostics stopped because the dragon is no longer loaded.",
+  "dragoncare.mod.description": "Dragon care, bonding, veterinary tools, farming, tracking, and world interactions for Ice and Fire CE.",
+  "dragoncare.credits.wound_textures": "Dragon wound overlay textures were created by artist IneraShadow.",
+  "dragoncare.credits.dragon_fruit_block_textures": "Dragon Fruit block and stem textures, including growth stages (block textures only, not the item texture), were created by artist LadaVesta.",
+  "dragoncare.credits.norse_hall": "Original Norse Hall structure: DarkLordKaz. Modified by Orion."
 }

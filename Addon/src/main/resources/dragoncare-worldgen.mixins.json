@@ -1,0 +1,14 @@
+{
+    "required": true,
+    "package": "com.dragoncare.mixin.worldgen",
+    "compatibilityLevel": "JAVA_21",
+    "minVersion": "0.8",
+    "refmap": "dragoncare.refmap.json",
+    "mixins": [
+        "DragonRoostPieceMixin",
+        "DragonCavePieceMixin"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    }
+}

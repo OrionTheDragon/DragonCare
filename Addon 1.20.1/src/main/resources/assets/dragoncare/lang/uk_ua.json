@@ -317,6 +317,7 @@
   "dragoncare.config.crafting.simplify_crafts": "Спростити крафти",
   "dragoncare.config.crafting.simplify_crafts.tooltip": "Якщо увімкнено, замінює деякі складні рецепти на простіші (Датчик попелу, Пігулки, Знеболювальне тощо).\nУвага: Зміна цього налаштування безпосередньо у грі викличе автоматичне перезавантаження рецептів, що може спричинити короткочасний лаг.",
   "subtitles.dragoncare.using_pill": "Таблетка проковтнута",
+  "subtitles.dragoncare.ash_meter_normal": "Показники вимірювача попелу нормалізувалися",
   "item.dragoncare.guild_map": "Карта Гільдії мисливців на драконів",
   "dragoncare.config.dragon.taming": "Приручення драконів",
   "dragoncare.config.dragon.taming.duration_seconds": "Час приручення (в секундах)",
@@ -391,5 +392,9 @@
   "dragoncare.config.structures.hunter_house_spawn_multiplier": "Множник шансу Будинку мисливця",
   "dragoncare.config.structures.hunter_house_spawn_multiplier.tooltip": "Множник шансу спавну для Будинку/Табору мисливця на драконів.\n1.0 — стандартний шанс. Чим нижче значення, тим нижчий шанс спавну.",
   "dragoncare.config.structures.village_forge_spawn_multiplier": "Множник шансу Зруйнованої кузні",
-  "dragoncare.config.structures.village_forge_spawn_multiplier.tooltip": "Множник шансу спавну для Зруйнованої драконячої кузні в селах.\n1.0 — стандартний шанс. Чим нижче значення, тим нижчий шанс спавну."
-}
+  "dragoncare.config.structures.village_forge_spawn_multiplier.tooltip": "Множник шансу спавну для Зруйнованої драконячої кузні в селах.\n1.0 — стандартний шанс. Чим нижче значення, тим нижчий шанс спавну.",
+  "dragoncare.mod.description": "Догляд за драконами, прив'язаність, ветеринарні інструменти, фермерство, відстеження та взаємодія зі світом для Ice and Fire CE.",
+  "dragoncare.credits.wound_textures": "Текстури накладання ран драконів створила художниця IneraShadow.",
+  "dragoncare.credits.dragon_fruit_block_textures": "Текстури блока та стебла драконячого фрукта, включно зі стадіями росту (лише текстури блока, не предмета), створила художниця LadaVesta.",
+  "dragoncare.credits.norse_hall": "Оригінальна схема Norse Hall: DarkLordKaz. Модифікація: Orion."
+}

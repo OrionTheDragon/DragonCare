@@ -1,0 +1,14 @@
+{
+    "required": true,
+    "package": "com.dragoncare.mixin.compat.tabula",
+    "compatibilityLevel": "JAVA_21",
+    "minVersion": "0.8",
+    "plugin": "com.dragoncare.mixin.DragonCareMixinPlugin",
+    "refmap": "tabulaCompat-dragoncare.refmap.json",
+    "client": [
+        "DragonBaseEntityRendererMixin"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    }
+}

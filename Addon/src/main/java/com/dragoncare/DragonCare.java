@@ -41,7 +41,7 @@ public class DragonCare {
         });
 
         if (dist == Dist.CLIENT) {
-            com.dragoncare.client.AddonClient.registerConfigScreen(container);
+            com.dragoncare.client.AddonClient.register(modEventBus, container);
         }
     }
 

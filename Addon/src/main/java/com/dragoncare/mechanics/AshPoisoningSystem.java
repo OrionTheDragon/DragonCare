@@ -201,7 +201,7 @@ public class AshPoisoningSystem {
                 pos.set(x, 0, z);
                 
                 // Избегаем загрузки чанков - если чанк не загружен, пропускаем весь (X, Z) столбец
-                if (!world.isChunkLoaded(pos)) {
+                if (!world.getChunkManager().isChunkLoaded(x >> 4, z >> 4)) {
                     // Перепрыгиваем за пределы текущего чанка по Z
                     z = (z | 15);
                     continue;

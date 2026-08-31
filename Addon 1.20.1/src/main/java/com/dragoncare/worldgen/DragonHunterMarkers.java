@@ -65,6 +65,7 @@ import java.util.regex.Pattern;
  * {@code uk_ua}) and English ({@code en_us}). Other locales fall back to English
  * via vanilla's standard mechanism.</p>
  */
+@SuppressWarnings("deprecation")
 public final class DragonHunterMarkers implements MarkerProcessor {
 
     private static final Logger LOG = LoggerFactory.getLogger(DragonCare.MOD_ID + "/HunterMarkers");

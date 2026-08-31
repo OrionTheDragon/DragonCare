@@ -29,6 +29,7 @@ import java.util.List;
  * continuously re-issues navigation commands, and applies a temporary speed
  * boost so the baby dragon actually runs fast enough to flee.
  */
+@SuppressWarnings("this-escape")
 public class WildDragonFleePlayerGoal extends Goal {
     private static final Identifier FLEE_SPEED_MODIFIER =
             Identifier.of("dragoncare", "wild_dragon_flee_speed");

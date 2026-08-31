@@ -50,7 +50,7 @@ public class DragonCare {
         modEventBus.addListener(this::setup);
 
         if (FMLEnvironment.dist == Dist.CLIENT) {
-            com.dragoncare.client.AddonClient.registerConfigScreen();
+            com.dragoncare.client.AddonClient.register(modEventBus);
         }
     }
 

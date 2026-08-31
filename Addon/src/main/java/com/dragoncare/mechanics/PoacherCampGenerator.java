@@ -19,11 +19,11 @@ public class PoacherCampGenerator {
 
         EntityType<? extends DragonBaseEntity> entityType = null;
         if ("fire".equalsIgnoreCase(dragonTypeStr)) {
-            entityType = (EntityType<? extends DragonBaseEntity>) Registries.ENTITY_TYPE.get(Identifier.of("iceandfire", "fire_dragon"));
+            entityType = IafEntities.FIRE_DRAGON.get();
         } else if ("ice".equalsIgnoreCase(dragonTypeStr)) {
-            entityType = (EntityType<? extends DragonBaseEntity>) Registries.ENTITY_TYPE.get(Identifier.of("iceandfire", "ice_dragon"));
+            entityType = IafEntities.ICE_DRAGON.get();
         } else if ("lightning".equalsIgnoreCase(dragonTypeStr)) {
-            entityType = (EntityType<? extends DragonBaseEntity>) Registries.ENTITY_TYPE.get(Identifier.of("iceandfire", "lightning_dragon"));
+            entityType = IafEntities.LIGHTNING_DRAGON.get();
         }
 
         if (entityType != null) {
@@ -38,7 +38,8 @@ public class PoacherCampGenerator {
                 }
                 
                 baby.setHealth(baby.getMaxHealth());
-                baby.setVariant(com.iafenvoy.uranus.util.RandomHelper.randomOne(baby.dragonType.colors()).getName());
+                baby.setVariant(com.dragoncare.compat.IafDragonVariants.randomVariant(
+                        baby, world.getRandom().nextInt(4)));
                 baby.updatePositionAndAngles(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, world.getRandom().nextFloat() * 360, 0);
                 baby.setHunger(10); // Very hungry, starving
 

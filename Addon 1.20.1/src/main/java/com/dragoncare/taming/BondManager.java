@@ -122,7 +122,7 @@ public final class BondManager {
 
     private static void sync(ServerPlayerEntity player, UUID dragonId, BondData d) {
         if (player == null) return;
-        com.dragoncare.network.ModNetwork.INSTANCE.send(net.minecraftforge.network.PacketDistributor.PLAYER.with(() -> (net.minecraft.server.network.ServerPlayerEntity)player), new BondSyncPayload(dragonId, d.points));
+        com.dragoncare.network.ModNetwork.INSTANCE.send(net.minecraftforge.network.PacketDistributor.PLAYER.with(() -> player), new BondSyncPayload(dragonId, d.points));
     }
 
     /** Sends current bond to a player who just started tracking the dragon. */
@@ -136,7 +136,7 @@ public final class BondManager {
             applyPassive(d, server.getOverworld().getTime());
             points = d.points;
         }
-        com.dragoncare.network.ModNetwork.INSTANCE.send(net.minecraftforge.network.PacketDistributor.PLAYER.with(() -> (net.minecraft.server.network.ServerPlayerEntity)player), new BondSyncPayload(dragonId, points));
+        com.dragoncare.network.ModNetwork.INSTANCE.send(net.minecraftforge.network.PacketDistributor.PLAYER.with(() -> player), new BondSyncPayload(dragonId, points));
     }
 
     // ---------- mutations ----------

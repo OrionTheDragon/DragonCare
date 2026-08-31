@@ -137,6 +137,7 @@ public final class DragonAnimationDebugCommands {
                 goals);
     }
 
+    @SuppressWarnings("deprecation")
     private static String getAnimationName(Animation animation) {
         if (animation == null || animation == IAnimatedEntity.NO_ANIMATION) return "NONE";
         if (animation == DragonBaseEntity.ANIMATION_SPEAK) return "SPEAK";

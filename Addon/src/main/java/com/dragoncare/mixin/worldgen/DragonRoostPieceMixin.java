@@ -2,12 +2,11 @@ package com.dragoncare.mixin.worldgen;
 
 import com.dragoncare.mechanics.DragonFamilyManager;
 import com.dragoncare.mechanics.DragonFamilyState;
-import com.iafenvoy.iceandfire.data.DragonType;
 import com.iafenvoy.iceandfire.entity.DragonBaseEntity;
 import com.iafenvoy.iceandfire.entity.FireDragonEntity;
 import com.iafenvoy.iceandfire.entity.IceDragonEntity;
 import com.iafenvoy.iceandfire.entity.LightningDragonEntity;
-import com.iafenvoy.iceandfire.world.structure.DragonRoostStructure;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
@@ -16,27 +15,41 @@ import net.minecraft.world.StructureWorldAccess;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.Redirect;
 
+// DragonRoostPiece is a protected nested class. A class-valued target would require
+// placing this mixin in IaF's package, which creates an illegal JPMS split package.
 @Mixin(targets = "com.iafenvoy.iceandfire.world.structure.DragonRoostStructure$DragonRoostPiece")
 public abstract class DragonRoostPieceMixin {
 
     @Shadow
     protected abstract EntityType<? extends DragonBaseEntity> getDragonType();
 
-    @Inject(method = "spawnDragon", at = @At("TAIL"), remap = false, locals = org.spongepowered.asm.mixin.injection.callback.LocalCapture.CAPTURE_FAILSOFT)
-    private void dragoncare$onSpawnRoostDragon(StructureWorldAccess world, BlockPos origin, Random random, int ageOffset, boolean isMale, CallbackInfo ci, DragonBaseEntity mother) {
-        if (com.dragoncare.config.AddonConfig.DISABLE_WILD_BABY_SPAWNS.get()) return;
+    @Redirect(
+            method = "spawnDragon",
+            remap = false,
+            at = @At(value = "DRAGONCARE:SPAWN_ENTITY", remap = false)
+    )
+    private boolean dragoncare$onSpawnRoostDragon(StructureWorldAccess world, Entity entity,
+                                                   StructureWorldAccess methodWorld,
+                                                   BlockPos origin, Random random,
+                                                   int ageOffset, boolean isMale) {
+        boolean spawnedMother = world.spawnEntity(entity);
+        if (!spawnedMother || !(entity instanceof DragonBaseEntity mother)) {
+            return spawnedMother;
+        }
+        if (com.dragoncare.config.AddonConfig.DISABLE_WILD_BABY_SPAWNS.get()) {
+            return true;
+        }
 
         MinecraftServer server = world.getServer();
-        if (server == null || mother == null) return;
+        if (server == null) return true;
         int typeIndex = 0; // 0=Fire, 1=Ice, 2=Lightning
-        DragonType type;
-        if (mother instanceof FireDragonEntity) { typeIndex = 0; type = com.iafenvoy.iceandfire.registry.IafDragonTypes.FIRE; }
-        else if (mother instanceof IceDragonEntity) { typeIndex = 1; type = com.iafenvoy.iceandfire.registry.IafDragonTypes.ICE; }
-        else if (mother instanceof LightningDragonEntity) { typeIndex = 2; type = com.iafenvoy.iceandfire.registry.IafDragonTypes.LIGHTNING; }
-        else return;
+        String typeName;
+        if (mother instanceof FireDragonEntity) { typeIndex = 0; typeName = "fire"; }
+        else if (mother instanceof IceDragonEntity) { typeIndex = 1; typeName = "ice"; }
+        else if (mother instanceof LightningDragonEntity) { typeIndex = 2; typeName = "lightning"; }
+        else return true;
 
         DragonFamilyState state = DragonFamilyState.get(server);
         state.roostCounters[typeIndex]++;
@@ -57,7 +70,7 @@ public abstract class DragonRoostPieceMixin {
             }
             
             com.mojang.logging.LogUtils.getLogger().debug("[DragonCare] Roost trigger reached for {} dragon! Attempting to spawn {} babies at mother pos: {}, {}, {}", 
-                type.name(), babiesToSpawn, mother.getX(), mother.getY(), mother.getZ());
+                typeName, babiesToSpawn, mother.getX(), mother.getY(), mother.getZ());
 
             int successfulSpawns = 0;
             for (int i = 0; i < babiesToSpawn; i++) {
@@ -70,7 +83,8 @@ public abstract class DragonRoostPieceMixin {
                         baby.setAgingDisabled(false);
                     }
                     baby.setHealth(baby.getMaxHealth());
-                    baby.setVariant(com.iafenvoy.uranus.util.RandomHelper.randomOne(type.colors()).getName());
+                    baby.setVariant(com.dragoncare.compat.IafDragonVariants.randomVariant(
+                            baby, random.nextInt(4)));
                     
                     // Spawn baby near mother, finding a safe surface height
                     double offsetX = (random.nextDouble() - 0.5) * 8.0; // Slightly larger radius for roosts
@@ -107,8 +121,9 @@ public abstract class DragonRoostPieceMixin {
             }
             com.mojang.logging.LogUtils.getLogger().debug("[DragonCare] Successfully spawned {}/{} roost babies.", successfulSpawns, babiesToSpawn);
         } else {
-            com.mojang.logging.LogUtils.getLogger().debug("[DragonCare] Roost counter for {} is {}/{}", type.name(), state.roostCounters[typeIndex], target);
+            com.mojang.logging.LogUtils.getLogger().debug("[DragonCare] Roost counter for {} is {}/{}", typeName, state.roostCounters[typeIndex], target);
             state.markDirty();
         }
+        return true;
     }
 }

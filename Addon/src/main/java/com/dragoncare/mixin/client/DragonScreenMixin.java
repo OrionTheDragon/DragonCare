@@ -27,7 +27,12 @@ public abstract class DragonScreenMixin extends HandledScreen<DragonMenu> {
         super(null, null, null);
     }
 
-    @Inject(method = "drawBackground", at = @At("TAIL"))
+    // IaF ships Mojmap-named classes (renderBg), while Loom's development
+    // runtime remaps the same override to Yarn (drawBackground). Refmapping a
+    // method owned by the external IaF class selects the wrong namespace in
+    // one of those environments, so list both exact names and still require a
+    // real target to be present.
+    @Inject(method = {"drawBackground", "renderBg"}, at = @At("TAIL"), remap = false)
     private void dragoncare$drawBondBar(DrawContext ctx, float partialTicks, int mouseX, int mouseY,
                                              CallbackInfo ci) {
         DragonBaseEntity dragon = ((DragonScreenHandlerAccessor) this.handler).dragoncare$getDragon();

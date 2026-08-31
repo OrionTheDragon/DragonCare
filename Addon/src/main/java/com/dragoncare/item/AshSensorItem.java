@@ -168,7 +168,7 @@ public class AshSensorItem extends Item {
         for (int x = minX; x <= maxX; x++) {
             for (int z = minZ; z <= maxZ; z++) {
                 pos.set(x, 0, z);
-                if (!world.isChunkLoaded(pos)) {
+                if (!world.getChunkManager().isChunkLoaded(x >> 4, z >> 4)) {
                     z = (z | 15);
                     continue;
                 }

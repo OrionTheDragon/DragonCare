@@ -124,7 +124,7 @@ public final class PhoneGlowTickHandler {
                 true, dragon.getUuid(), dim, p.x, p.y, p.z,
                 has ? custom.getString() : "", has,
                 dragon.getType().getTranslationKey());
-        com.dragoncare.network.ModNetwork.INSTANCE.send(net.minecraftforge.network.PacketDistributor.PLAYER.with(() -> (net.minecraft.server.network.ServerPlayerEntity)sp), payload);
+        com.dragoncare.network.ModNetwork.INSTANCE.send(net.minecraftforge.network.PacketDistributor.PLAYER.with(() -> sp), payload);
         LAST_HUD_ACTIVE.put(sp.getUuid(), true);
     }
 
@@ -142,14 +142,14 @@ public final class PhoneGlowTickHandler {
                 true, r.dragonId(), r.dimension(), r.x(), r.y(), r.z(),
                 has ? r.customName() : "", has,
                 species != null ? species : "");
-        com.dragoncare.network.ModNetwork.INSTANCE.send(net.minecraftforge.network.PacketDistributor.PLAYER.with(() -> (net.minecraft.server.network.ServerPlayerEntity)sp), payload);
+        com.dragoncare.network.ModNetwork.INSTANCE.send(net.minecraftforge.network.PacketDistributor.PLAYER.with(() -> sp), payload);
         LAST_HUD_ACTIVE.put(sp.getUuid(), true);
     }
 
     private static void sendHudOff(ServerPlayerEntity sp) {
         Boolean prev = LAST_HUD_ACTIVE.get(sp.getUuid());
         if (prev != null && prev) {
-            com.dragoncare.network.ModNetwork.INSTANCE.send(net.minecraftforge.network.PacketDistributor.PLAYER.with(() -> (net.minecraft.server.network.ServerPlayerEntity)sp), PhoneHudPayload.off());
+            com.dragoncare.network.ModNetwork.INSTANCE.send(net.minecraftforge.network.PacketDistributor.PLAYER.with(() -> sp), PhoneHudPayload.off());
             LAST_HUD_ACTIVE.put(sp.getUuid(), false);
         }
     }

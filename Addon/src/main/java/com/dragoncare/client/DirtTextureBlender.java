@@ -30,7 +30,7 @@ public final class DirtTextureBlender {
      * @param dirtLevel The dirt level (1 to 5).
      * @return The Identifier of the registered blended DynamicTexture, or baseId if anything fails.
      */
-    public static Identifier getOrCreateBlendedTexture(Identifier baseId, int dirtLevel) {
+    public static synchronized Identifier getOrCreateBlendedTexture(Identifier baseId, int dirtLevel) {
         if (dirtLevel <= 0 || baseId.getPath().startsWith("dynamic/")) {
             return baseId;
         }
@@ -59,42 +59,36 @@ public final class DirtTextureBlender {
             return baseId;
         }
 
+        NativeImage baseImage = null;
+        NativeImageBackedTexture blendedTexture = null;
+        boolean textureOwnsImage = false;
+        boolean registered = false;
         try {
-            NativeImage baseImage;
             try (InputStream in = baseResource.get().getInputStream()) {
                 baseImage = NativeImage.read(in);
             }
 
-            NativeImage overlayImage;
-            try (InputStream in = overlayResource.get().getInputStream()) {
-                overlayImage = NativeImage.read(in);
-            }
+            try (InputStream in = overlayResource.get().getInputStream();
+                 NativeImage overlayImage = NativeImage.read(in)) {
+                int baseW = baseImage.getWidth();
+                int baseH = baseImage.getHeight();
+                int overlayW = overlayImage.getWidth();
+                int overlayH = overlayImage.getHeight();
 
-            int baseW = baseImage.getWidth();
-            int baseH = baseImage.getHeight();
-            int overlayW = overlayImage.getWidth();
-            int overlayH = overlayImage.getHeight();
-
-            // 3. Dynamic pixel-by-pixel alpha blending with coordinate scaling
-            for (int y = 0; y < baseH; y++) {
-                for (int x = 0; x < baseW; x++) {
-                    // Map base coordinates to overlay template coordinates (handles stage scaling beautifully!)
-                    int ox = (x * overlayW) / baseW;
-                    int oy = (y * overlayH) / baseH;
-
-                    int baseCol = baseImage.getColor(x, y);
-                    int overlayCol = overlayImage.getColor(ox, oy);
-
-                    int blendedCol = blendPixels(baseCol, overlayCol);
-                    baseImage.setColor(x, y, blendedCol);
+                // 3. Dynamic pixel-by-pixel alpha blending with coordinate scaling
+                for (int y = 0; y < baseH; y++) {
+                    for (int x = 0; x < baseW; x++) {
+                        int ox = (x * overlayW) / baseW;
+                        int oy = (y * overlayH) / baseH;
+                        baseImage.setColor(x, y,
+                                blendPixels(baseImage.getColor(x, y), overlayImage.getColor(ox, oy)));
+                    }
                 }
             }
 
-            // Close the overlay image as we are done with it
-            overlayImage.close();
-
             // 4. Wrap base image in a NativeImageBackedTexture and register it
-            NativeImageBackedTexture blendedTexture = new NativeImageBackedTexture(baseImage);
+            blendedTexture = new NativeImageBackedTexture(baseImage);
+            textureOwnsImage = true;
             
             // Generate a unique identifier for the registered texture
             String safePath = baseId.getPath().replace("/", "_").replace(".png", "");
@@ -102,14 +96,21 @@ public final class DirtTextureBlender {
             
             // Register texture with standard client TextureManager
             client.getTextureManager().registerTexture(blendedId, blendedTexture);
+            registered = true;
             
             BLENDED_CACHE.put(cacheKey, blendedId);
             LOGGER.info("Successfully generated and registered dynamic dirt texture: {}", blendedId);
             return blendedId;
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             LOGGER.error("Failed to dynamically blend dirt texture for base {}: {}", baseId, e.getMessage(), e);
             return baseId;
+        } finally {
+            if (!registered && blendedTexture != null) {
+                blendedTexture.close();
+            } else if (!textureOwnsImage && baseImage != null) {
+                baseImage.close();
+            }
         }
     }
 
@@ -154,7 +155,15 @@ public final class DirtTextureBlender {
         return (aOut << 24) | (bOut << 16) | (gOut << 8) | rOut;
     }
 
-    public static void clearCache() {
+    public static synchronized void clearCache() {
+        MinecraftClient client = MinecraftClient.getInstance();
+        if (!client.isOnThread()) {
+            client.execute(DirtTextureBlender::clearCache);
+            return;
+        }
+        for (Identifier textureId : BLENDED_CACHE.values()) {
+            client.getTextureManager().destroyTexture(textureId);
+        }
         BLENDED_CACHE.clear();
     }
 }
